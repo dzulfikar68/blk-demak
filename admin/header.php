@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Muhammad Syarifuddin Latief">
+    <meta name="keyword" content="balai, latihan, kerja">
+
+    <title>Administrator Balai Latihan Kerja Demak</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+  </head>
+
+  <body>
+
+    <!-- CONTAINER START -->
+    <section id="container" >
+      <!--header start-->
+      <header class="header black-bg">
+        <div class="sidebar-toggle-box">
+          <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+        </div>
+
+        <!--logo start-->
+        <a href="index.html" class="logo"><b> Administrator Balai Latihan Kerja Demak</b></a>
+        <!--logo end-->
+
+        <div class="top-menu">
+          <ul class="nav pull-right top-menu">
+            <li><a class="logout" href="login.html">Logout</a></li>
+          </ul>
+        </div>
+      </header>
+      <!--header end-->
+      <!--sidebar start-->
+      <aside>
+        <div id="sidebar"  class="nav-collapse ">
+          <!-- sidebar menu start-->
+          <ul class="sidebar-menu" id="nav-accordion">
+
+            <p class="centered"><a href="profile.html"><img src="../assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+            <h5 class="centered">Admin</h5>
+
+            <li class="mt">
+              <a href="index.html">
+                <i class="fa fa-home"></i>
+                <span>Beranda</span>
+              </a>
+            </li>
+
+            <li class="sub-menu">
+              <a href="javascript:;" >
+                <i class="fa fa-database"></i>
+                <span>Data - Data</span>
+              </a>
+              <ul class="sub">
+                <li><a  href="general.html">Data Profil</a></li>
+                <li><a  href="buttons.html">Data Jurusan</a></li>
+                <li><a  href="panels.html">Data Memilih Jurusan</a></li>
+                <li><a  href="data_peserta.php">Data Peserta</a></li>
+                <li><a  href="buttons.html">Data Karyawan</a></li>
+                <li><a  href="panels.html">Data Sesi</a></li>
+                <li><a  href="general.html">Data Program</a></li>
+              </ul>
+            </li>
+
+            <li class="sub-menu">
+              <a href="javascript:;" >
+                <i class=" fa fa-bar-chart-o"></i>
+                <span>Laporan - Laporan</span>
+              </a>
+              <ul class="sub">
+                <li><a  href="calendar.html">Laporan Peserta</a></li>
+                <li><a  href="gallery.html">Laporan Ruang</a></li>
+                <li><a  href="todo_list.html">Laporan Sesi</a></li>
+                <li><a  href="todo_list.html">Laporan Daftar Pelatihan</a></li>
+              </ul>
+            </li>
+            
+          </ul>
+        <!-- sidebar menu end-->
+        </div>
+      </aside>
+      <!--sidebar end-->
