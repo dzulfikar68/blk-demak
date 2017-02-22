@@ -9,6 +9,8 @@
 
     <title>Administrator Balai Latihan Kerja Demak</title>
 
+    <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
+ 
     <!-- Bootstrap core CSS -->
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
@@ -17,6 +19,7 @@
     <!-- Custom styles for this template -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
+    <link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!--[if lt IE 9]>
@@ -41,7 +44,21 @@
 
         <div class="top-menu">
           <ul class="nav pull-right top-menu">
-            <li><a class="logout" href="login.html">Logout</a></li>
+            <li>
+
+              <div class="dropdown" style="margin:10px">
+                <button class="btn btn-default dropdown-toggle" type="button" id="tombol_akun" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pengaturan
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                  <li><a href="ubah_akun.php">Pengaturan Akun</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </div>
+
+            </li>
           </ul>
         </div>
       </header>
@@ -56,7 +73,7 @@
             <h5 class="centered">Admin</h5>
 
             <li class="mt">
-              <a href="index.html">
+              <a href="index.php">
                 <i class="fa fa-home"></i>
                 <span>Beranda</span>
               </a>
@@ -68,13 +85,13 @@
                 <span>Data - Data</span>
               </a>
               <ul class="sub">
-                <li><a  href="general.html">Data Profil</a></li>
-                <li><a  href="buttons.html">Data Jurusan</a></li>
-                <li><a  href="panels.html">Data Memilih Jurusan</a></li>
+      
+                <li><a  href="data_kejuruan.php">Data Kejuruan</a></li>
+      
                 <li><a  href="data_peserta.php">Data Peserta</a></li>
-                <li><a  href="buttons.html">Data Karyawan</a></li>
-                <li><a  href="panels.html">Data Sesi</a></li>
-                <li><a  href="general.html">Data Program</a></li>
+                <li><a  href="data_karyawan.php">Data Karyawan</a></li>
+                <!-- <li><a  href="panels.html">Data Sesi</a></li>
+                <li><a  href="general.html">Data Program</a></li> -->
               </ul>
             </li>
 
