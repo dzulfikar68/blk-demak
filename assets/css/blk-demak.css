@@ -177,3 +177,31 @@ footer p{
 	margin-left: 15px;
 	display: inline-block;
 }
+
+/* Profile */
+.profile .nav-stacked li{
+	border: 1px solid #ddd;
+	margin-bottom: 5px;
+}
+.profile .nav-stacked .active{
+	border: none;
+}
+.profile .nav-stacked li a{
+	border-radius: 0px;
+}
+.profile .col-sm-3{
+	position: sticky;
+	/*top: 30px;*/
+}
+.profile .tab-pane{
+	min-height: 600px;
+	border: 1px solid #ddd;
+	padding: 15px;
+	margin-bottom: 50px;
+}
+.profile .attribute{
+	width: 300px;
+}
+.profile .colon{
+	width: 20px;
+}
