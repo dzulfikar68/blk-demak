@@ -1,0 +1,179 @@
+/*** GUEST ***/
+
+body{
+	font-family: 'PT Sans', 'Arial';
+	font-size: 15px;
+}
+a:focus{
+	outline: unset;
+	background-color: transparent;
+}
+
+.valign-wrapper{
+	position: relative;
+}
+.valign{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.text-center{
+	text-align: center;
+}
+table .number{
+	width: 55px;
+}
+
+/* Header */
+.header-top{
+	background-color: #e0e0e0;
+}
+.header-top .container{
+	height: 130px;
+}
+.header-top h3,
+.header-top h4{
+	margin-top: 0px;
+	margin-bottom: 5px;
+	font-weight: 600;
+	color: #424242;
+}
+.brand,
+.brand-title{
+	float: left;
+}
+.brand{
+	margin-top: 15px;
+	margin-right: 20px;
+}
+.brand img{
+	width: auto;
+	height: 100px;
+}
+.brand-title{
+	margin-top: 18px;
+}
+
+.auth{
+	margin-top: 50px;
+	float: right;
+}
+.auth a{
+	color: #42a5f5;
+}
+.auth a:first-child{
+	margin-right: 15px;
+}
+.auth a:last-child{
+	margin-right: 50px;
+}
+
+.header-bottom{
+	border-bottom: 1px solid #ddd;
+	background-color: #42a5f5;
+}
+.header-bottom .navbar{
+	margin-bottom: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	border: none;
+}
+.header-bottom .navbar a{
+	color: #fff;
+	transition: color 0.5s;
+}
+.header-bottom .navbar li::before{
+	content: '';
+	width: 0%;
+	height: 50px;
+	border-bottom: 3px solid #b2ff59;
+	transition: width 0.5s;
+	position: absolute;
+	z-index: 0;
+}
+.header-bottom .navbar li:hover::before{
+	width: 100%;
+}
+.header-bottom .navbar a:hover{
+	background-color: transparent;
+	color: #b2ff59;
+}
+
+/* Footer */
+footer{
+	height: 50px;
+	background-color: #e0e0e0;
+}
+footer p{
+	margin-top: 15px;
+}
+
+/* Modal Auth */
+#modal-auth .modal-dialog{
+	margin-top: 0px;
+	top: 40%;
+	transform: translateY(-50%);
+}
+#modal-auth .modal-header{
+	border-bottom: none;
+}
+
+/* Content */
+.page{
+	min-height: 400px;
+	padding-top: 20px;
+	padding-bottom: 30px;
+}
+.page-title{
+	font-weight: 600;
+	color: #039be5;
+	margin-bottom: 40px;
+}
+
+/* Schedule */
+.schedule-item{
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 15px;
+	margin-bottom: 35px;
+}
+.schedule-title{
+	text-align: center;
+	font-weight: 600;
+	margin-bottom: 25px;
+}
+.field{
+	width: 210px;
+}
+
+/* Selection Result */
+/*.filter h4{
+	font-weight: 600;
+	border-bottom: 1px solid #ddd;
+}
+.filter-title{
+	height: 50px;
+	margin-bottom: 20px;
+}*/
+
+/* About */
+.icon-wrapper{
+	width: 50px;
+	height: 50px;
+	border-radius: 30px;
+	background-color: #42a5f5;
+	font-size: 24px;
+	color: #fff;
+	text-align: center;
+	display: inline-block;
+	overflow: hidden;
+}
+.icon-wrapper i{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	height: 50px;
+}
+.icon-info{
+	margin-left: 15px;
+	display: inline-block;
+}
