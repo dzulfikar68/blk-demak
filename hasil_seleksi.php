@@ -3,9 +3,13 @@
 ?>
 
 <div class="page">
-	<div class="container">
-		<h3 class="page-title">Pengumuman Hasil Seleksi</h3>
-		<div class="content">
+	<div class="page-title">
+		<div class="container">
+			<h3>Pengumuman Hasil Seleksi</h3>
+		</div>
+	</div>
+	<div class="content">
+		<div class="container">
 			<div class="filter">
 				<!-- <div class="filter-title">
 					<h4>Filter</h4>
@@ -116,7 +120,7 @@
 				</ul>
 			</nav>
 		</div>
-	</div>
+	</div>	<!-- ./content -->
 </div>
 
 <?php
