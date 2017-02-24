@@ -77,7 +77,7 @@
 <script>
     $(function(){
       // Activate Auth Tab When Login or Register Clicked
-      $('.auth a').on('click', function(){
+      $('.auth button').on('click', function(){
         var type = $(this).attr('data-tab');
         if( !$('#'+type+'-li, #'+type+'').hasClass('active') ) {
           // Deactivate another tab
