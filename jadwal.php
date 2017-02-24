@@ -1,10 +1,15 @@
 <?php
   include "header.php";
 ?>
+
     <div class="page">
-      <div class="container">
-          <h3 class="page-title">Jadwal dan Jenis Pelatihan</h3>
-          <div class="content">
+      <div class="page-title">
+        <div class="container">
+          <h3>Jadwal dan Jenis Pelatihan</h3>
+        </div>
+      </div>
+      <div class="content">
+        <div class="container">
             <div class="schedule-item">
               <h4 class="schedule-title">Pelatihan Gelombang 1 Tahun 2017</h4>
               <table class="table table-striped">
@@ -145,7 +150,7 @@
                 </li>
               </ul>
             </nav>
-          </div>
+        </div>
       </div>
     </div>
 

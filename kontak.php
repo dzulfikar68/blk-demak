@@ -3,9 +3,13 @@
 ?>
 
 <div class="page">
-	<div class="container">
-		<h3 class="page-title">Kontak</h3>
-		<div>
+	<div class="page-title">
+		<div class="container">
+			<h3>Kontak</h3>
+		</div>
+	</div>
+	<div class="content">
+        <div class="container">
 			<div class="row">
 				<div class="col-sm-6" style="margin-top: 75px;">
 					<div class="valign-wrapper">
@@ -54,7 +58,7 @@
 					<div class="col-sm-6">
 						<div class="form-group">
 							<label>Pesan</label>
-							<textarea class="form-control" rows="8"></textarea>
+							<textarea class="form-control" style="height: 185px;"></textarea>
 						</div>
 						<div class="form-group">
 							<input class="btn btn-primary pull-right" type="submit" value="Kirim">
@@ -72,7 +76,6 @@
 <?php
   include "footer.php";
 ?>
-
 
   </body>
 </html>
