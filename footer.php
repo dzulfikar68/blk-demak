@@ -24,10 +24,10 @@
               <!-- Form Login -->
               <form>
                 <div class="form-group">
-                  <input class="form-control" type="email" name="blk_email" placeholder="Email">
+                  <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="password" name="blk_password" placeholder="Password">
+                  <input class="form-control" type="password" name="blk_password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                   <input class="btn btn-success" type="submit" value="Login">
@@ -40,16 +40,19 @@
               <!-- Form Register -->
               <form>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="name" placeholder="Nama">
+                  <input class="form-control" type="text" name="name" placeholder="Nama" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="id_number" placeholder="No. KTP">
+                  <input class="form-control" type="text" name="id_number" placeholder="No. KTP" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="email" name="blk_email" placeholder="Email">
+                  <input class="form-control" type="phone" name="phone" placeholder="No. Telepon" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="password" name="blk_password" placeholder="Password">
+                  <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                  <input class="form-control" type="password" name="blk_password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                   <input class="btn btn-primary" type="submit" value="Daftar">
