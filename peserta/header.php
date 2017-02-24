@@ -30,13 +30,16 @@
 
     <header>
       <div class="header-top">
-        <div class="container">
+        <p class="text-center" style="margin-bottom: 0px;">Aplikasi Pendaftaran dan Pengolahan Data Pelatihan Kerja</p>
+      </div>
+
+      <div class="header-middle">
+        <div class="container valign-wrapper">
               <div class="brand">
-                <a href="/"><img src="assets/img/logo.png"></a>
+                <a href="index.php"><img src="assets/img/logo.png"></a>
               </div>
 
               <div class="brand-title">
-                <h3>Aplikasi Pendaftaran dan Pengolahan Data Pelatihan Kerja</h3>
                 <h4>
                   Unit Pelaksana Teknis Balai Latihan Kerja<br>
                   Dinas Sosial, Tenaga Kerja, dan Transmigrasi<br>
@@ -44,9 +47,9 @@
                 </h4>
               </div>
 
-              <div class="auth">
-                <a href="#/" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</a>
-                <a href="#/" data-tab="register" data-toggle="modal" data-target="#modal-auth">Daftar</a>
+              <div class="auth valign">
+                <button class="login-btn" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</button>
+                <button class="signup-btn" data-tab="register" data-toggle="modal" data-target="#modal-auth">Daftar</button>
               </div>
         </div>
       </div>
@@ -55,8 +58,8 @@
         <div class="container">
           <nav class="navbar navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/">Beranda</a></li>
-              <li><a href="/">Lihat Jadwal dan Jenis Pelatihan</a></li>
+              <li><a href="index.php">Beranda</a></li>
+              <li><a href="jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
               <li><a href="hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
               <li><a href="tentang.php">Tentang</a></li>
               <li><a href="kontak.php">Kontak</a></li>
