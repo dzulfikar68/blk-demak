@@ -27,7 +27,14 @@
 
     <!--script for this page-->
 
-   
+    <script>
+      $("#batal").click(function(){
+        $("#collapseForm").collapse('hide');
+        $('#tambah').focus();
+      });
+
+      $('[data-tooltip="true"]').tooltip();
+    </script>
 
   </body>
 </html>
