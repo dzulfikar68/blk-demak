@@ -285,8 +285,10 @@ footer p{
 }
 .profile .tab-pane{
 	min-height: 600px;
-	padding: 15px;
 	margin-bottom: 50px;
+}
+.panel-title a{
+	margin-left: 20px;
 }
 .profile .attribute{
 	width: 300px;
