@@ -3,3 +3,21 @@ CREATE TABLE `blk_demak`.`peserta` ( `id` INT NOT NULL AUTO_INCREMENT , `no_ktp`
 
 /*== Mengubah panjang password di Tabel Peserta ==*/
 ALTER TABLE `peserta` CHANGE `password` `password` VARCHAR(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
+
+
+============================== 25 FEBRUARI ============================== 
+MOHAMMAD FAJAR AINUL BASHRI
+
+=======> MEMBUAT TABEL KEJURUAN
+
+CREATE TABLE `blk_demak`.`kejuruan` ( `id_kejuruan` INT NOT NULL AUTO_INCREMENT , `nama_kejuruan` VARCHAR(64) NOT NULL , `date_created` TIMESTAMP NOT NULL , PRIMARY KEY (`id_kejuruan`)) ENGINE = InnoDB;
+
+******* EDIT TABEL KEJURUAN
+ALTER TABLE `kejuruan` CHANGE `date_created` `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
+=======> MEMBUAT TABEL KARYAWAN
+
+CREATE TABLE `blk_demak`.`karyawan` ( `id_karyawan` INT NOT NULL AUTO_INCREMENT , `nama_karyawan` VARCHAR(128) NOT NULL , `email` VARCHAR(64) NOT NULL , `jabatan` VARCHAR(16) NOT NULL , PRIMARY KEY (`id_karyawan`)) ENGINE = InnoDB;
+
+******* TAMBAH KOLOM TABEL KARYAWAN
+ALTER TABLE `karyawan` ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `jabatan`;
