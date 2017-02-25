@@ -20,7 +20,7 @@
     <script src="../assets/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script type="text/javascript" src="../datatables/datatables.min.js"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
-    <script src="../datepicker/js/bootstrap-datepicker.min.js"></script>
+    
 
     <!--common script for all pages-->
     <script src="../assets/js/common-scripts.js"></script>

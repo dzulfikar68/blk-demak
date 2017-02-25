@@ -19,6 +19,7 @@
     <!-- Custom styles for this template -->
     <link href="../assets/css/style.css" rel="stylesheet">
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
+    <link href="../assets/css/jquery-ui.css" rel="stylesheet">
     <link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,8 +88,8 @@
               <ul class="sub">
       
                 <li><a  href="data_kejuruan.php">Data Kejuruan</a></li>
-      
                 <li><a  href="data_peserta.php">Data Peserta</a></li>
+                <li><a  href="data_jadwal.php">Data Jadwal</a></li>
                 <li><a  href="data_karyawan.php">Data Karyawan</a></li>
                 <!-- <li><a  href="panels.html">Data Sesi</a></li>
                 <li><a  href="general.html">Data Program</a></li> -->
