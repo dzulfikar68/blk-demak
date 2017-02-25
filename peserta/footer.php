@@ -23,6 +23,7 @@
             <div class="col-md-7">
               <!-- Form Login -->
               <form>
+                <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
                   <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
                 </div>
@@ -39,14 +40,15 @@
             <div class="col-md-7">
               <!-- Form Register -->
               <form>
+                <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
-                  <input class="form-control" type="text" name="name" placeholder="Nama" required>
+                  <input class="form-control" type="text" name="blk_nama" placeholder="Nama" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="id_number" placeholder="No. KTP" required>
+                  <input class="form-control" type="text" name="no_ktp" placeholder="No. KTP" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="phone" name="phone" placeholder="No. Telepon" required>
+                  <input class="form-control" type="phone" name="telepon" placeholder="No. Telepon" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control" type="email" name="blk_email" placeholder="Email" required>

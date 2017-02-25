@@ -1,5 +1,8 @@
 <?php
   include "header.php";
+
+  session_start();
+  $_SESSION['page'] = "hasil_seleksi";
 ?>
 
 <div class="page">
@@ -11,9 +14,6 @@
 	<div class="content">
 		<div class="container">
 			<div class="filter">
-				<!-- <div class="filter-title">
-					<h4>Filter</h4>
-				</div> -->
 				<div class="row">
 					<form>
 						<div class="form-group col-sm-3">
@@ -61,7 +61,7 @@
 			<br>
 			<div>
 				<h4 class="schedule-title">Daftar Peserta Lolos</h4>
-				<table class="table table-striped">
+				<table class="table table-striped green-table">
 					<thead>
 						<tr>
 							<th class="number">No</th>

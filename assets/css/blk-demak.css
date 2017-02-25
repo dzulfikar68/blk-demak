@@ -239,7 +239,7 @@ footer p{
 	width: 50px;
 	height: 50px;
 	border-radius: 30px;
-	background-color: #42a5f5;
+	background-color: #5599ff;
 	font-size: 24px;
 	color: #fff;
 	text-align: center;
@@ -274,7 +274,7 @@ footer p{
 }
 .profile .tab-pane{
 	min-height: 600px;
-	border: 1px solid #ddd;
+	/*border: 1px solid #ddd;*/
 	padding: 15px;
 	margin-bottom: 50px;
 }
@@ -287,4 +287,63 @@ footer p{
 .table > tbody > tr > th,
 .table > tbody > tr > td{
 	border-top: none;
+}
+
+/* Table */
+.green-table > thead > tr > th{
+	background-color: #b7f96b;
+	border-bottom-color: #92e137;
+}
+.profile .table-striped > tbody > tr:nth-child(2n+1) > th,
+.table-striped > tbody > tr:nth-child(2n+1) > td{
+    background-color: #efefef;
+}
+.green-table > tbody > tr:hover > td{
+	background-color: #cef89e;
+}
+
+/* Notification */
+.pop-up{
+	min-width: 220px;
+	min-height: 60px;
+	position: absolute;
+	top: 120px;
+	right: 15px;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px;
+	z-index: 100;
+	display: none;
+}
+.success-message{
+	background-color: #a6f570;
+	border: 2px solid #86dd4a;
+}
+.error-message{
+	background-color: #f37575;
+	border: 2px solid #e05757;
+}
+.pop-up .close{
+	width: 23px;
+	height: 23px;
+	border: 2px solid #fff;
+	border-radius: 11px;
+	color: #fff;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	opacity: 0.6;
+	transition: opacity 0.2s ease-in-out;
+	z-index: 5;
+}
+.pop-up .close:hover{
+	opacity: 0.9;
+}
+.pop-up .close > span{
+	position: relative;
+	top: -1px;
+}
+.pop-up p{
+	margin-top: 20px;
+	margin-bottom: 20px;
 }

@@ -1,5 +1,8 @@
 <?php
   include "header.php";
+
+  session_start();
+  $_SESSION['page'] = "jadwal";
 ?>
 
     <div class="page">
@@ -12,7 +15,7 @@
         <div class="container">
             <div class="schedule-item">
               <h4 class="schedule-title">Pelatihan Gelombang 1 Tahun 2017</h4>
-              <table class="table table-striped">
+              <table class="table table-striped green-table">
                 <thead>
                   <tr>
                     <th>No</th>
@@ -62,7 +65,7 @@
 
             <div class="schedule-item">
               <h4 class="schedule-title">Pelatihan Gelombang 2 Tahun 2017</h4>
-              <table class="table table-striped">
+              <table class="table table-striped green-table">
                 <thead>
                   <tr>
                     <th>No</th>

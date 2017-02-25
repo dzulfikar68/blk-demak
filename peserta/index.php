@@ -1,5 +1,9 @@
 <?php
+	require_once ('../_is_login.php');
 	include 'header.php';
+
+	session_start();
+	$_SESSION['page'] = "peserta/index";
 ?>
 
 <div class="page">
@@ -73,9 +77,63 @@
 						</div>
 						<div role="tabpanel" class="tab-pane" id="training">
 							Daftar Pelatihan
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Kejuruan</th>
+										<th>Paket</th>
+										<th>Gelombang</th>
+										<th>Tahun</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Otomotif</td>
+										<td>2</td>
+										<td>1</td>
+										<td>2015</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Menjahit</td>
+										<td>1</td>
+										<td>4</td>
+										<td>2016</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Menjahit</td>
+										<td>2</td>
+										<td>1</td>
+										<td>2017</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 						<div role="tabpanel" class="tab-pane" id="job">
 							Data Kerja
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Kejuruan</th>
+										<th>Perusahaan</th>
+										<th>Tahun Mulai</th>
+										<th>Tahun Selesai</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Komputer</td>
+										<td>PT Digit Creative Studio</td>
+										<td>2016</td>
+										<td>Sekarang</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>

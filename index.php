@@ -1,6 +1,11 @@
 <?php
-  include "header.php";
+	require_once ('_is_login.php');
+	include "header.php";
+
+	session_start();
+	$_SESSION['page'] = "index";
 ?>
+
 	<div class="page">
 		<div class="page-title">
 			<div class="container">
@@ -108,7 +113,7 @@
 	</div>
 
 	<?php
-	include "footer.php";
+		include "footer.php";
 	?>
 
 	</body>

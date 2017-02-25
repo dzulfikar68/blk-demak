@@ -1,0 +1,5 @@
+/*== Membuat Tabel Peserta ==*/
+CREATE TABLE `blk_demak`.`peserta` ( `id` INT NOT NULL AUTO_INCREMENT , `no_ktp` VARCHAR(16) NOT NULL , `nama` VARCHAR(128) NOT NULL , `jenis_kelamin` VARCHAR(9) NULL , `tempat_lahir` VARCHAR(128) NULL , `tanggal_lahir` DATE NULL , `agama` VARCHAR(16) NULL , `alamat` VARCHAR(256) NULL , `telepon` VARCHAR(14) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(16) NOT NULL , `sumber_info` VARCHAR(16) NULL , `tanggal_daftar` DATE NOT NULL , PRIMARY KEY (`id`), UNIQUE (`no_ktp`)) ENGINE = InnoDB;
+
+/*== Mengubah panjang password di Tabel Peserta ==*/
+ALTER TABLE `peserta` CHANGE `password` `password` VARCHAR(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
