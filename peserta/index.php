@@ -1,5 +1,4 @@
 <?php
-	require_once ('../_is_login.php');
 	include 'header.php';
 
 	session_start();
@@ -17,14 +16,14 @@
 			<div class="row profile">
 				<div class="col-sm-3">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
-						<li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
-						<li role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Daftar Pelatihan</a></li>
-						<li role="presentation"><a href="#job" aria-controls="job" role="tab" data-toggle="tab">Data Kerja</a></li>
+						<li id="profile-tab" role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
+						<li id="training-tab" role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Daftar Pelatihan</a></li>
+						<li id="job-tab" role="presentation"><a href="#job" aria-controls="job" role="tab" data-toggle="tab">Data Kerja</a></li>
 					</ul>
 				</div>
 				<div class="col-sm-9">
 					<div class="tab-content">
-						<div role="tabpanel" class="tab-pane active" id="profile">
+						<div role="tabpanel" class="tab-pane fade in active" id="profile">
 							<table class="table table-striped">
 								<tbody>
 									<tr>
@@ -75,7 +74,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div role="tabpanel" class="tab-pane" id="training">
+						<div role="tabpanel" class="tab-pane fade" id="training">
 							Daftar Pelatihan
 							<table class="table table-striped">
 								<thead>
@@ -112,7 +111,7 @@
 								</tbody>
 							</table>
 						</div>
-						<div role="tabpanel" class="tab-pane" id="job">
+						<div role="tabpanel" class="tab-pane fade" id="job">
 							Data Kerja
 							<table class="table table-striped">
 								<thead>

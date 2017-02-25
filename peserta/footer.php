@@ -102,6 +102,16 @@
         }
       });
 
+      // Mengatur kelas active pada dropdown menu profile
+      /*$('.dropdown-menu li').on('click', function(){
+          // Deactivate another tab
+          $(this).addClass('active');
+          $('.dropdown-menu .active').removeClass('active');
+
+            // $('.profile .nav-pills .active').removeClass('active');
+      });*/
+      
+
       // Menampilkan pesan/ notifikasi
       if ($('.pop-up').length) {
         $('.pop-up').css('z-index', 1).animate({

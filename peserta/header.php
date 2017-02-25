@@ -46,11 +46,12 @@
                   Pemerintah Kabupaten Demak
                 </h4>
               </div>
-              
 <?php
   // check is user logged in?
   session_start();
   if (!$_SESSION['login-peserta']) {
+    header("Location: ../");
+    die();
 ?>
               <div class="auth valign">
                 <button class="login-btn" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</button>
@@ -59,21 +60,38 @@
 <?php
   }   /* end of check login*/
 ?>
-
         </div>
       </div>
 
       <div class="header-bottom">
         <div class="container">
-          <nav class="navbar navbar-collapse collapse">
+          <nav class="navbar navbar-collapse collapse pull-left">
             <ul class="nav navbar-nav">
-              <li><a href="index.php">Beranda</a></li>
-              <li><a href="jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
-              <li><a href="hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
-              <li><a href="tentang.php">Tentang</a></li>
-              <li><a href="kontak.php">Kontak</a></li>
+              <li><a href="../index.php">Beranda</a></li>
+              <li><a href="../jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
+              <li><a href="../hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
+              <li><a href="../tentang.php">Tentang</a></li>
+              <li><a href="../kontak.php">Kontak</a></li>
             </ul>
           </nav>
+<?php
+  // check is user logged in?
+  session_start();
+  if ($_SESSION['login-peserta']) {
+?>
+          <div class="dropdown pull-right">
+            <button id="profile-menu" class="login-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Profil
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="profile-menu" role="tablist">
+              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil Saya</a></li>
+              <li><a href="../proses/peserta/logout.php">Logout</a></li>
+            </ul>
+          </div>
+<?php
+  }   /* end of check login*/
+?>
         </div>
       </div>
     </header>

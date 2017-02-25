@@ -83,7 +83,6 @@ table .number{
 	border: 1px solid #5599ff;
 	font-size: 13px;
 	color: #5599ff;
-	margin-right: 10px;
 	background-color: #fff;
 }
 .login-btn:hover,
@@ -99,6 +98,7 @@ table .number{
 .signup-btn{
 	padding: 4px 12px;
 	border: 1px solid #b7f96b;
+	margin-left: 10px;
 	font-size: 13px;
 	color: #b7f96b;
 	background-color: #fff;
@@ -111,6 +111,17 @@ table .number{
 .signup-btn:active{
 	background-color: #aeec67;
 	transform: translateY(2px);
+}
+
+.header-bottom .dropdown{
+	margin-top: 8px;
+}
+.dropdown .login-btn:active{
+	transform: none;
+}
+.dropdown .caret{
+	margin-left: 7px;
+	margin-top: -1px;
 }
 
 .header-bottom{
