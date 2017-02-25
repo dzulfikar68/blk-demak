@@ -160,7 +160,7 @@ footer p{
 /* Modal Auth */
 #modal-auth .modal-dialog{
 	margin-top: 0px;
-	top: 40%;
+	top: 50%;
 	transform: translateY(-50%);
 }
 #modal-auth .modal-header{
@@ -206,7 +206,7 @@ footer p{
 	height: 100%;
 	position: absolute;
 	top: 0px;
-	z-index: 5;
+	z-index: 1;
 	background-color: #5599ff;
 	opacity: 0;
 	transition: opacity 0.25s ease-in-out;
@@ -274,7 +274,6 @@ footer p{
 }
 .profile .tab-pane{
 	min-height: 600px;
-	/*border: 1px solid #ddd;*/
 	padding: 15px;
 	margin-bottom: 50px;
 }
@@ -306,14 +305,12 @@ footer p{
 .pop-up{
 	min-width: 220px;
 	min-height: 60px;
-	position: absolute;
+	position: fixed;
 	top: 120px;
-	right: 15px;
+	right: -220px;
 	color: #fff;
 	border-radius: 5px;
 	padding: 10px;
-	z-index: 100;
-	display: none;
 }
 .success-message{
 	background-color: #a6f570;

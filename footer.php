@@ -25,7 +25,7 @@
               <form action="proses/peserta/login.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
-                  <input class="form-control" type="email" name="blk_email" placeholder="Email" required autofocus="true">
+                  <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control" type="password" name="blk_password" placeholder="Password" required>
@@ -42,7 +42,7 @@
               <form action="proses/peserta/daftar.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
-                  <input class="form-control" type="text" name="blk_nama" placeholder="Nama" required autofocus>
+                  <input class="form-control" type="text" name="blk_nama" placeholder="Nama" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control" type="text" name="no_ktp" placeholder="No. KTP" required>
@@ -73,10 +73,10 @@
 
 <!-- Pesan -->
 <?php
-  if (isset($_SESSION['success'])) {
+  if ($_SESSION['success']) {
     include '_pesan_sukses.php';
   }
-  if (isset($_SESSION['error'])) {
+  if ($_SESSION['error']) {
     include '_pesan_error.php';
   }
 
@@ -104,19 +104,17 @@
 
       // Menampilkan pesan/ notifikasi
       if ($('.pop-up').length) {
-        $('.pop-up').animate({
-          opacity: 1,
-          display: "block",
-          right: "65px"
-        }, 300);
+        $('.pop-up').css('z-index', 1).animate({
+          'opacity': 1,
+          'right': "75px"
+        }, 300).animate({ 'right': "65px" }, 400);;
       }
 
       // Menghilangkan pesan/ notifikasi
       $('.pop-up .close').click(function(){
         $('.pop-up').animate({
-          opacity: 0,
-          right: "15px",
-          display: "none"
+          'opacity': 0,
+          'right': "-220px"
         }, 300);
       });
 

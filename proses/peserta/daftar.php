@@ -15,9 +15,11 @@
 	$previous_page = $_POST['page'];
 	// mengecek duplikasi no ktp
 	$check_ktp_sql = "SELECT no_ktp FROM peserta WHERE no_ktp = '$no_ktp'";
-	$check_ktp = mysqli_query($connect, $check_ktp_sql);
+	$result = mysqli_query($connect, $check_ktp_sql);
 
-	if ($check_ktp != null) {
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	
+	if ($row != null) {
 		$_SESSION['error'] = "Nomor KTP Anda telah terdaftar sebagai peserta";
 		header("Location: ../../". $previous_page .".php");
 		die();
@@ -25,7 +27,7 @@
 
 	if($password === $password_confirm){
 		$password = md5($password); 
-		
+
 		$sql = "INSERT INTO peserta (nama, no_ktp, telepon, email, password, tanggal_daftar)
 				VALUES ('$nama', '$no_ktp', '$telepon', '$email', '$password', '$tanggal_daftar')";
 
