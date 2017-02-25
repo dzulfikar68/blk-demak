@@ -22,7 +22,7 @@
           <div role="tabpanel" class="tab-pane fade collapse clearfix" id="login">
             <div class="col-md-7">
               <!-- Form Login -->
-              <form>
+              <form action="proses/peserta/login.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
                   <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
@@ -39,7 +39,7 @@
           <div role="tabpanel" class="tab-pane fade collapse clearfix" id="register">
             <div class="col-md-7">
               <!-- Form Register -->
-              <form>
+              <form action="proses/peserta/daftar.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
                   <input class="form-control" type="text" name="blk_nama" placeholder="Nama" required>
@@ -57,6 +57,9 @@
                   <input class="form-control" type="password" name="blk_password" placeholder="Password" required>
                 </div>
                 <div class="form-group">
+                  <input class="form-control" type="password" name="blk_password_confirm" placeholder="Ulangi Password" required>
+                </div>
+                <div class="form-group">
                   <input class="btn btn-primary" type="submit" value="Daftar">
                 </div>
               </form>
@@ -68,20 +71,27 @@
   </div>
 </div>
 
+<!-- Pesan -->
+<?php
+  if ($_SESSION['success']) {
+    include '_pesan_sukses.php';
+  }
+  if ($_SESSION['error']) {
+    include '_pesan_error.php';
+  }
+
+  // Menghapus pesan sukses dan error
+  unset($_SESSION['error']);
+  unset($_SESSION['success']);
+?>
+
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="../assets/js/jquery.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="../assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-<script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
-<script class="include" type="text/javascript" src="../assets/js/jquery.dcjqaccordion.2.7.js"></script>
-<script src="../assets/js/jquery.scrollTo.min.js"></script>
-<script src="../assets/js/jquery.nicescroll.js" type="text/javascript"></script>
 
-<!--common script for all pages-->
-<script src="assets/js/common-scripts.js"></script>
 <script>
     $(function(){
-      // Activate Auth Tab When Login or Register Clicked
+      // Mengaktifkan Auth Tab ketika tombol Login / Register ditekan
       $('.auth button').on('click', function(){
         var type = $(this).attr('data-tab');
         if( !$('#'+type+'-li, #'+type+'').hasClass('active') ) {
@@ -91,5 +101,22 @@
           $('#'+type+'-li, #'+type+'').addClass('in active');
         }
       });
+
+      // Menampilkan pesan/ notifikasi
+      if ($('.pop-up').length) {
+        $('.pop-up').css('z-index', 1).animate({
+          'opacity': 1,
+          'right': "75px"
+        }, 300).animate({ 'right': "65px" }, 400);;
+      }
+
+      // Menghilangkan pesan/ notifikasi
+      $('.pop-up .close').click(function(){
+        $('.pop-up').animate({
+          'opacity': 0,
+          'right': "-220px"
+        }, 300);
+      });
+
     });
 </script>

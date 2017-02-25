@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="description" content="Pendaftaran dan Pengolahan Data Pelatihan Kerja Kabupaten Demak, BLK">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
@@ -36,7 +36,7 @@
       <div class="header-middle">
         <div class="container valign-wrapper">
               <div class="brand">
-                <a href="index.php"><img src="assets/img/logo.png"></a>
+                <a href="index.php"><img src="../assets/img/logo.png"></a>
               </div>
 
               <div class="brand-title">
@@ -46,11 +46,20 @@
                   Pemerintah Kabupaten Demak
                 </h4>
               </div>
-
+              
+<?php
+  // check is user logged in?
+  session_start();
+  if (!$_SESSION['login-peserta']) {
+?>
               <div class="auth valign">
                 <button class="login-btn" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</button>
                 <button class="signup-btn" data-tab="register" data-toggle="modal" data-target="#modal-auth">Daftar</button>
               </div>
+<?php
+  }   /* end of check login*/
+?>
+
         </div>
       </div>
 
