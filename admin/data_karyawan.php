@@ -69,7 +69,7 @@
                     <label class="col-sm-4 control-label">Jabatan</label>
                     <div class="col-sm-8">
                       <select name="jabatan" class="form-control" required>
-                        <option value="">Pilih Jabatan</option> 
+                        
                         <option value="Staff" selected>Staff</option> 
                         <option value="Ketua">Ketua</option> 
                         
