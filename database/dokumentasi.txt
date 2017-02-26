@@ -52,4 +52,11 @@ ALTER TABLE `jadwal` ADD `status` VARCHAR(32) NOT NULL AFTER `kapasitas`;
 ALTER TABLE `jadwal` CHANGE `status` `status_pelaksanaan` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'belum';
 
 ******* UBAH KOLOM STATUS DI TABEL KEJURUAN ASSIGN
-ALTER TABLE `kejuruan_assign` CHANGE `status` `status` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan';
+
+ALTER TABLE `kejuruan_assign` CHANGE `status` `status` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT '1' COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan';
+
+******* TAMBAH KOLOM TABEL KEJURUAN ASSIGN
+ALTER TABLE `kejuruan_assign` ADD `selected` INT NOT NULL AFTER `status`;
+
+******* TAMBAH KOLOM SELECTED TABEL KEJURUAN ASSIGN
+ALTER TABLE `kejuruan_assign` CHANGE `selected` `selected` INT(11) NOT NULL DEFAULT '0';

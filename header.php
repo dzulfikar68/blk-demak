@@ -74,7 +74,7 @@
           </nav>
 <?php
   // check is user logged in?
-  session_start();
+  //session_start();
   if ($_SESSION['login-peserta']) {
 ?>
           <div class="dropdown pull-right">
