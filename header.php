@@ -42,7 +42,7 @@
               <div class="brand-title">
                 <h4>
                   Unit Pelaksana Teknis Balai Latihan Kerja<br>
-                  Dinas Sosial, Tenaga Kerja, dan Transmigrasi<br>
+                  Dinas Tenaga Kerja dan Perindustrian<br>
                   Pemerintah Kabupaten Demak
                 </h4>
               </div>
