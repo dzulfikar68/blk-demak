@@ -147,8 +147,10 @@
                       <th>Nama Kejuruan</th>
                       <th>Sumber Dana</th>
                       <th>Kapasitas</th>
+                      <th>Jumlah Peserta</th>
                       <th>Tanggal Seleksi</th>
                       <th>Tanggal Pelatihan</th>
+                      <th>Status</th>
                       <!-- <th>Tahun Pelatihan</th> -->
                       <th>Aksi</th>
                     </tr>
@@ -174,6 +176,12 @@
                         $no = 1;
                         while ($row=mysqli_fetch_object($query)) {
 
+                          if($row->status_pelaksanaan=='sudah'){
+                            $status = "<span  class=\"label label-success\">Sudah Terlaksana</span>";
+                          }else{
+                            $status = "<span  class=\"label label-danger\">Belum Terlaksana</span>";
+                          }
+
                           $tgl_seleksi = concateDate($row->seleksi_awal, $row->seleksi_akhir);
                           $tgl_pelatihan = concateDate($row->pelatihan_awal, $row->pelatihan_akhir);
 
@@ -182,16 +190,23 @@
                           $pelatihan_awal = convertDate($row->pelatihan_awal, "d M Y");
                           $pelatihan_akhir = convertDate($row->pelatihan_akhir, "d M Y");
 
+                          $query_jumlah_peserta = mysqli_query($connect, "SELECT count(*) FROM jadwal_assign WHERE id_jadwal=$row->id_jadwal ");
+
+                          $jumlah_peserta = mysqli_num_rows($query_jumlah_peserta);
+
                           echo "<tr>";
                           echo "<td>".$row->angkatan."</td>";
                           echo "<td>".$row->nama_kejuruan."</td>";
                           echo "<td>".$row->sumber_dana."</td>";
                           echo "<td>".$row->kapasitas."</td>";
+                          echo "<td>".$jumlah_peserta."</td>";
                           echo "<td>".$tgl_seleksi."</td>";
                           echo "<td>".$tgl_pelatihan."</td>";
+                          echo "<td>".$status."</td>";
                           echo "<td>";
-                          echo "<a href=\"#\" data-target=\"#modalJadwal\" data-toggle=\"modal\" data-id=\"".$row->id_jadwal."\" data-id_kejuruan=\"".$row->id_kejuruan."\" data-angkatan=\"".$row->angkatan."\" data-kapasitas=\"".$row->kapasitas."\" data-sumber_dana=\"".$row->sumber_dana."\" data-seleksi_awal=\"".$seleksi_awal."\" data-seleksi_akhir=\"".$seleksi_akhir."\" data-pelatihan_awal=\"".$pelatihan_awal."\" data-pelatihan_akhir=\"".$pelatihan_akhir."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "<a href=\"detail_jadwal.php?id=".$row->id_jadwal."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Detail Jadwal\" ><i class=\"fa fa-eye\"></i></a> ";
+                          echo "<a href=\"#\" data-target=\"#modalJadwal\" data-toggle=\"modal\" data-id=\"".$row->id_jadwal."\" data-id_kejuruan=\"".$row->id_kejuruan."\" data-angkatan=\"".$row->angkatan."\" data-kapasitas=\"".$row->kapasitas."\" data-status=\"".$row->status_pelaksanaan."\"  data-sumber_dana=\"".$row->sumber_dana."\" data-seleksi_awal=\"".$seleksi_awal."\" data-seleksi_akhir=\"".$seleksi_akhir."\" data-pelatihan_awal=\"".$pelatihan_awal."\" data-pelatihan_akhir=\"".$pelatihan_akhir."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Jadwal\" ><i class=\"fa fa-pencil\"></i></a> ";
+                          echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";
                           echo "</td>";
                           echo "</tr>";
 
@@ -308,6 +323,17 @@
                     <input type="text" name="pelatihan_akhir" class="form-control" placeholder="Akhir Pelatihan" required >
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Status Pelaksanaan</label>
+                  <div class="col-sm-8">
+                    <select name="status" class="form-control" required>
+                      <option value="belum">Belum Terlaksana</option>
+                      <option value="sudah">Sudah Terlaksana</option>
+                     
+                    </select>
+                  </div>
+                </div>
               
 
             </div>
@@ -412,6 +438,8 @@
              var id_kejuruan = $(e.relatedTarget).data('id_kejuruan');
              var kapasitas = $(e.relatedTarget).data('kapasitas');
              var sumber_dana = $(e.relatedTarget).data('sumber_dana');
+             var status = $(e.relatedTarget).data('status');
+
 
              var seleksi_awal = $(e.relatedTarget).data('seleksi_awal');
              var seleksi_akhir = $(e.relatedTarget).data('seleksi_akhir');
@@ -426,6 +454,7 @@
              $('.modal select[name="kejuruan"]').val(id_kejuruan);
              $('.modal input[name="kapasitas"]').val(kapasitas);
              $('.modal select[name="sumber_dana"]').val(sumber_dana);
+             $('.modal select[name="status"]').val(status);
 
              $('.modal input[name="seleksi_awal"]').val(seleksi_awal);
              $('.modal input[name="seleksi_akhir"]').val(seleksi_akhir);

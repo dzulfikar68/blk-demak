@@ -22,6 +22,7 @@
                 <button style="margin-bottom:10px" class="btn btn-primary pull-right" id="tambah" type="button" data-toggle="collapse" href="#collapseForm"  >Tambah Karyawan</button>
                 <br>
                 <div class="clearfix" >
+                  
 
                 </div>
                 <?php
@@ -114,8 +115,7 @@
 
                       if($num<=0){
 
-                        echo "<tr align=center><td  colspan=5>Tidak ada data karyawan....</td></tr>";
-
+                        
                       }else{
 
                         $no = 1;

@@ -10,6 +10,7 @@
 	$angkatan 		= $_POST['angkatan'];
 	$kapasitas 		= $_POST['kapasitas'];
 	$sumber_dana 	= $_POST['sumber_dana'];
+	$status 	= $_POST['status'];
 
 	$seleksi_awal 	= $_POST['seleksi_awal'];
 	$seleksi_akhir 	= $_POST['seleksi_akhir'];
@@ -23,7 +24,7 @@
 
 
 	$query_update = mysqli_query($connect, "UPDATE jadwal SET id_kejuruan='".$id_kejuruan."', 
-					angkatan='".$angkatan."', kapasitas='".$kapasitas."',
+					angkatan='".$angkatan."', kapasitas='".$kapasitas."',status_pelaksanaan='".$status."',
 					sumber_dana='".$sumber_dana."', seleksi_awal='".$seleksi_awal."', 
 					seleksi_akhir='".$seleksi_akhir."', pelatihan_awal='".$pelatihan_awal."',
 					pelatihan_akhir='".$pelatihan_akhir."' WHERE id_jadwal=$id ");

@@ -7,7 +7,7 @@
     <meta name="author" content="Muhammad Syarifuddin Latief">
     <meta name="keyword" content="balai, latihan, kerja">
 
-    <title>Administrator Balai Latihan Kerja Demak</title>
+    <title>Administrator Aplikasi Pendaftaran dan Pengolahan Data Pelatihan Kerja</title>
 
     <link rel="stylesheet" type="text/css" href="../datatables/datatables.min.css"/>
  
@@ -40,7 +40,7 @@
         </div>
 
         <!--logo start-->
-        <a href="index.html" class="logo"><b> Administrator Balai Latihan Kerja Demak</b></a>
+        <a href="index.html" class="logo"><b> Administrator Aplikasi Pendaftaran dan Pengolahan Data Pelatihan Kerja</b></a>
         <!--logo end-->
 
         <div class="top-menu">
