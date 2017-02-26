@@ -21,3 +21,6 @@ CREATE TABLE `blk_demak`.`karyawan` ( `id_karyawan` INT NOT NULL AUTO_INCREMENT 
 
 ******* TAMBAH KOLOM TABEL KARYAWAN
 ALTER TABLE `karyawan` ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `jabatan`;
+
+=======> MEMBUAT TABEL JADWAL
+CREATE TABLE `blk_demak`.`jadwal` ( `id_jadwal` INT NOT NULL AUTO_INCREMENT , `angkatan` VARCHAR(8) NOT NULL , `id_kejuruan` INT NOT NULL , `sumber_dana` VARCHAR(8) NOT NULL , `kapasitas` INT NOT NULL , `seleksi_awal` DATE NOT NULL , `seleksi_akhir` DATE NOT NULL , `pelatihan_awal` DATE NOT NULL , `pelatihan_akhir` DATE NOT NULL , `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id_jadwal`)) ENGINE = InnoDB;
