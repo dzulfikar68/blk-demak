@@ -6,6 +6,9 @@
 
         include 'header.php';
         require_once ('../proses/koneksi_db.php');
+        require_once ('../proses/convert_date.php');
+
+
 
       ?>
 
@@ -88,8 +91,8 @@
                           <label class="col-sm-4 control-label">Sumber Dana</label>
                           <div class="col-sm-8">
                             <select name="sumber_dana" class="form-control" required>
-                              <option value="apbd">APBD</option>
-                              <option value="apbn">APBN</option>
+                              <option value="APBD">APBD</option>
+                              <option value="APBN">APBN</option>
                              
                             </select>
                           </div>
@@ -152,19 +155,66 @@
 
                   </thead>
                   <tbody>
-                    <tr>
+                    <?php
+
+                      $query = mysqli_query($connect, "SELECT * FROM jadwal, kejuruan WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan ORDER BY jadwal.date_created DESC");
+
+                      if(!$query){
+                        die("QUERY FAILED : ". mysqli_error($connect));
+                      }
+
+                      $num = mysqli_num_rows($query);
+
+                      if($num<=0){
+
+                        /*echo "<tr align=center><td colspan=7>Tidak ada data jadwal....</td></tr>";*/
+
+                      }else{
+
+                        $no = 1;
+                        while ($row=mysqli_fetch_object($query)) {
+
+                          $tgl_seleksi = concateDate($row->seleksi_awal, $row->seleksi_akhir);
+                          $tgl_pelatihan = concateDate($row->pelatihan_awal, $row->pelatihan_akhir);
+
+                          $seleksi_awal = convertDate($row->seleksi_awal, "d M Y");
+                          $seleksi_akhir = convertDate($row->seleksi_akhir, "d M Y");
+                          $pelatihan_awal = convertDate($row->pelatihan_awal, "d M Y");
+                          $pelatihan_akhir = convertDate($row->pelatihan_akhir, "d M Y");
+
+                          echo "<tr>";
+                          echo "<td>".$row->angkatan."</td>";
+                          echo "<td>".$row->nama_kejuruan."</td>";
+                          echo "<td>".$row->sumber_dana."</td>";
+                          echo "<td>".$row->kapasitas."</td>";
+                          echo "<td>".$tgl_seleksi."</td>";
+                          echo "<td>".$tgl_pelatihan."</td>";
+                          echo "<td>";
+                          echo "<a href=\"#\" data-target=\"#modalJadwal\" data-toggle=\"modal\" data-id=\"".$row->id_jadwal."\" data-id_kejuruan=\"".$row->id_kejuruan."\" data-angkatan=\"".$row->angkatan."\" data-kapasitas=\"".$row->kapasitas."\" data-sumber_dana=\"".$row->sumber_dana."\" data-seleksi_awal=\"".$seleksi_awal."\" data-seleksi_akhir=\"".$seleksi_akhir."\" data-pelatihan_awal=\"".$pelatihan_awal."\" data-pelatihan_akhir=\"".$pelatihan_akhir."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
+                          echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "</td>";
+                          echo "</tr>";
+
+                          $no++;
+                        }
+                     
+                        
+                      }
+
+                    ?>
+                   <!--  <tr>
                       <td>I</td>
                       <td>Memasak</td>
                       <td>APPBN</td>
                       <td>12 Peserta</td>
                       <td>12 Januari 2017</td>
-                      <td>19 Januari 2017</td>
+                      <td>19 Januari 2017</td> -->
                       <!-- <td>2017</td> -->
-                      <td>
+                      <!-- <td>
                         <a href="#" class="btn btn-info btn-xs" data-toggle="tooltip" title="Ubah Data Jadwal" ><i class="fa fa-pencil"></i></a>
                         <a href="#" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus Data Jadwal" ><i class="fa fa-trash-o"></i></a>
                       </td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               
@@ -177,6 +227,101 @@
       </section><!-- /MAIN CONTENT -->
 
     <!--main content end-->
+     <!-- MODAL-->
+      <div class="modal fade" id="modalJadwal" tabindex="-1" role="dialog" aria-labelledby="modalJadwalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalJadwalLabel">Ubah Jadwal</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal style-form" method="POST">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Angkatan</label>
+                  <div class="col-sm-8">
+                    <select name="angkatan" class="form-control" required>
+                      <option value="I">Angkatan I</option>
+                      <option value="II">Angkatan II</option>
+                      <option value="III">Angkatan III</option>
+                      <option value="IV">Angkatan IV</option>
+                      <option value="V">Angkatan V</option>
+                    </select>
+                  </div>
+                </div>
+
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Nama Kejuruan</label>
+                  <div class="col-sm-8">
+                    <select name="kejuruan" class="form-control" required>
+                      <?php
+
+                        $query = mysqli_query($connect, "SELECT * FROM kejuruan ORDER BY date_created DESC");
+
+                        while($row=mysqli_fetch_object($query)){
+                          echo "<option value=".$row->id_kejuruan.">".$row->nama_kejuruan."</option>";
+                        }
+
+
+                      ?>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Sumber Dana</label>
+                  <div class="col-sm-8">
+                    <select name="sumber_dana" class="form-control" required>
+                      <option value="APBD">APBD</option>
+                      <option value="APBN">APBN</option>
+                     
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Kapasitas</label>
+                  <div class="col-sm-3">
+                    <input type="number" name="kapasitas" min="1" class="form-control" placeholder="Kapasitas" required > 
+                  </div>
+                  <span class="col-sm-1" style="padding:5px">peserta</span>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Tanggal Seleksi</label>
+                  <div class="col-sm-3">
+                    <input type="text" name="seleksi_awal" class="form-control" placeholder="Awal Seleksi" required >
+                  </div>
+                  <span class="col-sm-1" style="padding:5px">sampai</span>
+                  <div class="col-sm-3">
+                    <input type="text" name="seleksi_akhir" class="form-control" placeholder="Akhir Seleksi" required >
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Tanggal Pelatihan</label>
+                  <div class="col-sm-3">
+                    <input type="text" name="pelatihan_awal" class="form-control" placeholder="Awal Pelatihan" required >
+                  </div>
+                  <span class="col-sm-1" style="padding:5px">sampai</span>
+                  <div class="col-sm-3">
+                    <input type="text" name="pelatihan_akhir" class="form-control" placeholder="Akhir Pelatihan" required >
+                  </div>
+                </div>
+              
+
+            </div>
+            <div class="modal-footer">
+              <div id="footerModalDetail">
+              <button type="submit" class="btn btn-primary" id="edit">Ubah</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+       <!-- END MODAL--> 
     
 
       <?php
@@ -190,7 +335,11 @@
 
         $(document).ready(function(){
 
-          var tabel = $('#tableJadwal').DataTable();
+          var tabel = $('#tableJadwal').DataTable({
+              "language": {
+                "emptyTable": "Tidak ada data jadwal"
+              }
+          });
 
           $("#batal").click(function(){
             $("#collapseForm").collapse('hide');
@@ -252,6 +401,41 @@
             altField : $('input[name="pelatihan_akhir"]'),
             altFormat : "dd M yy",
           });
+
+
+
+
+          /*JS FOR MODAL*/
+          $('#modalJadwal').on('show.bs.modal', function(e){
+             var id = $(e.relatedTarget).data('id');
+             var angkatan = $(e.relatedTarget).data('angkatan');
+             var id_kejuruan = $(e.relatedTarget).data('id_kejuruan');
+             var kapasitas = $(e.relatedTarget).data('kapasitas');
+             var sumber_dana = $(e.relatedTarget).data('sumber_dana');
+
+             var seleksi_awal = $(e.relatedTarget).data('seleksi_awal');
+             var seleksi_akhir = $(e.relatedTarget).data('seleksi_akhir');
+             var pelatihan_awal = $(e.relatedTarget).data('pelatihan_awal');
+             var pelatihan_akhir = $(e.relatedTarget).data('pelatihan_akhir');
+
+
+
+             var action = "../proses/admin/ubah_jadwal.php?id="+id;
+
+             $('.modal select[name="angkatan"]').val(angkatan);
+             $('.modal select[name="kejuruan"]').val(id_kejuruan);
+             $('.modal input[name="kapasitas"]').val(kapasitas);
+             $('.modal select[name="sumber_dana"]').val(sumber_dana);
+
+             $('.modal input[name="seleksi_awal"]').val(seleksi_awal);
+             $('.modal input[name="seleksi_akhir"]').val(seleksi_akhir);
+             $('.modal input[name="pelatihan_awal"]').val(pelatihan_awal);
+             $('.modal input[name="pelatihan_akhir"]').val(pelatihan_akhir);
+
+             $('.modal form').attr('action', action);
+
+             
+          });  
 
 
         });
