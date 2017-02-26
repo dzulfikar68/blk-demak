@@ -17,43 +17,11 @@
 				<div class="row">
 					<form>
 						<div class="form-group col-sm-3">
-							<label>Tahun</label>
-							<select class="form-control" name="year">
-								<option>2017</option>
-								<option>2016</option>
-								<option>2015</option>
-								<option>2014</option>
-							</select>
+							<label>Search</label>
+							<input type="search" name="search" placeholder="Nomor peserta">
 						</div>
 						<div class="form-group col-sm-3">
-							<label>Kejuruan</label>
-							<select class="form-control" name="field">
-								<option>Desain Grafis Lanjutan</option>
-								<option>Tata Rias</option>
-								<option>Bahasa Inggris</option>
-								<option>Menjahit</option>
-							</select>
-						</div>
-						<div class="form-group col-sm-3">
-							<label>Gelombang</label>
-							<select class="form-control" name="cloter">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<div class="form-group col-sm-3">
-							<label>Paket</label>
-							<select class="form-control" name="cloter">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<div class="form-group col-sm-12">
-							<input class="btn btn-primary pull-right" type="submit" value="Filter">
+							<input class="btn btn-primary" type="submit" value="Search">
 						</div>
 					</form>
 				</div>

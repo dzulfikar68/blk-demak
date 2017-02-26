@@ -30,7 +30,7 @@
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
 	if ($row['no_ktp'] != null) {
-		$_SESSION['error'] = "Nomor KTP Anda telah terdaftar sebagai peserta";
+		$_SESSION['error'] = "Nomor KTP Anda telah terdaftar sebagai peserta.";
 		header("Location: ../../". $previous_page .".php");
 		die();
 	}
@@ -56,18 +56,18 @@
 							blkdemak@gmail.com";
 
 			$pesanSukses = "Pendaftaran sukses.<br>
-							Silakan cek email Anda untuk mengaktifkan akun";
+							Silakan cek email Anda untuk mengaktifkan akun.";
 
 			send_email($email, $nama, $subyek, $pesanEmail, $pesanSukses);
 			/*$_SESSION['login-peserta'] = false;
 			$_SESSION['ktp-peserta'] = $no_ktp;*/
 		} else {
 			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
-			$_SESSION['error'] = "Pendaftaran Gagal";
+			$_SESSION['error'] = "Pendaftaran Gagal.";
 		}
 		mysqli_close($connect);
 	} else{
-		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai";
+		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai.";
 	}
 
 	// redirect ke halaman sebelumnya
