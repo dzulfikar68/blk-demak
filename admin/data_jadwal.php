@@ -2,7 +2,10 @@
 
       <?php
 
+        session_start();
+
         include 'header.php';
+        require_once ('../proses/koneksi_db.php');
 
       ?>
 
@@ -20,6 +23,26 @@
                 <div class="clearfix" >
 
                 </div>
+                <?php
+
+                  if(isset($_SESSION['error'])){
+
+                    echo "<div class=\"alert alert-danger\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['error']."</p>";
+                    echo "</div>";
+
+
+                    unset($_SESSION['error']);
+
+                  }else if(isset($_SESSION['success'])){
+                    echo "<div class=\"alert alert-success\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['success']."</p>";
+                    echo "</div>";
+                    unset($_SESSION['success']);
+
+                  }
+
+                ?>
                 <!-- COLLAPSE FORM -->
                 <div class="collapse col-sm-12" style="margin-top:15px" id="collapseForm">
                   <div class="well">
@@ -27,17 +50,17 @@
                       <h4><i class="fa fa-angle-right"></i> Form Jadwal</h4>  
                       <hr>
 
-                      <form class="form-horizontal style-form" method="POST" action="#" style="margin-top:20px">
+                      <form class="form-horizontal style-form" method="POST" action="../proses/admin/tambah_jadwal.php" style="margin-top:20px">
 
                         <div class="form-group">
-                          <label class="col-sm-4 control-label">Nama Kejuruan</label>
+                          <label class="col-sm-4 control-label">Angkatan</label>
                           <div class="col-sm-8">
                             <select name="angkatan" class="form-control" required>
-                              <option value="1">Angkatan I</option>
-                              <option value="2">Angkatan II</option>
-                              <option value="3">Angkatan III</option>
-                              <option value="4">Angkatan IV</option>
-                              <option value="5">Angkatan V</option>
+                              <option value="I">Angkatan I</option>
+                              <option value="II">Angkatan II</option>
+                              <option value="III">Angkatan III</option>
+                              <option value="IV">Angkatan IV</option>
+                              <option value="V">Angkatan V</option>
                             </select>
                           </div>
                         </div>
@@ -46,7 +69,18 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label">Nama Kejuruan</label>
                           <div class="col-sm-8">
-                            <input type="text" name="nama_kejuruan" class="form-control" placeholder="Nama Kejuruan" required >
+                            <select name="kejuruan" class="form-control" required>
+                              <?php
+
+                                $query = mysqli_query($connect, "SELECT * FROM kejuruan ORDER BY date_created DESC");
+
+                                while($row=mysqli_fetch_object($query)){
+                                  echo "<option value=".$row->id_kejuruan.">".$row->nama_kejuruan."</option>";
+                                }
+
+
+                              ?>
+                            </select>
                           </div>
                         </div>
 
@@ -72,21 +106,21 @@
                         <div class="form-group">
                           <label class="col-sm-4 control-label">Tanggal Seleksi</label>
                           <div class="col-sm-3">
-                            <input type="text" name="seleksi_awal" class="form-control" placeholder="dd/mm/yyyy" required >
+                            <input type="text" name="seleksi_awal" class="form-control" placeholder="Awal Seleksi" required >
                           </div>
                           <span class="col-sm-1" style="padding:5px">sampai</span>
                           <div class="col-sm-3">
-                            <input type="text" name="seleksi_akhir" class="form-control" disabled placeholder="dd/mm/yyyy" required >
+                            <input type="text" name="seleksi_akhir" class="form-control" disabled placeholder="Akhir Seleksi" required >
                           </div>
                         </div>
                         <div class="form-group">
                           <label class="col-sm-4 control-label">Tanggal Pelatihan</label>
                           <div class="col-sm-3">
-                            <input type="text" name="pelatihan_awal" class="form-control" disabled placeholder="dd/mm/yyyy" required >
+                            <input type="text" name="pelatihan_awal" class="form-control" disabled placeholder="Awal Pelatihan" required >
                           </div>
                           <span class="col-sm-1" style="padding:5px">sampai</span>
                           <div class="col-sm-3">
-                            <input type="text" name="pelatihan_akhir" class="form-control" disabled placeholder="dd/mm/yyyy" required >
+                            <input type="text" name="pelatihan_akhir" class="form-control" disabled placeholder="Akhir Pelatihan" required >
                           </div>
                         </div>
 
@@ -172,7 +206,7 @@
             altFormat : "dd M yy",
             onSelect : function(date, obj){
               tgl_seleksi_awal = date;
-              alert(tgl_seleksi_awal);
+              
 
               $('input[name="seleksi_akhir"]').prop('disabled', false);
               $('input[name="pelatihan_awal"]').prop('disabled', false);
