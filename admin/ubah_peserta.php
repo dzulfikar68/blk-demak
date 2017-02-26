@@ -157,23 +157,20 @@
 
       <script>
         $(document).ready(function(){
-
             $('#kejuruan, #tanggal_daftar').keyup( function() {
               table.draw();
             });
             
-            $('input[name="tanggal_lahir"]').click(function(){
+  
 
-              var date_input = $('input[name="tanggal_lahir"]');
-              var options={
-                        format: 'mm/dd/yyyy',
-                        container: container,
-                        todayHighlight: true,
-                        autoclose: true,
-              };
-
-              date_input.datepicker(options);
-
+            $('input[name="tanggal_lahir"]').datepicker({
+              maxDate: new Date(2000, 12 - 1, 31),
+              dateFormat: "mm/dd/yy ",
+              altField : $('input[name="tanggal_lahir"]'),
+              altFormat : "dd M yy",
             });
+
         });
+
+        /*END DOCUMENT READY*/
       </script>
