@@ -93,7 +93,7 @@
 <script>
     $(function(){
       // Mengaktifkan Auth Tab ketika tombol Login / Register ditekan
-      $('.auth button').on('click', function(){
+      /*$('.auth button').on('click', function(){
         var type = $(this).attr('data-tab');
         if( !$('#'+type+'-li, #'+type+'').hasClass('active') ) {
           // Deactivate another tab
@@ -101,7 +101,7 @@
 
           $('#'+type+'-li, #'+type+'').addClass('in active');
         }
-      });
+      });*/
 
       // Mengatur kelas active pada dropdown menu profile
       /*$('.dropdown-menu li').on('click', function(){
