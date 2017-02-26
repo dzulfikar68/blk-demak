@@ -1,11 +1,15 @@
-/*== Membuat Tabel Peserta ==*/
+============================== 25 FEBRUARI ============================== 
+M. FEBRA S
+
+========> MEMBUAT TABEL PESERTA
+
 CREATE TABLE `blk_demak`.`peserta` ( `id` INT NOT NULL AUTO_INCREMENT , `no_ktp` VARCHAR(16) NOT NULL , `nama` VARCHAR(128) NOT NULL , `jenis_kelamin` VARCHAR(9) NULL , `tempat_lahir` VARCHAR(128) NULL , `tanggal_lahir` DATE NULL , `agama` VARCHAR(16) NULL , `alamat` VARCHAR(256) NULL , `telepon` VARCHAR(14) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(16) NOT NULL , `sumber_info` VARCHAR(16) NULL , `tanggal_daftar` DATE NOT NULL , PRIMARY KEY (`id`), UNIQUE (`no_ktp`)) ENGINE = InnoDB;
 
-/*== Mengubah panjang password di Tabel Peserta ==*/
+========> MENGUBAH PANJANG PASSWORD DI TABEL PESERTA ==*/
+
 ALTER TABLE `peserta` CHANGE `password` `password` VARCHAR(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL;
 
 
-============================== 25 FEBRUARI ============================== 
 MOHAMMAD FAJAR AINUL BASHRI
 
 =======> MEMBUAT TABEL KEJURUAN
@@ -24,3 +28,12 @@ ALTER TABLE `karyawan` ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIM
 
 =======> MEMBUAT TABEL JADWAL
 CREATE TABLE `blk_demak`.`jadwal` ( `id_jadwal` INT NOT NULL AUTO_INCREMENT , `angkatan` VARCHAR(8) NOT NULL , `id_kejuruan` INT NOT NULL , `sumber_dana` VARCHAR(8) NOT NULL , `kapasitas` INT NOT NULL , `seleksi_awal` DATE NOT NULL , `seleksi_akhir` DATE NOT NULL , `pelatihan_awal` DATE NOT NULL , `pelatihan_akhir` DATE NOT NULL , `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id_jadwal`)) ENGINE = InnoDB;
+
+
+============================= 26 FEBRUARI 2017 ============================
+M. FEBRA S
+
+========> MEMBUAT TABEL KONTAK
+
+CREATE TABLE `blk_demak`.`kontak` ( `id` INT NOT NULL AUTO_INCREMENT , `nama` VARCHAR(128) NOT NULL , `email` VARCHAR(64) NOT NULL , `subyek` VARCHAR(128) NOT NULL , `pesan` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
+

@@ -13,6 +13,7 @@
 	$tanggal_daftar = date('Y-n-j');
 
 	$previous_page = $_POST['page'];
+
 	// mengecek duplikasi no ktp
 	$check_ktp_sql = "SELECT no_ktp FROM peserta WHERE no_ktp = '$no_ktp'";
 	$result = mysqli_query($connect, $check_ktp_sql);
@@ -30,14 +31,13 @@
 
 		$sql = "INSERT INTO peserta (nama, no_ktp, telepon, email, password, tanggal_daftar)
 				VALUES ('$nama', '$no_ktp', '$telepon', '$email', '$password', '$tanggal_daftar')";
-
+		// $insert = mysqli_query($connect, $sql);
 		if (mysqli_query($connect, $sql)){
 			$_SESSION['success'] = "Pendaftaran Sukses";
 			$_SESSION['login-peserta'] = true;
-			header("Location: ../../../peserta/". $previous_page .".php");
-			die();
+			$_SESSION['ktp-peserta'] = $no_ktp;
 		} else {
-			echo 'Error:' . mysqli_error($connect);
+			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
 			$_SESSION['error'] = "Pendaftaran Gagal";
 		}
 		mysqli_close($connect);
@@ -46,10 +46,5 @@
 	}
 
 	// redirect
-	if ($test[0] == "peserta") {
-		header("Location: ../../../peserta/". $previous_page .".php");
-	}
-	else if ($test[0] == "") {
-		header("Location: ../../". $previous_page .".php");
-	}
+	header("Location: ../../peserta/");
 	die();

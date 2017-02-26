@@ -48,7 +48,7 @@
                   <input class="form-control" type="text" name="no_ktp" placeholder="No. KTP" required>
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="phone" name="telepon" placeholder="No. Telepon" required>
+                  <input class="form-control" type="tel" name="telepon" placeholder="No. Telepon" required>
                 </div>
                 <div class="form-group">
                   <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
@@ -74,10 +74,10 @@
 <!-- Pesan -->
 <?php
   if ($_SESSION['success']) {
-    include '_pesan_sukses.php';
+    include '../_pesan_sukses.php';
   }
   if ($_SESSION['error']) {
-    include '_pesan_error.php';
+    include '../_pesan_error.php';
   }
 
   // Menghapus pesan sukses dan error
@@ -102,20 +102,44 @@
         }
       });
 
+      // Mengatur kelas active pada dropdown menu profile
+      /*$('.dropdown-menu li').on('click', function(){
+          // Deactivate another tab
+          $(this).addClass('active');
+          $('.dropdown-menu .active').removeClass('active');
+
+            // $('.profile .nav-pills .active').removeClass('active');
+      });*/
+      
+
+      // Fungsi menghilangkan pesan/ notifikasi
+      function close_pop_up(){
+        $('.pop-up').animate({
+          'opacity': 0,
+          'right': "-220px"
+        }, 300);
+      }
+
       // Menampilkan pesan/ notifikasi
       if ($('.pop-up').length) {
         $('.pop-up').css('z-index', 1).animate({
           'opacity': 1,
           'right': "75px"
-        }, 300).animate({ 'right': "65px" }, 400);;
+        }, 300).animate({ 'right': "65px" }, 400);
+
+        // menghilangkan notifikasi
+        setTimeout(close_pop_up, 3000);
       }
 
       // Menghilangkan pesan/ notifikasi
-      $('.pop-up .close').click(function(){
-        $('.pop-up').animate({
-          'opacity': 0,
-          'right': "-220px"
-        }, 300);
+      $('.pop-up .close').click(close_pop_up);
+
+      // Menghilangkan notifikasi ketika diklik pada selain notifikasi
+      $(document).click(function(e) {
+        var pop_up = $('.pop-up');
+        if (!pop_up.is(e.target)) {
+          close_pop_up();
+        }
       });
 
     });
