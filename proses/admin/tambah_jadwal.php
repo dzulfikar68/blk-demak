@@ -1,6 +1,7 @@
 <?php
 	
 	require_once ('../koneksi_db.php');
+	require_once ('../convert_date.php');
 
 	session_start();
 
@@ -15,10 +16,10 @@
 	$pelatihan_awal = $_POST['pelatihan_awal'];
 	$pelatihan_akhir = $_POST['pelatihan_akhir'];
 
-	$seleksi_awal = convertDate($seleksi_awal);
-	$seleksi_akhir = convertDate($seleksi_akhir);
-	$pelatihan_awal = convertDate($pelatihan_awal);
-	$pelatihan_akhir = convertDate($pelatihan_akhir);
+	$seleksi_awal = convertDate($seleksi_awal, 'Y-m-d');
+	$seleksi_akhir = convertDate($seleksi_akhir, 'Y-m-d');
+	$pelatihan_awal = convertDate($pelatihan_awal, 'Y-m-d');
+	$pelatihan_akhir = convertDate($pelatihan_akhir, 'Y-m-d');
 
 	$query_insert = mysqli_query($connect, "INSERT INTO jadwal (angkatan, id_kejuruan, 
 		sumber_dana, kapasitas, seleksi_awal, seleksi_akhir, pelatihan_awal, pelatihan_akhir)  
@@ -35,14 +36,6 @@
 
 	header("Location: ../../admin/data_jadwal.php");
 
-	function convertDate($date){
-		
-		$new_date = strtotime($date);
-        $new_date = date('Y-m-d', $new_date);
 
-        
-        return $new_date;
-
-	}
 
 	

@@ -223,7 +223,12 @@
       ?>
 
       <script>
-        var table = $('#table_karyawan').DataTable();
+        var table = $('#table_karyawan').DataTable(
+          {
+              "language": {
+                "emptyTable": "Tidak ada data karyawan"
+              }
+          });
 
         $('#modalKaryawan').on('show.bs.modal', function(e){
            var id = $(e.relatedTarget).data('id');

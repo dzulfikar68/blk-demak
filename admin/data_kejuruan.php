@@ -93,7 +93,7 @@
 
                       if($num<=0){
 
-                        echo "<tr align=center><td  colspan=3>Tidak ada data kejuruan....</td></tr>";
+                        /*echo "<tr align=center><td  colspan=3>Tidak ada data kejuruan....</td></tr>";*/
 
                       }else{
 
@@ -181,7 +181,11 @@
       <script>
         $(document).ready(function(){
 
-            var table = $('#table_kejuruan').DataTable();
+            var table = $('#table_kejuruan').DataTable({
+              "language": {
+                "emptyTable": "Tidak ada data kejuruan"
+              }
+          });
 
             $("#batal").click(function(){
               $("#collapseForm").collapse('hide');
@@ -193,7 +197,7 @@
                var nama_kejuruan = $(e.relatedTarget).data('kejuruan');
                var action = "../proses/admin/ubah_kejuruan.php?id="+id;
 
-               $('input[name="nama_kejuruan"]').val(nama_kejuruan);
+               $('.modal input[name="nama_kejuruan"]').val(nama_kejuruan);
                $('.modal form').attr('action', action);
 
                
