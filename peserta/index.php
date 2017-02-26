@@ -1,18 +1,32 @@
 <?php
 	include 'header.php';
 
-/* Koneksi ke DB */
+	/* Koneksi ke DB */
     require_once ('../proses/koneksi_db.php');
 
 	session_start();
 	$_SESSION['page'] = "peserta/index";
 
+	// ambil data peserta
 	$id = $_SESSION['id-peserta'];
-	$sql = "SELECT * FROM peserta WHERE id = '$id'";
+	if ($id != null) {
+		$sql = "SELECT * FROM peserta WHERE id = '$id'";
 
-	$result = mysqli_query($connect, $sql);
+		$result = mysqli_query($connect, $sql);
 
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	}
+	else {
+		// ambil data peserta untuk pendaftar baru
+		$no_ktp = $_SESSION['ktp-peserta'];
+		$sql = "SELECT * FROM peserta WHERE no_ktp = '$no_ktp'";
+
+		$result = mysqli_query($connect, $sql);
+
+		$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+		$_SESSION['id-peserta'] = $row['id'];
+	}
 ?>
 
 <div class="page">
@@ -61,7 +75,12 @@
 											<tr>
 												<th class="attribute">Tempat dan Tanggal Lahir</th>
 												<td class="colon">:</td>
-												<td><?php echo $row['tempat_lahir'] . ", " . date('j F Y' ,$row['tanggal_lahir']); ?></td>
+												<td>
+												<?php
+												 if($row['tanggal_lahir'] != null)
+												 	echo $row['tempat_lahir'] . ", " . date('j F Y' ,$row['tanggal_lahir']);
+												 ?>	
+												 </td>
 											</tr>
 											<tr>
 												<th class="attribute">Agama</th>

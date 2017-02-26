@@ -53,10 +53,10 @@
     header("Location: ../");
     die();
 ?>
-              <div class="auth valign">
+              <!-- <div class="auth valign">
                 <button class="login-btn" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</button>
                 <button class="signup-btn" data-tab="register" data-toggle="modal" data-target="#modal-auth">Daftar</button>
-              </div>
+              </div> -->
 <?php
   }   /* end of check login*/
 ?>
