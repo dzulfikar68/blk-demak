@@ -43,25 +43,27 @@
 
 			<h3 style="margin-bottom: 20px;">Hubungi Kami</h3>
 			<div class="row">
-				<form>
+				<form action="proses/kontak.php" method="POST">
+	                <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
+	                
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label>Nama</label>
-							<input class="form-control" type="text" name="name" placeholder="Nama">
+							<label>Nama*</label>
+							<input class="form-control" type="text" name="blk_nama" placeholder="Nama" required>
 						</div>
 						<div class="form-group">
-							<label>Email</label>
-							<input class="form-control" type="text" name="name" placeholder="Email">
+							<label>Email*</label>
+							<input class="form-control" type="text" name="blk_email" placeholder="Email" required>
 						</div>
 						<div class="form-group">
-							<label>Subyek</label>
-							<input class="form-control" type="text" name="name" placeholder="Subyek">
+							<label>Subyek*</label>
+							<input class="form-control" type="text" name="subyek" placeholder="Subyek" required>
 						</div>
 					</div>
 					<div class="col-sm-6">
 						<div class="form-group">
-							<label>Pesan</label>
-							<textarea class="form-control" style="height: 185px;"></textarea>
+							<label>Pesan*</label>
+							<textarea class="form-control" style="height: 185px;" name="pesan" required></textarea>
 						</div>
 						<div class="form-group">
 							<input class="btn btn-primary pull-right" type="submit" value="Kirim">
