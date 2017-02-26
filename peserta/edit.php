@@ -15,7 +15,7 @@
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 
-<link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+<link href="../assets/css/jquery-ui.css" rel="stylesheet">
 
 <div class="page">
 	<div class="page-title">
@@ -66,7 +66,10 @@
 										<tr>
 											<th class="attribute">Tanggal Lahir*</th>
 											<td class="colon">:</td>
-											<td><input class="form-control" type="text" name="tanggal_lahir" required value="<?php echo $row['tanggal_lahir'];?>" data-provide="datepicker"></td>
+											<td>
+												<input class="form-control" type="text" name="tanggal_lahir" required value="<?php echo date('m/d/Y', $row['tanggal_lahir']);?>" data-provide="datepicker">
+												<span class="text-muted"><i>Bulan/hari/tahun</i></span>
+											</td>
 										</tr>
 										<tr>
 											<th class="attribute">Agama*</th>
@@ -141,10 +144,9 @@
 	include 'footer.php';
 ?>
 
-    <script src="../datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="../assets/js/moment.min.js"></script>
+    <script src="../assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 	<script type="text/javascript">
-		$('input[name="tanggal_lahir"]').click(function(){
+		/*$('input[name="tanggal_lahir"]').click(function(){
           var date_input = $('input[name="tanggal_lahir"]');
           var options = {
                     // format: 'mm/dd/yyyy',
@@ -155,6 +157,11 @@
 
           date_input.datepicker(options);
 
+        });*/
+        $('input[name="tanggal_lahir"]').datepicker({
+            dateFormat: "mm/dd/yy ",
+            altField : $('input[name="pelatihan_akhir"]'),
+            altFormat : "dd M yy",
         });
 
 	</script>

@@ -9,7 +9,10 @@
 	$nama = $_POST['blk_nama'];
 	$jenis_kelamin = $_POST['jenis_kelamin'];
 	$tempat_lahir = $_POST['tempat_lahir'];
-	$tanggal_lahir = $_POST['tanggal_lahir'];
+
+	$tanggal = strtotime($_POST['tanggal_lahir']);
+	$tanggal_lahir = date('Y-m-d', $tanggal);
+
 	$agama = $_POST['agama'];
 	$alamat = $_POST['alamat'];
 	$telepon = $_POST['telepon'];

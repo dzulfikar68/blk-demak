@@ -77,8 +77,10 @@
 												<td class="colon">:</td>
 												<td>
 												<?php
-												 if($row['tanggal_lahir'] != null)
-												 	echo $row['tempat_lahir'] . ", " . date('j F Y' ,$row['tanggal_lahir']);
+												 if($row['tanggal_lahir'] != null) {
+												 	$tanggal = strtotime($row['tanggal_lahir']);
+												 	echo $row['tempat_lahir'] . ", " . date('j F Y', $tanggal);
+												 }
 												 ?>	
 												 </td>
 											</tr>
