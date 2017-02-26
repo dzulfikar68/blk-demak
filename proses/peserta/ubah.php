@@ -17,6 +17,7 @@
 	$alamat = $_POST['alamat'];
 	$telepon = $_POST['telepon'];
 	$email = $_POST['blk_email'];
+	$pendidikan_terakhir = $_POST['pendidikan_terakhir'];
 	$sumber_info = $_POST['sumber_info'];
 
 	$password = $_POST['blk_password'];
@@ -24,19 +25,19 @@
 
 	// password dan password confirm tidak sama
 	if (($password != "") && ($password != $password_confirm)) {
-		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai";
+		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai.";
 		header("Location: ../../peserta/edit.php");
 		die();
 	}
 	elseif (($password != "") && ($password === $password_confirm)) {
 		// enkripsi password
 		$password = md5($password);
-		// update data
+		// update data (ganti password)
 		$sql = "UPDATE peserta
 				SET no_ktp='$no_ktp', nama='$nama', jenis_kelamin='$jenis_kelamin',
 					tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', agama='$agama',
-					alamat = '$alamat', telepon='$telepon', email='$email', sumber_info='$sumber_info',
-					password='$password'
+					alamat = '$alamat', telepon='$telepon', email='$email', pendidikan_terakhir='$pendidikan_terakhir',
+					sumber_info='$sumber_info', password='$password'
 				WHERE id=$id";
 	}
 	else {
@@ -44,16 +45,17 @@
 		$sql = "UPDATE peserta
 				SET no_ktp='$no_ktp', nama='$nama', jenis_kelamin='$jenis_kelamin',
 					tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', agama='$agama',
-					alamat = '$alamat', telepon='$telepon', email='$email', sumber_info='$sumber_info'
+					alamat = '$alamat', telepon='$telepon', email='$email', pendidikan_terakhir='$pendidikan_terakhir',
+					sumber_info='$sumber_info'
 				WHERE id=$id";
 	}
 
 	if (mysqli_query($connect, $sql)){
-		$_SESSION['success'] = "Ubah Profil Sukses";
+		$_SESSION['success'] = "Ubah profil sukses.";
 		header("Location: ../../../peserta/");
 		die();
 	} else {
 		die("QUERY UPDATE FAILED : ". mysqli_error($connect));
-		$_SESSION['error'] = "Ubah Profil Gagal";
+		$_SESSION['error'] = "Ubah profil gagal.";
 	}
 	mysqli_close($connect);

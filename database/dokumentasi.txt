@@ -37,3 +37,14 @@ M. FEBRA S
 
 CREATE TABLE `blk_demak`.`kontak` ( `id` INT NOT NULL AUTO_INCREMENT , `nama` VARCHAR(128) NOT NULL , `email` VARCHAR(64) NOT NULL , `subyek` VARCHAR(128) NOT NULL , `pesan` TEXT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB; 
 
+========> MENAMBAH KOLOM status DAN token DI TABEL PESERTA
+
+ALTER TABLE `peserta` ADD `status` VARCHAR(16) NOT NULL AFTER `tanggal_daftar`, ADD `token` VARCHAR(32) NULL AFTER `status`; 
+
+========> MENAMBAH KOLOM pendidikan_terakhir DI TABEL PESERTA
+
+ALTER TABLE `peserta` ADD `pendidikan_terakhir` VARCHAR(16) NOT NULL AFTER `email`;
+
+========> MENGUBAH KOLOM email MENJADI UNIK DI TABEEL PESERTA
+
+ALTER TABLE `peserta` ADD UNIQUE(`email`);
