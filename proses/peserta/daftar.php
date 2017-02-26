@@ -37,7 +37,7 @@
 			header("Location: ../../../peserta/". $previous_page .".php");
 			die();
 		} else {
-			echo 'Error:' . mysqli_error($connect);
+			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
 			$_SESSION['error'] = "Pendaftaran Gagal";
 		}
 		mysqli_close($connect);

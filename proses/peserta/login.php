@@ -9,7 +9,7 @@
 
 	$previous_page = $_POST['page'];
 	// mengecek password
-	$get_pass_sql = "SELECT password FROM peserta WHERE email = '$email'";
+	$get_pass_sql = "SELECT id, password FROM peserta WHERE email = '$email'";
 	$result = mysqli_query($connect, $get_pass_sql);
 
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -19,6 +19,7 @@
 	if (isset($row['password']) && $row['password'] == $password) {
 		$_SESSION['success'] = "Login peserta berhasil";
 		$_SESSION['login-peserta'] = true;
+		$_SESSION['id-peserta'] = $row['id'];
 	} else {
 		$_SESSION['error'] = "Email atau password tidak benar";
 	}

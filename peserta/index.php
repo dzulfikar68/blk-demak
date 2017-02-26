@@ -1,8 +1,18 @@
 <?php
 	include 'header.php';
 
+/* Koneksi ke DB */
+    require_once ('../proses/koneksi_db.php');
+
 	session_start();
 	$_SESSION['page'] = "peserta/index";
+
+	$id = $_SESSION['id-peserta'];
+	$sql = "SELECT * FROM peserta WHERE id = '$id'";
+
+	$result = mysqli_query($connect, $sql);
+
+	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 
 <div class="page">
@@ -27,7 +37,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Profil
-										<a href="edit.php"><button type="button" class="btn btn-primary btn-xs">Edit</button></a>
+										<a href="edit.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">
@@ -36,47 +46,47 @@
 											<tr>
 												<th class="attribute">No KTP</th>
 												<td class="colon">:</td>
-												<td>0393829839839</td>
+												<td><?php echo $row['no_ktp']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Nama</th>
 												<td class="colon">:</td>
-												<td>Ahmad</td>
+												<td><?php echo $row['nama']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Jenis Kelamin</th>
 												<td class="colon">:</td>
-												<td>Laki-laki</td>
+												<td><?php echo $row['jenis_kelamin']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Tempat dan Tanggal Lahir</th>
 												<td class="colon">:</td>
-												<td>Demak, 30 Maret 1978</td>
+												<td><?php echo $row['tempat_lahir'] . ", " . date('j F Y' ,$row['tanggal_lahir']); ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Agama</th>
 												<td class="colon">:</td>
-												<td>Islam</td>
+												<td><?php echo $row['agama']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Alamat</th>
 												<td class="colon">:</td>
-												<td>Jl. Durian No. 12</td>
+												<td><?php echo $row['alamat']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">No HP</th>
 												<td class="colon">:</td>
-												<td>08xxxxxxx</td>
-											</tr>
-											<tr>
-												<th class="attribute">Anda mendapat informasi pendaftaran pelatihan kerja (BLK) dari</th>
-												<td class="colon">:</td>
-												<td></td>
+												<td><?php echo $row['telepon']; ?></td>
 											</tr>
 											<tr>
 												<th class="attribute">Email</th>
 												<td class="colon">:</td>
-												<td>ahmad@example.com</td>
+												<td><?php echo $row['email']; ?></td>
+											</tr>
+											<tr>
+												<th class="attribute">Anda mendapat informasi pendaftaran pelatihan kerja (BLK) dari</th>
+												<td class="colon">:</td>
+												<td><?php echo $row['sumber_info']; ?></td>
 											</tr>
 										</tbody>
 									</table>

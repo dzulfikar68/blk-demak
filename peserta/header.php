@@ -85,7 +85,7 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" aria-labelledby="profile-menu" role="tablist">
-              <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil Saya</a></li>
+              <li role="presentation"><a href=".">Profil Saya</a></li>
               <li><a href="../proses/peserta/logout.php">Logout</a></li>
             </ul>
           </div>

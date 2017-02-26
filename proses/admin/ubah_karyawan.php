@@ -32,7 +32,7 @@
 
 		if(!$query_update){
 
-			die("QUERY UPDATE FAILED : ". mysqli_error($connect));	
+			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
 
 		}
 
