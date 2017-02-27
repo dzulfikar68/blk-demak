@@ -83,3 +83,9 @@ M. FEBRA S
 
 ========> MEMBUAT TABEL REGISTRASI PELATIHAN
 CREATE TABLE `blk_demak`.`registrasi_pelatihan` ( `id_registrasi` INT NOT NULL AUTO_INCREMENT , `no_pendaftaran` VARCHAR(10) NOT NULL , `id_peserta` INT NOT NULL , `kode_kejuruan` INT NOT NULL , `gelombang` INT NOT NULL , `tahun` YEAR NOT NULL , `status` VARCHAR(30) NOT NULL , `tanggal_registrasi` TIMESTAMP NOT NULL , PRIMARY KEY (`id_registrasi`, `no_pendaftaran`), UNIQUE (`id_registrasi`)) ENGINE = InnoDB;
+
+MOHAMMAD FAJAR AINUL BASHRI
+
+******* UBAH KOLOM DI TABEL REGIsTRASI PELATIHAN
+
+ALTER TABLE `registrasi_pelatihan` CHANGE `kode_kejuruan` `id_kejuruan` INT(11) NOT NULL, CHANGE `status` `status` VARCHAR(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan';
