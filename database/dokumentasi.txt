@@ -96,4 +96,6 @@ M. FEBRA S
 
 ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NULL DEFAULT '0';
 
+******* UBAH TANGGAL REGISTRASI DI TABEL REGISTRASI 
 
+ALTER TABLE `registrasi_pelatihan` CHANGE `tanggal_registrasi` `tanggal_registrasi` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
