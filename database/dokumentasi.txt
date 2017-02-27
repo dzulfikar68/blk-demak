@@ -31,6 +31,7 @@ CREATE TABLE `blk_demak`.`jadwal` ( `id_jadwal` INT NOT NULL AUTO_INCREMENT , `a
 
 
 ============================= 26 FEBRUARI 2017 ============================
+
 M. FEBRA S
 
 ******* MENAMBAH KOLOM status DAN token DI TABEL PESERTA
@@ -76,3 +77,9 @@ ALTER TABLE `kejuruan_assign` CHANGE `selected` `selected` INT(11) NOT NULL DEFA
 ******* UBAH KOLOM STATUS DI TABEL KEJURUAN ASSIGN
 ALTER TABLE `kejuruan_assign` CHANGE `status` `status` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan';
 
+================================ 27 FEBRUARI 2017 ===================================
+
+M. FEBRA S
+
+========> MEMBUAT TABEL REGISTRASI PELATIHAN
+CREATE TABLE `blk_demak`.`registrasi_pelatihan` ( `id_registrasi` INT NOT NULL AUTO_INCREMENT , `no_pendaftaran` VARCHAR(10) NOT NULL , `id_peserta` INT NOT NULL , `kode_kejuruan` INT NOT NULL , `gelombang` INT NOT NULL , `tahun` YEAR NOT NULL , `status` VARCHAR(30) NOT NULL , `tanggal_registrasi` TIMESTAMP NOT NULL , PRIMARY KEY (`id_registrasi`, `no_pendaftaran`), UNIQUE (`id_registrasi`)) ENGINE = InnoDB;
