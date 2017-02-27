@@ -93,7 +93,9 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `kode_kejuruan` `id_kejuruan` INT(11) 
 M. FEBRA S
 
 ******* UBAH NAMA KOLOM GELOMBANG MENJADI ID JADWAL DI TABEL REGISTRASI PELATIHAN
-
 ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NULL DEFAULT '0';
+
+******* HAPUS KOLOM TAHUN DI TABEL REGISTRASI PELATIHAN
+ALTER TABLE `registrasi_pelatihan` DROP `tahun`;
 
 
