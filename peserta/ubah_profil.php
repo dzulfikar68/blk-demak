@@ -5,7 +5,7 @@
     require_once ('../proses/koneksi_db.php');
 
 	session_start();
-	$_SESSION['page'] = "peserta/edit";
+	$_SESSION['page'] = "peserta/ubah_profil";
 
 	$id = $_SESSION['id-peserta'];
 	$sql = "SELECT * FROM peserta WHERE id = '$id'";
@@ -34,7 +34,7 @@
 							</h3>
 						</div>
 						<div class="panel-body">
-							<form action="../proses/peserta/ubah.php" method="POST">
+							<form action="../proses/peserta/ubah_profil.php" method="POST">
 								<input type="hidden" name="id_peserta" value="<?php session_start(); echo $_SESSION['id-peserta']?>">
 								<table class="table">
 									<tbody>
@@ -103,7 +103,14 @@
 										<tr>
 											<th class="attribute">Pendidikan Terakhir*</th>
 											<td class="colon">:</td>
-											<td><input class="form-control" type="text" name="pendidikan_terakhir" required value="<?php echo $row['pendidikan_terakhir'];?>"></td>
+											<td>
+												<select name="pendidikan_terakhir" class="form-control" required>
+						                          <option value="">Pilih Pendidikan</option> 
+						                          <option value="Tidak Sekolah" <?php echo ($row['pendidikan_terakhir'] == "Tidak Sekolah") ? "selected" : ""; ?> >Tidak Sekolah</option> 
+						                          <option value="SD Sederajat" <?php echo ($row['pendidikan_terakhir'] == "SD Sederajat") ? "selected" : ""; ?> >SD Sederajat</option> 
+						                          <option value="SMP Sederajat" <?php echo ($row['pendidikan_terakhir'] == "SMP Sederajat") ? "selected" : ""; ?> >SMP Sederajat</option> 
+						                          <option value="SMA Sederajat" <?php echo ($row['pendidikan_terakhir'] == "SMA Sederajat") ? "selected" : ""; ?> >SMA Sederajat</option> 
+											</td>
 										</tr>
 										<tr>
 											<th class="attribute">Anda mendapat informasi pendaftaran pelatihan kerja (BLK) dari*</th>

@@ -31,14 +31,14 @@
 		empty($pendidikan_terakhir) || empty($sumber_info)) {
 		$_SESSION['error'] = "Formulir tidak lengkap.<br>
 								Anda harus mengisi semua bagian yang kosong.";
-		header("Location: ../../peserta/edit.php");
+		header("Location: ../../peserta/ubah_profil.php");
 		die();
 	}
 
 	// password dan password confirm tidak sama
 	if (($password != "") && ($password != $password_confirm)) {
 		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai.";
-		header("Location: ../../peserta/edit.php");
+		header("Location: ../../peserta/ubah_profil.php");
 		die();
 	}
 	elseif (($password != "") && ($password === $password_confirm)) {

@@ -51,7 +51,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Profil
-										<a href="edit.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
+										<a href="ubah_profil.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">
