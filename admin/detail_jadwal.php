@@ -42,7 +42,7 @@
                 <h4><i class="fa fa-angle-right"></i> Tabel Peserta Pelatihan <?php echo "<b>".$nama_kejuruan."</b> (".$tgl_pelaksanaan.") kapasitas = ".$kapasitas." peserta"?></h4>  
                 <hr>
                 
-                <a style="margin-bottom:10px" class="btn btn-primary pull-right"  >Cetak Absen</a>
+                <a href="../proses/admin/cetak_absen.php?id_jadwal=<?php echo $id_jadwal?>" target="_blank" style="margin-bottom:10px" class="btn btn-primary pull-right"  >Cetak Absen</a>
                 <br>
                 <div class="clearfix" >
                 <?php
