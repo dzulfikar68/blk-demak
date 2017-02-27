@@ -41,7 +41,7 @@
 				<div class="col-sm-3">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
 						<li id="profile-tab" role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
-						<li id="training-tab" role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Daftar Pelatihan</a></li>
+						<li id="training-tab" role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Riwayat Pelatihan</a></li>
 						<li id="job-tab" role="presentation"><a href="#job" aria-controls="job" role="tab" data-toggle="tab">Data Kerja</a></li>
 					</ul>
 				</div>
@@ -105,6 +105,11 @@
 												<td><?php echo $row['email']; ?></td>
 											</tr>
 											<tr>
+												<th class="attribute">Pendidikan Terakhir</th>
+												<td class="colon">:</td>
+												<td><?php echo $row['pendidikan_terakhir']; ?></td>
+											</tr>
+											<tr>
 												<th class="attribute">Anda mendapat informasi pendaftaran pelatihan kerja (BLK) dari</th>
 												<td class="colon">:</td>
 												<td><?php echo $row['sumber_info']; ?></td>
@@ -117,7 +122,7 @@
 						<div role="tabpanel" class="tab-pane fade" id="training">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title">Daftar Pelatihan</h3>
+									<h3 class="panel-title">Riwayat Pelatihan</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">

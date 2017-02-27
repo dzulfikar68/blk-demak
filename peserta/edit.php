@@ -101,6 +101,11 @@
 											<td><input class="form-control" type="email" name="blk_email" required value="<?php echo $row['email'];?>"></td>
 										</tr>
 										<tr>
+											<th class="attribute">Pendidikan Terakhir*</th>
+											<td class="colon">:</td>
+											<td><input class="form-control" type="text" name="pendidikan_terakhir" required value="<?php echo $row['pendidikan_terakhir'];?>"></td>
+										</tr>
+										<tr>
 											<th class="attribute">Anda mendapat informasi pendaftaran pelatihan kerja (BLK) dari*</th>
 											<td class="colon">:</td>
 											<td>

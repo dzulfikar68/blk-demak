@@ -30,8 +30,9 @@
                 <div class="form-group">
                   <input class="form-control" type="password" name="blk_password" placeholder="Password" required>
                 </div>
-                <div class="form-group">
-                  <input class="btn btn-success" type="submit" value="Login">
+                <div class="form-group clearfix">
+                  <a href="peserta/kirim_email.php" style="font-size: 14px; position: relative; top: 6px;">Lupa password?</a>
+                  <input class="btn btn-primary pull-right" type="submit" value="Login">
                 </div>
               </form>
             </div>
@@ -60,7 +61,7 @@
                   <input class="form-control" type="password" name="blk_password_confirm" placeholder="Ulangi Password" required>
                 </div>
                 <div class="form-group">
-                  <input class="btn btn-primary" type="submit" value="Daftar">
+                  <input class="btn btn-success" type="submit" value="Daftar">
                 </div>
               </form>
             </div>
@@ -104,9 +105,10 @@
 
       // Fungsi menghilangkan pesan/ notifikasi
       function close_pop_up(){
+        var width = $('.pop-up').width();
         $('.pop-up').animate({
           'opacity': 0,
-          'right': "-220px"
+          'right': -width
         }, 300);
       }
 
@@ -118,7 +120,7 @@
         }, 300).animate({ 'right': "65px" }, 400);
 
         // menghilangkan notifikasi
-        setTimeout(close_pop_up, 3000);
+        setTimeout(close_pop_up, 4000);
       }
 
       // Menghilangkan pesan/ notifikasi
