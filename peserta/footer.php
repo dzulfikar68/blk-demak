@@ -130,7 +130,7 @@
         }, 300).animate({ 'right': "65px" }, 400);
 
         // menghilangkan notifikasi
-        setTimeout(close_pop_up, 4000);
+        setTimeout(close_pop_up, 5000);
       }
 
       // Menghilangkan pesan/ notifikasi

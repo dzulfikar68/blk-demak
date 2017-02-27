@@ -98,4 +98,5 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NU
 ******* HAPUS KOLOM TAHUN DI TABEL REGISTRASI PELATIHAN
 ALTER TABLE `registrasi_pelatihan` DROP `tahun`;
 
-
+******* TAMBAH KOLOM FLAG DI TABEL PESERTA
+ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`; 

@@ -22,6 +22,18 @@
 
 	$password = $_POST['blk_password'];
 	$password_confirm = $_POST['blk_password_confirm'];
+	// tanda bahwa data peserta sudah lengkap
+	$flag = 1;
+
+	// cek field kosong
+	if (empty($nama) || empty($no_ktp) || empty($telepon) || empty($email) || empty($alamat) ||
+		empty($jenis_kelamin) || empty($tempat_lahir) || empty($tanggal_lahir) || empty($agama) ||
+		empty($pendidikan_terakhir) || empty($sumber_info)) {
+		$_SESSION['error'] = "Formulir tidak lengkap.<br>
+								Anda harus mengisi semua bagian yang kosong.";
+		header("Location: ../../peserta/edit.php");
+		die();
+	}
 
 	// password dan password confirm tidak sama
 	if (($password != "") && ($password != $password_confirm)) {
@@ -37,7 +49,7 @@
 				SET no_ktp='$no_ktp', nama='$nama', jenis_kelamin='$jenis_kelamin',
 					tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', agama='$agama',
 					alamat = '$alamat', telepon='$telepon', email='$email', pendidikan_terakhir='$pendidikan_terakhir',
-					sumber_info='$sumber_info', password='$password'
+					sumber_info='$sumber_info', password='$password', flag='$flag'
 				WHERE id=$id";
 	}
 	else {
@@ -46,7 +58,7 @@
 				SET no_ktp='$no_ktp', nama='$nama', jenis_kelamin='$jenis_kelamin',
 					tempat_lahir='$tempat_lahir', tanggal_lahir='$tanggal_lahir', agama='$agama',
 					alamat = '$alamat', telepon='$telepon', email='$email', pendidikan_terakhir='$pendidikan_terakhir',
-					sumber_info='$sumber_info'
+					sumber_info='$sumber_info', flag='$flag'
 				WHERE id=$id";
 	}
 

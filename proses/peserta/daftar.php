@@ -15,6 +15,8 @@
 	$password_confirm = $_POST['blk_password_confirm'];
 	$tanggal_daftar = date('Y-m-d');
 	$status = "Belum konfirmasi";
+	// tanda bahwa data peserta belum lengkap
+	$flag = 0;
 
 	// membuat token dengan fungsi dari file helper.php
 	$timestamp = date('Ymd-His');
@@ -22,6 +24,14 @@
 	$token = $no_ktp ."-". $timestamp;
 
 	$previous_page = $_POST['page'];
+
+	// cek field kosong
+	if (empty($nama) || empty($no_ktp) || empty($telepon) || empty($email) || empty($password)) {
+		$_SESSION['error'] = "Formulir tidak lengkap.<br>
+								Anda harus mengisi semua bagian yang kosong.";
+		header("Location: ../../". $previous_page .".php");
+		die();
+	}
 
 	// mengecek duplikasi no ktp
 	$check_ktp_sql = "SELECT no_ktp FROM peserta WHERE no_ktp = '$no_ktp'";
@@ -39,8 +49,8 @@
 	if($password === $password_confirm){
 		$password = md5($password); 
 
-		$sql = "INSERT INTO peserta (nama, no_ktp, telepon, email, password, tanggal_daftar, status, token)
-				VALUES ('$nama', '$no_ktp', '$telepon', '$email', '$password', '$tanggal_daftar', '$status', '$token')";
+		$sql = "INSERT INTO peserta (nama, no_ktp, telepon, email, password, tanggal_daftar, status, token, flag)
+				VALUES ('$nama', '$no_ktp', '$telepon', '$email', '$password', '$tanggal_daftar', '$status', '$token', '$flag')";
 		
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email

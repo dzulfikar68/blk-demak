@@ -67,7 +67,7 @@
 											<th class="attribute">Tanggal Lahir*</th>
 											<td class="colon">:</td>
 											<td>
-												<input class="form-control" type="text" name="tanggal_lahir" required value="<?php echo date('m/d/Y', $row['tanggal_lahir']);?>" data-provide="datepicker">
+												<input class="form-control" type="text" name="tanggal_lahir" required value="<?php echo date('m/d/Y', strtotime($row['tanggal_lahir']));?>" data-provide="datepicker">
 												<span class="text-muted"><i>Bulan/hari/tahun</i></span>
 											</td>
 										</tr>
