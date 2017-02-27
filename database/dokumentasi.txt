@@ -93,9 +93,14 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `kode_kejuruan` `id_kejuruan` INT(11) 
 M. FEBRA S
 
 ******* UBAH NAMA KOLOM GELOMBANG MENJADI ID JADWAL DI TABEL REGISTRASI PELATIHAN
-
 ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NULL DEFAULT '0';
+
+******* HAPUS KOLOM TAHUN DI TABEL REGISTRASI PELATIHAN
+ALTER TABLE `registrasi_pelatihan` DROP `tahun`;
+
+******* TAMBAH KOLOM FLAG DI TABEL PESERTA
+ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`; 
 
 ******* UBAH TANGGAL REGISTRASI DI TABEL REGISTRASI 
 
-ALTER TABLE `registrasi_pelatihan` CHANGE `tanggal_registrasi` `tanggal_registrasi` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `registrasi_pelatihan` CHANGE `tanggal_registrasi` `tanggal_registrasi` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
