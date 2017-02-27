@@ -85,7 +85,7 @@
 
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM jadwal_assign, peserta WHERE jadwal_assign.id_peserta = peserta.id AND jadwal_assign.id_jadwal=$id_jadwal ORDER BY jadwal_assign.date_created DESC");
+                      $query = mysqli_query($connect, "SELECT * FROM registrasi_pelatihan, peserta WHERE registrasi_pelatihan.id_peserta = peserta.id AND registrasi_pelatihan.id_jadwal=$id_jadwal ");
 
                       if(!$query){
 
@@ -108,10 +108,10 @@
                           echo "<td>".$row->no_ktp."</td>";
                           echo "<td>".$row->email."</td>";
                           echo "<td>".$row->telepon."</td>";
-                          echo "<td>".convertDate($row->telepon, 'd M Y')."</td>";
+                          echo "<td>".convertDate($row->tanggal_daftar, 'd M Y')."</td>";
                           echo "<td>";
                           echo "<a href=\"detail_peserta.php\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
-                          echo "<a onclick=\"return confirm('Hapus peserta ini dari Jadwal?');\" href=\"../proses/admin/hapus_peserta_dari_jadwal.php?id_peserta=".$row->id."&id_jadwal=".$id_jadwal."&id_kejuruan=".$id_kejuruan."\" class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Peserta dari Pelatihan\"><i class=\"fa fa-times\"></i></a>";
+                          echo "<a onclick=\"return confirm('Hapus peserta ini dari Jadwal?');\" href=\"../proses/admin/hapus_peserta_dari_jadwal.php?id_registrasi=".$row->id_registrasi."&id_jadwal=".$id_jadwal."&id_kejuruan=".$id_kejuruan."\" class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Peserta dari Pelatihan\"><i class=\"fa fa-times\"></i></a>";
                           echo "</td>";
                           echo "</tr>";
 
@@ -147,30 +147,9 @@
 
             <div class="col-lg-12">
               <div class="showback">
-                <h4><i class="fa fa-angle-right"></i> Tabel Peserta yang Mendaftar Pelatihan<?php echo "<b> ".$nama_kejuruan."</b>"?></h4>  
+                <h4><i class="fa fa-angle-right"></i> Tabel Peserta yang Mendaftar Pelatihan<?php echo "<b> ".$nama_kejuruan."</b> yang lulus tahap tes dan wawancara"?></h4>  
                 <hr>
-                
-                <?php
-
-                  if(isset($_SESSION['error'])){
-
-                    echo "<div class=\"alert alert-danger\" style=\"margin-top:15px\">";
-                    echo "<p>".$_SESSION['error']."</p>";
-                    echo "</div>";
-
-
-                    unset($_SESSION['error']);
-
-                  }else if(isset($_SESSION['success'])){
-                    echo "<div class=\"alert alert-success\" style=\"margin-top:15px\">";
-                    echo "<p>".$_SESSION['success']."</p>";
-                    echo "</div>";
-                    unset($_SESSION['success']);
-
-                  }
-
-                ?>
-                
+              
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -188,7 +167,7 @@
 
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM peserta, kejuruan_assign WHERE peserta.id = kejuruan_assign.id_peserta AND kejuruan_assign.status=4  AND kejuruan_assign.id_kejuruan=$id_kejuruan AND kejuruan_assign.selected=0 ORDER BY kejuruan_assign.date_created DESC");
+                      $query = mysqli_query($connect, "SELECT * FROM peserta, registrasi_pelatihan WHERE peserta.id = registrasi_pelatihan.id_peserta AND registrasi_pelatihan.status=4  AND registrasi_pelatihan.id_kejuruan=$id_kejuruan AND registrasi_pelatihan.id_jadwal=0 ");
 
                       if(!$query){
 
@@ -211,10 +190,10 @@
                           echo "<td>".$row->no_ktp."</td>";
                           echo "<td>".$row->email."</td>";
                           echo "<td>".$row->telepon."</td>";
-                          echo "<td>".convertDate($row->telepon, 'd M Y')."</td>";
+                          echo "<td>".convertDate($row->tanggal_daftar, 'd M Y')."</td>";
                           echo "<td>";
                           echo "<a href=\"detail_peserta.php\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"> </i> </a> ";
-                          echo "<a onclick=\"return confirm('Tambahkan peserta ini ke Jadwal?');\" href=\"../proses/admin/tambah_peserta_ke_jadwal.php?id_peserta=".$row->id."&id_jadwal=".$id_jadwal."&id_kejuruan=".$id_kejuruan."&kapasitas=".$kapasitas."\" class=\"btn btn-success btn-xs\" data-tooltip=\"true\" title=\"Tambah Peserta ke Pelatihan\"><i class=\"fa fa-plus\"> </i></a>";
+                          echo "<a onclick=\"return confirm('Tambahkan peserta ini ke Jadwal?');\" href=\"../proses/admin/tambah_peserta_ke_jadwal.php?id_registrasi=".$row->id_registrasi."&id_jadwal=".$id_jadwal."&kapasitas=".$kapasitas."\" class=\"btn btn-success btn-xs\" data-tooltip=\"true\" title=\"Tambah Peserta ke Pelatihan\"><i class=\"fa fa-plus\"> </i></a>";
                           echo "</td>";
                           echo "</tr>";
 
