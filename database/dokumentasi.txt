@@ -89,3 +89,11 @@ MOHAMMAD FAJAR AINUL BASHRI
 ******* UBAH KOLOM DI TABEL REGIsTRASI PELATIHAN
 
 ALTER TABLE `registrasi_pelatihan` CHANGE `kode_kejuruan` `id_kejuruan` INT(11) NOT NULL, CHANGE `status` `status` VARCHAR(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan';
+
+M. FEBRA S
+
+******* UBAH NAMA KOLOM GELOMBANG MENJADI ID JADWAL DI TABEL REGISTRASI PELATIHAN
+
+ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NULL DEFAULT '0';
+
+
