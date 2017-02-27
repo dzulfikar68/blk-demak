@@ -105,7 +105,8 @@
                           echo "<td>".$row->nama_kejuruan."</td>";
                           echo "<td>";
                           echo "<a href=\"#\" data-target=\"#modalKejuruan\" data-toggle=\"modal\" data-id=\"".$row->id_kejuruan."\" data-kejuruan=\"".$row->nama_kejuruan."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          /*echo "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";*/
                           echo "</td>";
                           echo "</tr>";
 
