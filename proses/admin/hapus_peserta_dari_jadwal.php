@@ -4,19 +4,15 @@
 	session_start();
 
 	$id_jadwal = $_GET['id_jadwal'];
-	$id_peserta = $_GET['id_peserta'];
+	$id_registrasi = $_GET['id_registrasi'];
 	$id_kejuruan = $_GET['id_kejuruan'];
 
-	$query = mysqli_query($connect, "DELETE FROM jadwal_assign WHERE id_jadwal=$id_jadwal AND id_peserta=$id_peserta");
 
+	$query_update = mysqli_query($connect, "UPDATE registrasi_pelatihan SET id_jadwal = 0 WHERE id_registrasi=$id_registrasi ");
 
-	if(!$query){
+	if(!$query_update){
 		die("QUERY DELETE PESERTA DARI JADWAL FAILED : ". mysqli_error($connect));
 	}
-
-	$query_update = mysqli_query($connect, "UPDATE kejuruan_assign SET selected = 0 WHERE id_kejuruan=$id_kejuruan AND id_peserta=$id_peserta ");
-
-
 
 	$_SESSION['success'] = "Hapus peserta sukses!";
 

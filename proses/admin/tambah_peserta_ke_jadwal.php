@@ -4,12 +4,13 @@
 	
 	session_start();
 
-	$id_peserta = $_GET['id_peserta'];
 	$id_jadwal = $_GET['id_jadwal'];
 	$id_kejuruan = $_GET['id_kejuruan'];
 	$kapasitas = $_GET['kapasitas'];
 
-	$query_check = mysqli_query($connect, "SELECT * FROM jadwal_assign WHERE id_jadwal=$id_jadwal ");
+	$id_registrasi = $_GET['id_registrasi'];
+
+	$query_check = mysqli_query($connect, "SELECT * FROM registrasi_pelatihan WHERE id_jadwal=$id_jadwal ");
 
 	if(!$query_check){
 
@@ -29,23 +30,18 @@
 
 	}else{
 
-		$query_insert = mysqli_query($connect, "INSERT INTO jadwal_assign (id_jadwal, id_peserta)  
-		values ('".$id_jadwal."', '".$id_peserta."')"); 
+		$query_update = mysqli_query($connect, "UPDATE registrasi_pelatihan SET id_jadwal = $id_jadwal WHERE id_registrasi=$id_registrasi"); 
 
-		if(!$query_insert){
+		if(!$query_update){
 
 			die("QUERY INSERT PESERTA KE JADWAL FAILED : ". mysqli_error($connect));	
 
-		}
-
-		$query_update = mysqli_query($connect, "UPDATE kejuruan_assign SET selected = 1 WHERE id_kejuruan=$id_kejuruan AND id_peserta=$id_peserta ");
-
-		
+		}		
 
 
 	}
 
-	
+	$_SESSION['success'] = "Tambah peserta sukses!";
 
 	header("Location: ../../admin/detail_jadwal.php?id=".$id_jadwal);
 

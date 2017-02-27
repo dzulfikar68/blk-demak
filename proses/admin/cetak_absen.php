@@ -55,7 +55,7 @@
 
 
 	
-	$query = mysqli_query($connect, "SELECT * FROM jadwal_assign, peserta, jadwal WHERE jadwal_assign.id_jadwal = jadwal.id_jadwal AND jadwal_assign.id_peserta=peserta.id AND jadwal_assign.id_jadwal = $id_jadwal ORDER BY jadwal_assign.date_created DESC");
+	$query = mysqli_query($connect, "SELECT * FROM registrasi_pelatihan, peserta, jadwal WHERE registrasi_pelatihan.id_jadwal = jadwal.id_jadwal AND registrasi_pelatihan.id_peserta=peserta.id AND registrasi_pelatihan.id_jadwal = $id_jadwal ");
 
 	if(!$query){
 		die("QUERY SELCT DATA CETAK FAILED : ". mysqli_error($connect));	
