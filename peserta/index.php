@@ -36,6 +36,10 @@
 	// ambil riwayat pelatihan
 	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta = '$id' AND registrasi_pelatihan.id_kejuruan = kejuruan.id_kejuruan ORDER BY registrasi_pelatihan.tanggal_registrasi";
 	$result_pelatihan = mysqli_query($connect, $get_sql);
+
+	// ambil daftar kerja
+	$get_sql = "SELECT * FROM data_kerja WHERE id_peserta = '$id' ORDER BY date_created";
+	$result_kerja = mysqli_query($connect, $get_sql);
 	
 ?>
 
@@ -188,17 +192,17 @@
 										</thead>
 										<tbody>
 											<?php
-												$no = 1;
+												$no_pelatihan = 1;
 												while ($row_pelatihan = mysqli_fetch_array($result_pelatihan)) {
 													echo "<tr>";
-													echo "<td>$no</td>";
+													echo "<td>$no_pelatihan</td>";
 													echo "<td>". $row_pelatihan['no_registrasi'] ."</td>";
 													echo "<td>". $row_pelatihan['nama_kejuruan'] ."</td>";
 													echo "<td>". $row_pelatihan['angkatan'] ."</td>";
 													echo "<td>". date('Y', strtotime($row_pelatihan['seleksi_awal'])). "</td>";
 													echo "<td>". convertStatusRegistrasi($row_pelatihan['status']) ."</td>";
 													echo "</tr>";
-													$no++;
+													$no_pelatihan++;
 												}
 											?>
 										</tbody>
@@ -225,13 +229,24 @@
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td>1</td>
-												<td>Wirausaha</td>
-												<td>PT Digit Creative Studio</td>
-												<td>Jl. Bulusa X</td>
-												<td>0857</td>
-											</tr>
+											<?php
+												$no_kerja = 1;
+												while ($row_kerja = mysqli_fetch_array($result_kerja)) {
+													echo "<tr>";
+													if ($row_kerja['status_kerja'] == "Belum"){
+														echo "<td colspan=5>Belum Bekerja</tr>";
+													}
+													else {
+														echo "<td>$no_kerja</td>";
+														echo "<td>". $row_kerja['jenis_pekerjaan'] ."</td>";
+														echo "<td>". $row_kerja['nama_perusahaan'] ."</td>";
+														echo "<td>". $row_kerja['alamat_perusahaan'] ."</td>";
+														echo "<td>". $row_kerja['telepon_perusahaan'] ."</td>";
+														$no_kerja++;
+													}
+													echo "</tr>";
+												}
+											?>
 										</tbody>
 									</table>
 								</div>

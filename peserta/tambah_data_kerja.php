@@ -24,7 +24,7 @@
 							</h3>
 						</div>
 						<div class="panel-body">
-							<form action="../proses/peserta/ubah_profil.php" method="POST">
+							<form action="../proses/peserta/tambah_data_kerja.php" method="POST">
 								<input type="hidden" name="id_peserta" value="<?php session_start(); echo $_SESSION['id-peserta']?>">
 								<table class="table">
 									<tbody>
@@ -32,41 +32,41 @@
 											<th class="attribute">Status Kerja*</th>
 											<td class="colon">:</td>
 											<td>
-												<select class="form-control" name="status_kerja" required>
-													<option value="sudah">Sudah bekerja</option>
-													<option value="belum">Belum bekerja</option>
+												<select id="status_kerja" class="form-control" name="status_kerja" required>
+													<option value="Sudah">Sudah bekerja</option>
+													<option value="Belum">Belum bekerja</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
-											<th class="attribute">Jenis Pekerjaan*</th>
+											<th class="attribute">Jenis Pekerjaan</th>
 											<td class="colon">:</td>
 											<td>
-												<select class="form-control" name="jenis_pekerjaan" required>
-													<option value="sudah">Karyawan</option>
-													<option value="belum">Wirausaha</option>
+												<select class="form-control disable" name="jenis_pekerjaan">
+													<option value="Karyawan">Karyawan</option>
+													<option value="Wirausaha">Wirausaha</option>
 												</select>
 											</td>
 										</tr>
 										<tr>
-											<th class="attribute">Nama Perusahaan*</th>
+											<th class="attribute">Nama Perusahaan</th>
 											<td class="colon">:</td>
 											<td>
-												<input class="form-control" type="text" name="nama_perusahaan">
+												<input class="form-control disable" type="text" name="nama_perusahaan">
 											</td>
 										</tr>
 										<tr>
-											<th class="attribute">Alamat Perusahaan*</th>
+											<th class="attribute">Alamat Perusahaan</th>
 											<td class="colon">:</td>
 											<td>
-												<input class="form-control" type="text" name="alamat_perusahaan">
+												<input class="form-control disable" type="text" name="alamat_perusahaan">
 											</td>
 										</tr>
 										<tr>
-											<th class="attribute">Telepon Perusahaan*</th>
+											<th class="attribute">Telepon Perusahaan</th>
 											<td class="colon">:</td>
 											<td>
-												<input class="form-control" type="text" name="telepon_perusahaan">
+												<input class="form-control disable" type="text" name="telepon_perusahaan">
 											</td>
 										</tr>
 										<tr>
@@ -92,7 +92,20 @@
 	include 'footer.php';
 ?>
 
-    <script src="../assets/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="../assets/js/jquery.js"></script>
+    <script type="text/javascript">
+    	// mengaktifkan dan men-non-aktifkan form
+    	$('#status_kerja').change(function(){
+    		var status = $('#status_kerja').val();
+    		if (status == "Belum") {
+    			$('.disable').prop("disabled", true);
+    			$(".disable").prop("required",false);
+    		} else {
+    			$('.disable').prop("disabled", false);
+    			$(".disable").prop("required",true);
+    		}
+    	});
+    </script>
 
   </body>
 </html>

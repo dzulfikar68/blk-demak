@@ -114,3 +114,9 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `status` `status` INT(1) NOT NULL DEFA
 
 ******* UBAH NAMA DAN PANJANG KOLOM NO PENDAFTARAN DI TABEL REGISTRASI PELATIHAN
 ALTER TABLE `registrasi_pelatihan` CHANGE `no_pendaftaran` `no_registrasi` VARCHAR(7) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL; 
+
+========> MEMBUAT TABEL DATA KERJA
+CREATE TABLE `blk_demak`.`data_kerja` ( `id_data_kerja` INT NOT NULL AUTO_INCREMENT , `id_peserta` INT NOT NULL , `status_kerja` VARCHAR(5) NOT NULL , `jenis_pekerjaan` VARCHAR(9) NULL , `nama_perusahaan` VARCHAR(128) NULL , `alamat_perusahaan` VARCHAR(128) NULL , `telepon_perusahaan` VARCHAR(16) NULL , PRIMARY KEY (`id_data_kerja`)) ENGINE = InnoDB;
+
+******* TAMBAH KOLOM DATE CREATED DI TABEL DATA KERJA
+ALTER TABLE `data_kerja` ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `telepon_perusahaan`; 
