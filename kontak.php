@@ -42,7 +42,7 @@
 
 			<h3 style="margin-bottom: 20px;">Hubungi Kami</h3>
 			<div class="row">
-				<form action="proses/kontak.php" method="POST">
+				<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/kontak.php" method="POST">
 	                <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
 	                
 					<div class="col-sm-6">

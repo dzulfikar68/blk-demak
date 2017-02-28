@@ -29,7 +29,7 @@
 	if (empty($nama) || empty($no_ktp) || empty($telepon) || empty($email) || empty($password)) {
 		$_SESSION['error'] = "Formulir tidak lengkap.<br>
 								Anda harus mengisi semua bagian yang kosong.";
-		header("Location: ../../". $previous_page .".php");
+		header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
 		die();
 	}
 
@@ -41,7 +41,7 @@
 	
 	if ($row['no_ktp'] != null) {
 		$_SESSION['error'] = "Nomor KTP Anda telah terdaftar sebagai peserta.";
-		header("Location: ../../". $previous_page .".php");
+		header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
 		die();
 	}
 
@@ -81,5 +81,5 @@
 	}
 
 	// redirect ke halaman sebelumnya
-	header("Location: ../../". $previous_page .".php");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
 	die();

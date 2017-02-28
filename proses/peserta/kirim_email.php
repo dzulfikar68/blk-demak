@@ -50,5 +50,5 @@
 	mysqli_close($connect);
 
 	// redirect ke halaman kirim_email
-	header("Location: ../../peserta/kirim_email.php");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/kirim_email.php");
 	die();

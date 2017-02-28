@@ -40,7 +40,7 @@
 			<h4 class="panel-title">Ganti Password</h4>
 		</div>
 		<div class="panel-body">
-			<form action="../proses/peserta/ganti_password.php" method="POST">
+			<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/ganti_password.php" method="POST">
         <input type="hidden" name="id" value="<?php session_start(); echo $_SESSION['id-peserta']; ?>">
 				<div class="form-group">
           <label>Password baru*</label>

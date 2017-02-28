@@ -102,7 +102,7 @@
 				<br><br>
 
 				<div class="text-center">
-					<a href="jadwal.php" class="btn blue-btn">
+					<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/jadwal.php" class="btn blue-btn">
 						Lihat Jadwal
 					</a>
 				</div>

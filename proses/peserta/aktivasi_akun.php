@@ -35,5 +35,5 @@
 	}
 
 	// redirect ke beranda
-	header("Location: ../../");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/");
 	die();

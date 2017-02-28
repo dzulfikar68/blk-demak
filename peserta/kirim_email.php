@@ -35,22 +35,23 @@
     </header>
 
     <div class="col-sm-4 col-sm-offset-4" style="margin-top: 140px;">
-    <div class="panel panel-default">
-		<div class="panel-heading" style="background-color: #e9e9e9;">
-			<h4 class="panel-title">Kirim Email</h4>
-		</div>
-		<div class="panel-body">
-			<p>Masukkan email Anda.<br>Link untuk mengganti password akan dikirim ke email Anda.</p>
-			<form action="../proses/peserta/kirim_email.php" method="POST">
-				<div class="form-group">
-					<input class="form-control" type="email" name="blk_email" placeholder="Email" required autofocus>
-				</div>
-				<div class="form-group">
-					<input class="btn btn-primary" type="submit" value="Kirim">
-				</div>
-			</form>
-		</div>
-	</div>
+        <div class="panel panel-default">
+    		<div class="panel-heading" style="background-color: #e9e9e9;">
+    			<h4 class="panel-title">Kirim Email</h4>
+    		</div>
+    		<div class="panel-body">
+    			<p>Masukkan email Anda.<br>Link untuk mengganti password akan dikirim ke email Anda.</p>
+    			<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/kirim_email.php" method="POST">
+    				<div class="form-group">
+    					<input class="form-control" type="email" name="blk_email" placeholder="Email" required autofocus>
+    				</div>
+    				<div class="form-group">
+    					<input class="btn btn-primary" type="submit" value="Kirim">
+    				</div>
+    			</form>
+    		</div>
+    	</div>
+    </div>
 
 <!-- Pesan -->
 <?php

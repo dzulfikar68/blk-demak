@@ -7,5 +7,6 @@
 	
 	$_SESSION['success'] = "Logout sukses.";
 
-	header("Location: ../../");
+	// redirect ke beranda
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/");
 	die();

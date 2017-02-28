@@ -67,11 +67,11 @@
         <div class="container">
           <nav class="navbar navbar-collapse collapse pull-left">
             <ul class="nav navbar-nav">
-              <li><a href="../index.php">Beranda</a></li>
-              <li><a href="../jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
-              <li><a href="../hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
-              <li><a href="../tentang.php">Tentang</a></li>
-              <li><a href="../kontak.php">Kontak</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/index.php">Beranda</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/tentang.php">Tentang</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/kontak.php">Kontak</a></li>
             </ul>
           </nav>
 <?php
@@ -86,7 +86,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="profile-menu" role="tablist">
               <li role="presentation"><a href=".">Profil Saya</a></li>
-              <li><a href="../proses/peserta/logout.php">Logout</a></li>
+              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/logout.php">Logout</a></li>
             </ul>
           </div>
 <?php

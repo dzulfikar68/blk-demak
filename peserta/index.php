@@ -33,7 +33,7 @@
 	$result_kejuruan = mysqli_query($connect, $get_sql);
 
 	// ambil riwayat pelatihan
-	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta = '$id' AND registrasi_pelatihan.id_kejuruan = kejuruan.id_kejuruan ORDER BY registrasi_pelatihan.tanggal_registrasi";
+	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
 	$result_pelatihan = mysqli_query($connect, $get_sql);
 
 	// ambil daftar kerja
@@ -65,7 +65,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Profil
-										<a href="ubah_profil.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
+										<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/peserta/ubah_profil.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">
@@ -139,7 +139,7 @@
 									<h3 class="panel-title">Registrasi Pelatihan</h3>
 								</div>
 								<div class="panel-body">
-									<form action="../proses/peserta/reg_pelatihan.php" method="POST">
+									<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/reg_pelatihan.php" method="POST">
 										<input type="hidden" name="id_peserta" value="<?php echo $id; ?>">
 										<?php
 											if ($_SESSION['error-register']) {
@@ -198,7 +198,12 @@
 													echo "<td>". $row_pelatihan['no_registrasi'] ."</td>";
 													echo "<td>". $row_pelatihan['nama_kejuruan'] ."</td>";
 													echo "<td>". $row_pelatihan['angkatan'] ."</td>";
-													echo "<td>". date('Y', strtotime($row_pelatihan['seleksi_awal'])). "</td>";
+													if(empty($row_pelatihan['angkatan'])){
+														echo "<td>". date('Y'). "</td>";
+													}
+													else{
+														echo "<td>". date('Y', strtotime($row_pelatihan['seleksi_awal'])). "</td>";
+													}
 													echo "<td>". convertStatusRegistrasi($row_pelatihan['status']) ."</td>";
 													echo "</tr>";
 													$no_pelatihan++;
@@ -213,7 +218,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Data Kerja
-										<a href="tambah_data_kerja.php"><button type="button" class="btn btn-success btn-xs">Tambah</button></a>
+										<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/peserta/tambah_data_kerja.php"><button type="button" class="btn btn-success btn-xs">Tambah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">
@@ -233,7 +238,8 @@
 												while ($row_kerja = mysqli_fetch_array($result_kerja)) {
 													echo "<tr>";
 													if ($row_kerja['status_kerja'] == "Belum"){
-														echo "<td colspan=5>Belum Bekerja</tr>";
+														echo "<td>$no_kerja</td>";
+														echo "<td class='text-center' colspan=4>Belum Bekerja</tr>";
 													}
 													else {
 														echo "<td>$no_kerja</td>";
@@ -241,9 +247,9 @@
 														echo "<td>". $row_kerja['nama_perusahaan'] ."</td>";
 														echo "<td>". $row_kerja['alamat_perusahaan'] ."</td>";
 														echo "<td>". $row_kerja['telepon_perusahaan'] ."</td>";
-														$no_kerja++;
 													}
 													echo "</tr>";
+													$no_kerja++;
 												}
 											?>
 										</tbody>

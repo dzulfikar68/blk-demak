@@ -27,5 +27,5 @@
 	}
 
 	// redirect ke halaman beranda
-	header("Location: ../../");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/");
 	die();
