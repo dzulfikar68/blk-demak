@@ -4,7 +4,6 @@
 	/* Koneksi ke DB */
     require_once ('../proses/koneksi_db.php');
 
-	session_start();
 	$_SESSION['page'] = "peserta/ubah_profil";
 
 	$id = $_SESSION['id-peserta'];
@@ -35,7 +34,7 @@
 						</div>
 						<div class="panel-body">
 							<form action="../proses/peserta/ubah_profil.php" method="POST">
-								<input type="hidden" name="id_peserta" value="<?php session_start(); echo $_SESSION['id-peserta']?>">
+								<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']?>">
 								<table class="table">
 									<tbody>
 										<tr>

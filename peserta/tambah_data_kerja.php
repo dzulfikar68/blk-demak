@@ -1,7 +1,6 @@
 <?php
 	include 'header.php';
 
-	session_start();
 	$_SESSION['page'] = "peserta/tambah_data_kerja";
 ?>
 
@@ -25,7 +24,7 @@
 						</div>
 						<div class="panel-body">
 							<form action="../proses/peserta/tambah_data_kerja.php" method="POST">
-								<input type="hidden" name="id_peserta" value="<?php session_start(); echo $_SESSION['id-peserta']?>">
+								<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']?>">
 								<table class="table">
 									<tbody>
 										<tr>

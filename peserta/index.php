@@ -5,7 +5,6 @@
 	require_once ('../proses/koneksi_db.php');
 	require_once ('../proses/helper.php');
 
-	session_start();
 	$_SESSION['page'] = "peserta/index";
 
 	// ambil data peserta
