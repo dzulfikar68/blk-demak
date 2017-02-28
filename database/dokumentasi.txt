@@ -99,4 +99,10 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NU
 ALTER TABLE `registrasi_pelatihan` DROP `tahun`;
 
 ******* TAMBAH KOLOM FLAG DI TABEL PESERTA
-ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`; 
+ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`;
+
+******* UBAH KOLOM STATUS DI TABEL REGISTRASI PELATIHAN
+ALTER TABLE `registrasi_pelatihan` CHANGE `status` `status` INT(1) NOT NULL DEFAULT '1' COMMENT '1 = belum dipanggil, 2 = sudah dipanggil, 3 = belum lulus tes wawancara, 4 = sudah lulus tes wawancara, 5 = belum lulus pelatihan, 6 = sudah lulus pelatihan'; 
+
+******* UBAH NAMA DAN PANJANG KOLOM NO PENDAFTARAN DI TABEL REGISTRASI PELATIHAN
+ALTER TABLE `registrasi_pelatihan` CHANGE `no_pendaftaran` `no_registrasi` VARCHAR(7) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL; 
