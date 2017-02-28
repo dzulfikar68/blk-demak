@@ -27,6 +27,11 @@
 
 		$_SESSION['id-peserta'] = $row['id'];
 	}
+
+	// ambil daftar kejuruan
+	$get_sql = "SELECT * FROM kejuruan ORDER BY date_created";
+	$result_get = mysqli_query($connect, $get_sql);
+	
 ?>
 
 <div class="page">
@@ -41,6 +46,7 @@
 				<div class="col-sm-3">
 					<ul class="nav nav-pills nav-stacked" role="tablist">
 						<li id="profile-tab" role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profil</a></li>
+						<li id="register-tab" role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Registrasi Pelatihan</a></li>
 						<li id="training-tab" role="presentation"><a href="#training" aria-controls="training" role="tab" data-toggle="tab">Riwayat Pelatihan</a></li>
 						<li id="job-tab" role="presentation"><a href="#job" aria-controls="job" role="tab" data-toggle="tab">Data Kerja</a></li>
 					</ul>
@@ -119,6 +125,40 @@
 								</div>
 							</div>
 						</div>
+						<div role="tabpanel" class="tab-pane fade" id="register">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Registrasi Pelatihan</h3>
+								</div>
+								<div class="panel-body">
+									<form action="../proses/peserta/reg_pelatihan.php" method="POST">
+										<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']; ?>">
+										<?php
+											if ($_SESSION['error-register']) {
+												echo '<div class="alert alert-danger">'. $_SESSION['error-register'] .'</div>';
+											}
+										?>
+										<p>Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
+										Silakan memilih kejuruan yang ingin diikuti.</p>
+										<div class="col-sm-4">
+											<div class="form-group row">
+												<select class="form-control" name="id_kejuruan" required>
+													<option value="" selected>Pilih kejuruan</option>
+													<?php
+														while ($row_kejuruan = mysqli_fetch_array($result_get)) {
+															echo "<option value='".$row_kejuruan['id_kejuruan']."'>".$row_kejuruan['nama_kejuruan']."</option>";
+														}
+													?>
+												</select>
+											</div>
+											<div class="form-group row">
+												<input class="btn btn-primary" type="submit" value="Kirim">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
 						<div role="tabpanel" class="tab-pane fade" id="training">
 							<div class="panel panel-default">
 								<div class="panel-heading">
@@ -129,10 +169,11 @@
 										<thead>
 											<tr>
 												<th>No</th>
+												<th>No Pendaftaran</th>
 												<th>Kejuruan</th>
-												<th>Paket</th>
 												<th>Gelombang</th>
 												<th>Tahun</th>
+												<th>Status</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -165,26 +206,28 @@
 						<div role="tabpanel" class="tab-pane fade" id="job">
 							<div class="panel panel-default">
 								<div class="panel-heading">
-									<h3 class="panel-title">Data Kerja</h3>
+									<h3 class="panel-title">Data Kerja
+										<a href="tambah_data_kerja.php"><button type="button" class="btn btn-success btn-xs">Tambah</button></a>
+									</h3>
 								</div>
 								<div class="panel-body">
 									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>No</th>
-												<th>Kejuruan</th>
-												<th>Perusahaan</th>
-												<th>Tahun Mulai</th>
-												<th>Tahun Selesai</th>
+												<th>Jenis Pekerjaan</th>
+												<th>Nama Perusahaan</th>
+												<th>Alamat Perusahaan</th>
+												<th>Telepon Perusahaan</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
 												<td>1</td>
-												<td>Komputer</td>
+												<td>Wirausaha</td>
 												<td>PT Digit Creative Studio</td>
-												<td>2016</td>
-												<td>Sekarang</td>
+												<td>Jl. Bulusa X</td>
+												<td>0857</td>
 											</tr>
 										</tbody>
 									</table>
