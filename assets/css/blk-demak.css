@@ -37,6 +37,9 @@ a:visited{
 table .number{
 	width: 55px;
 }
+table .name{
+	width: 190px;
+}
 .blue-btn{
 	padding: 8px 15px;
 	border-color: #5599ff;
@@ -262,6 +265,9 @@ footer p{
 }
 .field{
 	width: 210px;
+}
+table .date{
+	width: 220px;
 }
 
 /* About */

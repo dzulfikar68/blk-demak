@@ -1,8 +1,26 @@
 <?php
-  include "header.php";
+	include "header.php";
 
-  session_start();
-  $_SESSION['page'] = "hasil_seleksi";
+	/* Koneksi ke DB */
+    require_once ('proses/koneksi_db.php');
+
+	$_SESSION['page'] = "hasil_seleksi";
+
+	$tahun = date('Y');
+	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama
+				FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.status='6' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
+				ORDER BY registrasi_pelatihan.no_registrasi";
+	$result = mysqli_query($connect, $get_sql);
+
+	$keyword = $_POST['search'];
+
+	if (!empty($keyword)) {
+		$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama
+					FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
+					ORDER BY registrasi_pelatihan.no_registrasi";
+		$result = mysqli_query($connect, $search);
+	}
+
 ?>
 
 <div class="page">
@@ -15,12 +33,12 @@
 		<div class="container">
 			<div class="filter">
 				<div class="row">
-					<form>
+					<form action="hasil_seleksi.php" method="POST">
 						<div class="form-group col-sm-3">
 							<label>Search</label>
-							<input type="search" name="search" placeholder="Nomor peserta">
+							<input type="search" name="search" placeholder="Nomor peserta" <?php echo (!empty($keyword)) ? "$keyword" : "";?> >
 						</div>
-						<div class="form-group col-sm-3">
+						<div class="form-group col-sm-3" style="padding-left: 0px;">
 							<input class="btn btn-primary" type="submit" value="Search">
 						</div>
 					</form>
@@ -28,65 +46,57 @@
 			</div>
 			<br>
 			<div>
-				<h4 class="schedule-title">Daftar Peserta Lolos</h4>
-				<table class="table table-striped green-table">
-					<thead>
-						<tr>
-							<th class="number">No</th>
-							<th>Nomor Pendaftaran</th>
-							<th>Nama</th>
-							<th>Alamat</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="number">1</td>
-							<td>2512</td>
-							<td>Ahmad</td>
-							<td>Jl. Durian No. 12</td>
-						</tr>
-						<tr>
-							<td class="number">2</td>
-							<td>2542</td>
-							<td>Faris</td>
-							<td>Jl. Melati No. 32</td>
-						</tr>
-						<tr>
-							<td class="number">3</td>
-							<td>2543</td>
-							<td>Ali</td>
-							<td>Jl. Pahlawan No. 23</td>
-						</tr>
-						<tr>
-							<td class="number">4</td>
-							<td>2557</td>
-							<td>Indri</td>
-							<td>Jl. Kapuas No. 17</td>
-						</tr>
-					</tbody>
-				</table>
+				<h4 class="schedule-title">Daftar Peserta Lulus Registrasi Pelatihan Tahun </h4>
+				<div class="col-sm-8 col-sm-offset-2">
+					<table class="table table-striped green-table">
+						<thead>
+							<tr>
+								<th class="number">No</th>
+								<th>Nomor Pendaftaran</th>
+								<th class="name">Nama</th>
+								<th>Kejuruan</th>
+								<th>Angkatan</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								$no = 1;
+								while ($row=mysqli_fetch_array($result)) {
+									echo "<tr>";
+									echo '<td class="number">'. $no .'</td>';
+									echo '<td>'. $row['no_registrasi'] .'</td>';
+									echo '<td>'. $row['nama'] .'</td>';
+									echo '<td>'. $row['nama_kejuruan'] .'</td>';
+									echo '<td>'. $row['angkatan'] .'</td>';
+									echo "</tr>";
+								}
+							?>
+						</tbody>
+					</table>
+
+					<!-- Pagination -->
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li>
+								<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li>
+								<a href="#" aria-label="Next">
+								<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</div>
 
-			<!-- Pagination -->
-			<nav aria-label="Page navigation">
-				<ul class="pagination">
-					<li>
-						<a href="#" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-						</a>
-					</li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li>
-						<a href="#" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-						</a>
-					</li>
-				</ul>
-			</nav>
 		</div>
 	</div>	<!-- ./content -->
 </div>
