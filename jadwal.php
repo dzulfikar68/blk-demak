@@ -1,8 +1,27 @@
 <?php
   include "header.php";
 
-  session_start();
+  /* Koneksi ke DB */
+  require_once ('proses/koneksi_db.php');
+  require_once ('proses/convert_date.php');
+
   $_SESSION['page'] = "jadwal";
+
+  // ambil daftar jadwal
+  $tahun = date('Y');
+  $get_sql = "SELECT jadwal.*, kejuruan.nama_kejuruan FROM jadwal, kejuruan WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan
+              AND YEAR(jadwal.pelatihan_awal)='$tahun' ORDER BY jadwal.angkatan";
+  $result = mysqli_query($connect, $get_sql);
+
+  // membuat array jadwal per angkatan
+  $tahap = array();
+  while ($row=mysqli_fetch_array($result)) {
+    $tgl_seleksi = concateDate($row['seleksi_awal'], $row['seleksi_akhir']);
+    $tgl_pelatihan = concateDate($row['pelatihan_awal'], $row['pelatihan_akhir']);
+
+    $tahap[$row['angkatan']][] = array('kejuruan'=>$row['nama_kejuruan'], 'dana'=>$row['sumber_dana'],
+                    'kapasitas'=>$row['kapasitas'], 'tgl_seleksi'=>$tgl_seleksi, 'tgl_pelatihan'=>$tgl_pelatihan);
+  }
 ?>
 
     <div class="page">
@@ -13,118 +32,47 @@
       </div>
       <div class="content">
         <div class="container">
-            <div class="schedule-item">
-              <h4 class="schedule-title">Pelatihan Gelombang 1 Tahun 2017</h4>
-              <table class="table table-striped green-table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th class="field">Jenis Kejuruan</th>
-                    <th class="text-center">Kebutuhan Peserta</th>
-                    <th>Tanggal Tes dan Wawancara</th>
-                    <th>Tanggal Pengumuman</th>
-                    <th>Tanggal Daftar Ulang</th>
-                    <th>Tanggal Pelaksanaan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="field">Otomotif Mobil Spesialis AC</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="field">Desain Grafis Lanjutan</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="field">Tata Rias</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="schedule-item">
-              <h4 class="schedule-title">Pelatihan Gelombang 2 Tahun 2017</h4>
-              <table class="table table-striped green-table">
-                <thead>
-                  <tr>
-                    <th>No</th>
-                    <th class="field">Jenis Kejuruan</th>
-                    <th class="text-center">Kebutuhan Peserta</th>
-                    <th>Tanggal Tes dan Wawancara</th>
-                    <th>Tanggal Pengumuman</th>
-                    <th>Tanggal Daftar Ulang</th>
-                    <th>Tanggal Pelaksanaan</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td class="field">Bahasa Inggris</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td class="field">Las Listrik</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td class="field">Menjahit</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td class="field">Web &amp; Internet</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                  <tr>
-                    <td>5</td>
-                    <td class="field">Tata Boga</td>
-                    <td class="text-center">20</td>
-                    <td>15 Februari 2017</td>
-                    <td>23 Februari 2017</td>
-                    <td>25 Februari 2017</td>
-                    <td>1 Maret 2017</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <?php
+            $angkatan = 0;
+            if (empty($tahap)) {
+              echo '<div class="alert alert-info">Jadwal Pelatihan Tahun '. $tahun .' Belum Tersedia</div>';
+            }
+            else {
+              foreach ($tahap as $key => $jadwal) {
+                  echo '<div class="schedule-item">';
+                  echo '<h4 class="schedule-title">Pelatihan Tahap '. $key .' Tahun '. $tahun .'</h4>';
+                  echo '<table class="table table-striped green-table">';
+                  echo '<thead><tr>';
+                  echo '<th>No</th>
+                      <th class="field">Kejuruan</th>
+                      <th class="text-center">Sumber Dana</th>
+                      <th>Kapasitas Siswa</th>
+                      <th class="date">Rekrutmen dan Seleksi</th>
+                      <th class="date">Pelaksanaan Pelatihan</th>
+                      ';
+                  echo '</tr></thead>';
+                  echo '<tbody>';
+                  $no = 1;
+                  foreach ($jadwal as $value) {
+                      echo "<tr>";
+                      echo "<td>". $no ."</td>";
+                      echo "<td class='field'>". $value['kejuruan'] ."</td>";
+                      echo "<td class='text-center'>". $value['dana'] ."</td>";
+                      echo "<td class='text-center'>". $value['kapasitas'] ."</td>";
+                      echo "<td class='date'>". $value['tgl_seleksi'] ."</td>";
+                      echo "<td class='date'>". $value['tgl_pelatihan'] ."</td>";
+                      echo "</tr>";
+                      $no++;
+                  }
+                  echo '</tbody>';
+                  echo '</table>';
+                  echo '</div>';
+              }
+            }
+          ?>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation">
+            <!-- <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li>
                   <a href="#" aria-label="Previous">
@@ -142,7 +90,7 @@
                   </a>
                 </li>
               </ul>
-            </nav>
+            </nav> -->
         </div>
       </div>
     </div>
