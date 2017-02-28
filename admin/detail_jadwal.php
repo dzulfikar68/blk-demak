@@ -4,9 +4,13 @@
 
         session_start();
 
+        ini_set('display_errors',1); 
+        error_reporting(E_ALL);
+
         include 'header.php';
         require_once ('../proses/koneksi_db.php');
         require_once ('../proses/convert_date.php');
+        require_once ('../proses/helper.php');
 
         $id_jadwal = $_GET['id'];
 
@@ -23,6 +27,8 @@
         $nama_kejuruan = $data->nama_kejuruan;
         $id_kejuruan = $data->id_kejuruan;
         $kapasitas = $data->kapasitas;
+
+        $status_pelaksanaan = $data->status_pelaksanaan;
 
 
         $tgl_pelaksanaan = concateDate($data->pelatihan_awal, $data->pelatihan_akhir);
@@ -69,13 +75,12 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
+                      <th>No Pendaftaran</th>
                       <th>Nama Peserta</th>
-                      <th>Nomor KTP</th>
-                      <th>Email</th>
-                      <th>Nomor HP</th>
-                      <th>Tanggal Daftar</th>
-                      <!-- <th>Kejuruan</th>
-                      <th>Status</th> -->
+                      <th>Kejuruan</th>
+                      <th>Tanggal Registrasi</th>
+                      <th>Status Peserta</th>
+                      <!-- <th>Tahun Pelatihan</th> -->
                       <th>Aksi</th>
                     </tr>
 
@@ -85,8 +90,8 @@
 
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM registrasi_pelatihan, peserta WHERE registrasi_pelatihan.id_peserta = peserta.id AND registrasi_pelatihan.id_jadwal=$id_jadwal ");
-
+                      $query = mysqli_query($connect, "SELECT * FROM peserta, registrasi_pelatihan, kejuruan WHERE registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta = peserta.id AND registrasi_pelatihan.id_jadwal=$id_jadwal ");
+                      mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
                       if(!$query){
 
                         die("QUERY FAILED : ".mysqli_error($connect));
@@ -103,14 +108,18 @@
                         $no = 1;
                         while ($row=mysqli_fetch_object($query)) {
 
+                          $tanggal_registrasi = convertDate($row->tanggal_registrasi, 'd M Y');
+
+
                           echo "<tr>";
+                          echo "<td>".$row->no_pendaftaran."</td>";
                           echo "<td>".$row->nama."</td>";
-                          echo "<td>".$row->no_ktp."</td>";
-                          echo "<td>".$row->email."</td>";
-                          echo "<td>".$row->telepon."</td>";
-                          echo "<td>".convertDate($row->tanggal_daftar, 'd M Y')."</td>";
+                          echo "<td>".$row->nama_kejuruan."</td>";
+                          echo "<td>".$tanggal_registrasi."</td>";
+                          echo "<td>".convertStatusRegistrasi($row->status)."</td>";
                           echo "<td>";
-                          echo "<a href=\"detail_peserta.php\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
+                          echo "<a href=\"detail_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
+                          echo "<a href=\"#\" data-id_registrasi=\"".$row->id_registrasi."\" data-no_pendaftaran=\"".$row->no_pendaftaran."\" data-nama=\"".$row->nama."\" data-nama_kejuruan=\"".$row->nama_kejuruan."\" data-tanggal=\"".$tanggal_registrasi."\" data-status=\"".$row->status."\" data-target=\"#modalPeserta\" data-toggle=\"modal\"  class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Status Peserta\" ><i class=\"fa fa-pencil\"></i></a> ";
                           echo "<a onclick=\"return confirm('Hapus peserta ini dari Jadwal?');\" href=\"../proses/admin/hapus_peserta_dari_jadwal.php?id_registrasi=".$row->id_registrasi."&id_jadwal=".$id_jadwal."&id_kejuruan=".$id_kejuruan."\" class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Peserta dari Pelatihan\"><i class=\"fa fa-times\"></i></a>";
                           echo "</td>";
                           echo "</tr>";
@@ -144,7 +153,12 @@
               </div>
             </div>
             <!-- END COL 12 -->
+            <?php
 
+              if($status_pelaksanaan=='belum'){
+
+
+            ?>
             <div class="col-lg-12">
               <div class="showback">
                 <h4><i class="fa fa-angle-right"></i> Tabel Peserta yang Mendaftar Pelatihan<?php echo "<b> ".$nama_kejuruan."</b> yang lulus tahap tes dan wawancara"?></h4>  
@@ -153,21 +167,21 @@
                 <table class="table table-hover">
                   <thead>
                     <tr>
+                      <th>No Pendaftaran</th>
                       <th>Nama Peserta</th>
-                      <th>Nomor KTP</th>
-                      <th>Email</th>
-                      <th>Nomor HP</th>
-                      <th>Tanggal Daftar</th>
+                      <th>Kejuruan</th>
+                      <th>Tanggal Registrasi</th>
+                      <th>Status Peserta</th>
+                      <!-- <th>Tahun Pelatihan</th> -->
                       <th>Aksi</th>
                     </tr>
-
                   </thead>
 
                   <tbody>
 
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM peserta, registrasi_pelatihan WHERE peserta.id = registrasi_pelatihan.id_peserta AND registrasi_pelatihan.status=4  AND registrasi_pelatihan.id_kejuruan=$id_kejuruan AND registrasi_pelatihan.id_jadwal=0 ");
+                      $query = mysqli_query($connect, "SELECT * FROM peserta, registrasi_pelatihan, kejuruan WHERE registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND peserta.id = registrasi_pelatihan.id_peserta AND registrasi_pelatihan.status=4  AND registrasi_pelatihan.id_kejuruan=$id_kejuruan AND registrasi_pelatihan.id_jadwal=0 ");
 
                       if(!$query){
 
@@ -185,17 +199,23 @@
                         $no = 1;
                         while ($row=mysqli_fetch_object($query)) {
 
+                        
+
+                          $tanggal_registrasi = convertDate($row->tanggal_registrasi, 'd M Y');
+
                           echo "<tr>";
+                          echo "<td>".$row->no_pendaftaran."</td>";
                           echo "<td>".$row->nama."</td>";
-                          echo "<td>".$row->no_ktp."</td>";
-                          echo "<td>".$row->email."</td>";
-                          echo "<td>".$row->telepon."</td>";
-                          echo "<td>".convertDate($row->tanggal_daftar, 'd M Y')."</td>";
+                          echo "<td>".$row->nama_kejuruan."</td>";
+                          echo "<td>".$tanggal_registrasi."</td>";
+                          echo "<td>".convertStatusRegistrasi($row->status)."</td>";
                           echo "<td>";
-                          echo "<a href=\"detail_peserta.php\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"> </i> </a> ";
+                          echo "<a href=\"detail_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
                           echo "<a onclick=\"return confirm('Tambahkan peserta ini ke Jadwal?');\" href=\"../proses/admin/tambah_peserta_ke_jadwal.php?id_registrasi=".$row->id_registrasi."&id_jadwal=".$id_jadwal."&kapasitas=".$kapasitas."\" class=\"btn btn-success btn-xs\" data-tooltip=\"true\" title=\"Tambah Peserta ke Pelatihan\"><i class=\"fa fa-plus\"> </i></a>";
                           echo "</td>";
                           echo "</tr>";
+
+                    
 
                           $no++;
                         }
@@ -211,12 +231,81 @@
               </div>
             </div>
 
+            <?php
+              }
+            ?>
+
           
           </div>
         </section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
     <!--main content end-->
+    <!-- MODAL-->
+      <div class="modal fade" id="modalPeserta" tabindex="-1" role="dialog" aria-labelledby="modalPesertaLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="modalPesertaLabel">Ubah Jadwal</h4>
+            </div>
+            <div class="modal-body">
+              <form class="form-horizontal style-form" method="POST" >
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">No Peserta</label>
+                  <div class="col-sm-8">
+                    <input type="text"  name="no_pendaftaran" disabled class="form-control" placeholder="Nama Peserta" required > 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Nama Peserta</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="nama_peserta" disabled class="form-control" placeholder="Nama Peserta" required > 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Kejuruan</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="nama_kejuruan" disabled class="form-control" placeholder="Kejuruan" required > 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Tanggal Registrasi</label>
+                  <div class="col-sm-8">
+                    <input type="text" name="tanggal_registrasi"disabled class="form-control" placeholder="Tanggal Register" required > 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">Status Peserta</label>
+                  <div class="col-sm-8">
+                    <select class="form-control"  name="status">
+                      <option value="1">Belum Dipanggil</option>
+                      <option value="2">Sudah Dipanggil</option>
+                      <option value="3">Belum Lulus Tes dan Wawancara</option>
+                      <option value="4">Lulus Tes dan Wawancara</option>
+                      <option value="5">Belum Lulus Pelatihan</option>
+                      <option value="6">Lulus Pelatihan</option>
+                    </select>
+                  </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+              <div id="footerModalDetail">
+              <button type="submit" class="btn btn-primary" id="edit">Ubah</button>
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+       <!-- END MODAL--> 
      
 
       <?php
@@ -298,6 +387,30 @@
           });
 
 
+          /*JS FOR MODAL*/
+          $('#modalPeserta').on('show.bs.modal', function(e){
+             var id = $(e.relatedTarget).data('id_registrasi');
+             var no_pendaftaran = $(e.relatedTarget).data('no_pendaftaran');
+             var nama_kejuruan = $(e.relatedTarget).data('nama_kejuruan');
+             var nama = $(e.relatedTarget).data('nama');
+             var tanggal_registrasi = $(e.relatedTarget).data('tanggal');
+             var status = $(e.relatedTarget).data('status');
+
+            
+             var action = "../proses/admin/ubah_status_register.php?id="+id+"&prev_page=detail_jadwal&id_jadwal=<?php echo $id_jadwal?>";
+
+             $('.modal input[name="no_pendaftaran"]').val(no_pendaftaran);
+             $('.modal input[name="nama_kejuruan"]').val(nama_kejuruan);
+             $('.modal input[name="nama_peserta"]').val(nama);
+             $('.modal select[name="status"]').val(status);
+
+             $('.modal input[name="tanggal_registrasi"]').val(tanggal_registrasi);
+             
+
+             $('.modal form').attr('action', action);
+
+             
+          });  
 
 
           

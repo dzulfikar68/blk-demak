@@ -90,6 +90,7 @@
                 <li><a  href="data_kejuruan.php">Data Kejuruan</a></li>
                 <li><a  href="data_peserta.php">Data Peserta</a></li>
                 <li><a  href="data_jadwal.php">Data Jadwal</a></li>
+                <li><a  href="data_register.php">Data Register</a></li>
                 <li><a  href="data_karyawan.php">Data Karyawan</a></li>
                 <!-- <li><a  href="panels.html">Data Sesi</a></li>
                 <li><a  href="general.html">Data Program</a></li> -->

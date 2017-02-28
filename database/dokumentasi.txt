@@ -99,6 +99,14 @@ ALTER TABLE `registrasi_pelatihan` CHANGE `gelombang` `id_jadwal` INT(11) NOT NU
 ALTER TABLE `registrasi_pelatihan` DROP `tahun`;
 
 ******* TAMBAH KOLOM FLAG DI TABEL PESERTA
+ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`; 
+
+MOHAMMAD FAJAR AINUL BASHRI
+
+******* UBAH TANGGAL REGISTRASI DI TABEL REGISTRASI 
+
+ALTER TABLE `registrasi_pelatihan` CHANGE `tanggal_registrasi` `tanggal_registrasi` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+
 ALTER TABLE `peserta` ADD `flag` INT(1) NOT NULL COMMENT 'tanda apakah data sudah lengkap/ belum. 0 = belum, 1 = sudah' AFTER `token`;
 
 ******* UBAH KOLOM STATUS DI TABEL REGISTRASI PELATIHAN

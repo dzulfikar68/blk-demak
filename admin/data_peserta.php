@@ -3,6 +3,11 @@
       <?php
 
         include 'header.php';
+        require_once ('../proses/koneksi_db.php');
+        require_once ('../proses/convert_date.php');
+        require_once ('../proses/helper.php');
+
+
 
       ?>
 
@@ -16,7 +21,7 @@
                 <h4><i class="fa fa-angle-right"></i> Tabel Peserta</h4>
                 <hr>
 
-                <div id="filter" class="col-lg-12" style="padding-bottom:15px">
+                <!-- <div id="filter" class="col-lg-12" style="padding-bottom:15px">
                   <div class="col-sm-3">
                     <select name="kejuruan" id="kejuruan" class="form-control">
                       <option value="">Pilih Kejuruan</option> 
@@ -30,7 +35,9 @@
                     <input type="text" name="tanggal_daftar" id="tanggal_daftar" placeholder="Tanggal Daftar" class="form-control">
                       
                   </div>
-                </div>
+                </div> -->
+
+
                 <table class="table table-hover" id="table_peserta">
                   <thead>
                     <tr>
@@ -38,9 +45,9 @@
                       <th>Nomor KTP</th>
                       <th>Email</th>
                       <th>Nomor HP</th>
-                      <th>Tanggal Daftar</th>
-                      <th>Kejuruan</th>
+                      <th>Pendidikan Terakhir</th>
                       <th>Status</th>
+                      <th>Tanggal Daftar</th>                      
                       <th>Aksi</th>
                     </tr>
 
@@ -48,50 +55,64 @@
 
                   <tbody>
 
-                    <tr>
+                    <?php
+
+                      $query = mysqli_query($connect, "SELECT * FROM peserta ORDER BY peserta.tanggal_daftar DESC");
+
+                      if(!$query){
+                        die("QUERY FAILED : ". mysqli_error($connect));
+                      }
+
+                      $num = mysqli_num_rows($query);
+
+                      if($num<=0){
+
+                        /*echo "<tr align=center><td colspan=7>Tidak ada data jadwal....</td></tr>";*/
+
+                      }else{
+
+                        
+                        while ($row=mysqli_fetch_object($query)) {
+
+                          
+                          echo "<tr>";
+                          echo "<td>".$row->nama."</td>";
+                          echo "<td>".$row->no_ktp."</td>";
+                          echo "<td>".$row->email."</td>";
+                          echo "<td>".$row->telepon."</td>";
+                          echo "<td>".$row->pendidikan_terakhir."</td>";
+                          echo "<td>".$row->status."</td>";
+                          echo "<td>".convertDate($row->tanggal_daftar, 'd M Y')."</td>";                         
+                          echo "<td>";
+                          echo "<a href=\"detail_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
+                          echo "<a href=\"form_ubah_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Data Peserta\" ><i class=\"fa fa-pencil\"></i></a> ";
+                          echo "<a href=\"#\" class=\"btn btn-danger btn-xs\" data-toggle=\"tooltip\" title=\"Hapus Peserta\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "</td>";
+                          echo "</tr>";
+
+                          
+                        }
+                     
+                        
+                      }
+
+                    ?>
+
+                   <!--  <tr>
                       <td>Mohammad Fajar Ainul Bashri</td>
                       <td>3374011407940002</td>
                       <td>iniemail@email.com</td>
                       <td>088888888888</td>
-                      <td>23 Februari 2017 12:12:12</td>
-                      <td>Menjahit</td>
-                      <td><span  class="label label-success">Diterima</span></td>
+                      <td>SMA</td>
+                      <td>23 Februari 2017 12:12:12</td>                      
                       <td>
-                        <a href="detail_peserta.php" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Lihat Detail Peserta" ><i class="fa fa-eye"></i></a>
+                        <a href=\"detail_peserta.php?id_peserta=".$row->id."\" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Lihat Detail Peserta" ><i class="fa fa-eye"></i></a>
                         <a href="ubah_peserta.php" class="btn btn-info btn-xs" data-toggle="tooltip" title="Ubah Data Peserta" ><i class="fa fa-pencil"></i></a>
                         <a href="" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus Peserta" ><i class="fa fa-trash-o"></i></a>
                       </td>
                     </tr>
 
-                    <tr>
-                      <td>Mohammad Fajar Ainul Bashri</td>
-                      <td>3374011407940002</td>
-                      <td>iniemail@email.com</td>
-                      <td>088888888888</td>
-                      <td>23 Februari 2017 12:12:12</td>
-                      <td>Memasak</td>
-                      <td><span  class="label label-warning">Menunggu</span></td>
-                      <td>
-                        <a href="detail_peserta.php" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Lihat Detail Peserta" ><i class="fa fa-eye"></i></a>
-                        <a href="ubah_peserta.php" class="btn btn-info btn-xs" data-toggle="tooltip" title="Ubah Data Peserta" ><i class="fa fa-pencil"></i></a>
-                        <a href="" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus Peserta"><i class="fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td>Mohammad Fajar Ainul Bashri</td>
-                      <td>3374011407940002</td>
-                      <td>iniemail@email.com</td>
-                      <td>088888888888</td>
-                      <td>23 Februari 2017 12:12:12</td>
-                      <td>Elektro</td>
-                      <td><span  class="label label-info">Lulus</span></td>
-                      <td>
-                        <a href="detail_peserta.php" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Lihat Detail Peserta" ><i class="fa fa-eye"></i></a>
-                        <a href="ubah_peserta.php" class="btn btn-info btn-xs" data-toggle="tooltip" title="Ubah Data Peserta" ><i class="fa fa-pencil"></i></a>
-                        <a href="" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Hapus Peserta"><i class="fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
+                    -->
 
                   </tbody>
                 </table>
@@ -118,9 +139,7 @@
 
             var table = $('#table_peserta').DataTable();
 
-            $('#kejuruan, #tanggal_daftar').keyup( function() {
-              table.draw();
-            });
+            
             
             $('[data-toggle="tooltip"]').tooltip();   
         });

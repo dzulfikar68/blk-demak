@@ -22,7 +22,7 @@
                 <button style="margin-bottom:10px" class="btn btn-primary pull-right" id="tambah" type="button" data-toggle="collapse" href="#collapseForm"  >Tambah Karyawan</button>
                 <br>
                 <div class="clearfix" >
-                  
+
 
                 </div>
                 <?php
@@ -238,9 +238,9 @@
 
            var action = "../proses/admin/ubah_karyawan.php?id="+id;
 
-           $('input[name="nama_karyawan"]').val(nama_karyawan);
-           $('select[name="jabatan"]').val(jabatan);
-           $('input[name="email"]').val(email);
+           $('.modal input[name="nama_karyawan"]').val(nama_karyawan);
+           $('.modal select[name="jabatan"]').val(jabatan);
+           $('.modal input[name="email"]').val(email);
 
 
            $('.modal form').attr('action', action);

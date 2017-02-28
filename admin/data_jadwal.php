@@ -206,7 +206,8 @@
                           echo "<td>";
                           echo "<a href=\"detail_jadwal.php?id=".$row->id_jadwal."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Detail Jadwal\" ><i class=\"fa fa-eye\"></i></a> ";
                           echo "<a href=\"#\" data-target=\"#modalJadwal\" data-toggle=\"modal\" data-id=\"".$row->id_jadwal."\" data-id_kejuruan=\"".$row->id_kejuruan."\" data-angkatan=\"".$row->angkatan."\" data-kapasitas=\"".$row->kapasitas."\" data-status=\"".$row->status_pelaksanaan."\"  data-sumber_dana=\"".$row->sumber_dana."\" data-seleksi_awal=\"".$seleksi_awal."\" data-seleksi_akhir=\"".$seleksi_akhir."\" data-pelatihan_awal=\"".$pelatihan_awal."\" data-pelatihan_akhir=\"".$pelatihan_akhir."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Jadwal\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          /*echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";*/
                           echo "</td>";
                           echo "</tr>";
 
