@@ -103,8 +103,8 @@
 				<br><br>
 
 				<div class="text-center">
-					<a href="" class="btn btn-default">
-						Daftar Pelatihan
+					<a href="jadwal.php" class="btn blue-btn">
+						Lihat Jadwal
 					</a>
 				</div>
 			</div>

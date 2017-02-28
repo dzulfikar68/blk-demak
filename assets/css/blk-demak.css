@@ -37,6 +37,25 @@ a:visited{
 table .number{
 	width: 55px;
 }
+.blue-btn{
+	padding: 8px 15px;
+	border-color: #5599ff;
+	border-radius: 0px;
+	color: #fff;
+	background-color: #5599ff;
+}
+.blue-btn:hover,
+.blue-btn:active{
+	color: #5599ff;
+	background-color: #fff;
+}
+.blue-btn:active{
+	transform: translateY(2px);
+}
+.blue-btn:active,
+.blue-btn:focus{
+	outline: none;
+}
 
 /* Header */
 .header-top{
