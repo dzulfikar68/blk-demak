@@ -69,14 +69,14 @@
 							Silakan cek email Anda untuk mengaktifkan akun.";
 
 			send_email($email, $nama, $subyek, $pesanEmail, $pesanSukses);
-			/*$_SESSION['login-peserta'] = false;
-			$_SESSION['ktp-peserta'] = $no_ktp;*/
-		} else {
+		}
+		else {
 			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
 			$_SESSION['error'] = "Pendaftaran Gagal.";
 		}
 		mysqli_close($connect);
-	} else{
+	}
+	else{
 		$_SESSION['error'] = "Password dan Ulangi Password tidak sesuai.";
 	}
 
