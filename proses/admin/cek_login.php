@@ -11,7 +11,7 @@
 
 	if($jabatan=='staff'){
 
-		$query_check = mysqli_query($connect, 'SELECT * FROM karyawan WHERE email="$email" AND password="$password" ');
+		$query_check = mysqli_query($connect, 'SELECT * FROM karyawan WHERE email="'.$email.'" AND password="'.$password.'" ');
 
 	}else if($jabatan=='admin'){
 
@@ -54,9 +54,11 @@
 
 			$_SESSION['success_login'] = true;
 
-			header("Location: ../../admin/index.php");
+			
 
 		}
+
+		header("Location: ../../admin/index.php");
 
 		
 

@@ -8,6 +8,8 @@
 	$nama_karyawan = $_POST['nama_karyawan'];
 	$jabatan = $_POST['jabatan'];
 
+	$password = md5($email);
+
 
 	$query_check = mysqli_query($connect, "SELECT * FROM karyawan WHERE email='".$email."' "); 
 
@@ -27,7 +29,7 @@
 	}else{
 
 
-		$query_insert = mysqli_query($connect, "INSERT INTO karyawan (nama_karyawan, email, jabatan)  values ('".$nama_karyawan."', '".$email."', '".$jabatan."')"); 
+		$query_insert = mysqli_query($connect, "INSERT INTO karyawan (nama_karyawan, email, jabatan, password)  values ('".$nama_karyawan."', '".$email."', '".$jabatan."', '".$password."')"); 
 
 		if(!$query_insert){
 

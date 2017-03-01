@@ -18,7 +18,7 @@
                   <img src="../assets/img/logo.png" width="10%"/>
 
                   <h3>Selamat Datang di Sistem Penerimaan Peserta Balai Latihan Kerja Demak </h3>
-                  <p>Sistem ini adalah teks penjelasan jika ada, bisa panjang kok</p>
+                  <!-- <p>Sistem ini adalah teks penjelasan jika ada, bisa panjang kok</p> -->
 
                 </div>
               </div>
