@@ -25,15 +25,61 @@
     <!--common script for all pages-->
     <script src="../assets/js/common-scripts.js"></script>
 
+    <script type="text/javascript" src="../assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="../assets/js/gritter-conf.js"></script>
+
     <!--script for this page-->
 
-    <script>
-      $("#batal").click(function(){
-        $("#collapseForm").collapse('hide');
-        $('#tambah').focus();
-      });
+   
 
-      $('[data-tooltip="true"]').tooltip();
+    <script>
+
+      $(document).ready(function () {
+
+        $("#batal").click(function(){
+          $("#collapseForm").collapse('hide');
+          $('#tambah').focus();
+        });
+
+        $('[data-tooltip="true"]').tooltip();
+
+
+        <?php
+
+          if(isset($_SESSION['success_login'])){
+
+            $jabatan = $_SESSION['jabatan'];
+
+
+          
+        ?>
+
+        var unique_id = $.gritter.add({
+            // (string | mandatory) the heading of the notification
+            title: 'Login berhasil!',
+            // (string | mandatory) the text inside the notification
+            text: 'Anda login sebagai <?php echo $_SESSION['jabatan']?>',
+            // (string | optional) the image to display on the left
+            image: '../assets/img/logo.png',
+            // (bool | optional) if you want it to fade out on its own or just sit there
+            sticky: true,
+            // (int | optional) the time you want it to be alive for before fading out
+            time: 10,
+            // (string | optional) the class name you want to apply to that specific message
+            class_name: 'my-sticky-class'
+        });
+
+        <?php
+
+            unset($_SESSION['success_login']);
+
+          }
+
+
+        ?>
+      });
+      
+
     </script>
 
   </body>

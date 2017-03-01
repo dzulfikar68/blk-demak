@@ -1,3 +1,14 @@
+<?php
+  session_start();
+
+  if(!isset($_SESSION['login'])){
+
+    header("Location: login.php");
+
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,6 +32,7 @@
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
     <link href="../assets/css/jquery-ui.css" rel="stylesheet">
     <link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../assets/js/gritter/css/jquery.gritter.css" />
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!--[if lt IE 9]>
@@ -55,7 +67,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                   <li><a href="ubah_akun.php">Pengaturan Akun</a></li>
                   <li role="separator" class="divider"></li>
-                  <li><a href="#">Logout</a></li>
+                  <li><a href="../proses/admin/logout.php">Logout</a></li>
                 </ul>
               </div>
 
@@ -70,8 +82,8 @@
           <!-- sidebar menu start-->
           <ul class="sidebar-menu" id="nav-accordion">
 
-            <p class="centered"><a href="profile.html"><img src="../assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-            <h5 class="centered">Admin</h5>
+            <p class="centered"><a href="ubah_akun.php"><img src="../assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+            <h5 class="centered"><?php echo $_SESSION['nama'];?></h5>
 
             <li class="mt">
               <a href="index.php">
@@ -91,7 +103,14 @@
                 <li><a  href="data_peserta.php">Data Peserta</a></li>
                 <li><a  href="data_jadwal.php">Data Jadwal</a></li>
                 <li><a  href="data_register.php">Data Register</a></li>
-                <li><a  href="data_karyawan.php">Data Karyawan</a></li>
+                <?php
+
+                  if($_SESSION['jabatan']=='admin'){
+                    echo "<li><a  href=\"data_karyawan.php\">Data Karyawan</a></li>";
+                  }
+
+                ?>
+                
                 <!-- <li><a  href="panels.html">Data Sesi</a></li>
                 <li><a  href="general.html">Data Program</a></li> -->
               </ul>

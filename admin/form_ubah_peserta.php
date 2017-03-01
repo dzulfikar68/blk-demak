@@ -2,7 +2,6 @@
 
       <?php
 
-        session_start();
         include 'header.php';
         require_once ('../proses/koneksi_db.php');
         require_once ('../proses/convert_date.php');

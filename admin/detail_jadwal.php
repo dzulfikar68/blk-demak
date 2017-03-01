@@ -2,11 +2,6 @@
 
       <?php
 
-        session_start();
-
-        ini_set('display_errors',1); 
-        error_reporting(E_ALL);
-
         include 'header.php';
         require_once ('../proses/koneksi_db.php');
         require_once ('../proses/convert_date.php');
