@@ -59,6 +59,13 @@
                         </div>
 
                         <div class="form-group">
+                          <label class="col-sm-4 control-label">Kode Kejuruan</label>
+                          <div class="col-sm-8">
+                            <input type="text" name="kode_kejuruan" class="form-control" placeholder="Kode Kejuruan" required >
+                          </div>
+                        </div>
+
+                        <div class="form-group">
                           <div class="col-sm-12">
                               <input type="submit" class="btn btn-primary pull-right" value="Simpan"></input>
                               <button type="button" class="btn btn-danger pull-right" style="margin-right:20px" id="batal">Batal</button>               
@@ -77,6 +84,7 @@
                     <tr>
                       <th>No</th>
                       <th>Nama Kejuruan</th>
+                      <th>Kode Kejuruan</th>
                       <th>Aksi</th>
       
                     </tr>
@@ -101,8 +109,9 @@
                           echo "<tr>";
                           echo "<td>".$no."</td>";
                           echo "<td>".$row->nama_kejuruan."</td>";
+                          echo "<td>".$row->kode_kejuruan."</td>";
                           echo "<td>";
-                          echo "<a href=\"#\" data-target=\"#modalKejuruan\" data-toggle=\"modal\" data-id=\"".$row->id_kejuruan."\" data-kejuruan=\"".$row->nama_kejuruan."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
+                          echo "<a href=\"#\" data-target=\"#modalKejuruan\" data-toggle=\"modal\" data-id=\"".$row->id_kejuruan."\" data-kejuruan=\"".$row->nama_kejuruan."\" data-kode=\"".$row->kode_kejuruan."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
                           echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
                           /*echo "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";*/
                           echo "</td>";
@@ -154,6 +163,13 @@
                         <input type="text" name="nama_kejuruan" class="form-control" placeholder="Nama Kejuruan" required >
                     </div>
                 </div>                
+
+                <div class="form-group">
+                    <label class="col-sm-4 col-sm-4 control-label">Kode Kejuruan</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="kode_kejuruan" class="form-control" placeholder="Kode Kejuruan" required >
+                    </div>
+                </div>
               </fieldset>
             
 
@@ -194,9 +210,13 @@
             $('#modalKejuruan').on('show.bs.modal', function(e){
                var id = $(e.relatedTarget).data('id');
                var nama_kejuruan = $(e.relatedTarget).data('kejuruan');
+               var kode_kejuruan = $(e.relatedTarget).data('kode');
                var action = "../proses/admin/ubah_kejuruan.php?id="+id;
 
                $('.modal input[name="nama_kejuruan"]').val(nama_kejuruan);
+
+               $('.modal input[name="kode_kejuruan"]').val(kode_kejuruan);
+
                $('.modal form').attr('action', action);
 
                

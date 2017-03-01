@@ -5,8 +5,9 @@
 
 	$id = $_GET['id'];
 	$nama_kejuruan = $_POST['nama_kejuruan'];
+	$kode_kejuruan = $_POST['kode_kejuruan'];
 
-	$query_check = mysqli_query($connect, "SELECT * FROM kejuruan WHERE nama_kejuruan='".$nama_kejuruan."' "); 
+	$query_check = mysqli_query($connect, "SELECT * FROM kejuruan WHERE (nama_kejuruan='".$nama_kejuruan."' OR kode_kejuruan='".$kode_kejuruan."') AND id_kejuruan!=$id "); 
 
 	if(!$query_check){
 
@@ -18,13 +19,13 @@
 
 	if($num>0){
 
-		$_SESSION['error'] = "Ubah kejuruan gagal, kejuruan dengan nama <b>".$nama_kejuruan."</b> sudah ada!";
+		$_SESSION['error'] = "Ubah kejuruan gagal, kejuruan dengan nama <b>".$nama_kejuruan."</b> atau dengan kode <b>".$kode_kejuruan."</b> sudah ada!";
 
 		//error sudah ada
 	}else{
 
 
-		$query_update = mysqli_query($connect, "UPDATE kejuruan SET nama_kejuruan='".$nama_kejuruan."' WHERE id_kejuruan=$id ");
+		$query_update = mysqli_query($connect, "UPDATE kejuruan SET nama_kejuruan='".$nama_kejuruan."', kode_kejuruan='".$kode_kejuruan."' WHERE id_kejuruan=$id ");
 
 		if(!$query_update){
 
