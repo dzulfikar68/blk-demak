@@ -120,3 +120,16 @@ CREATE TABLE `blk_demak`.`data_kerja` ( `id_data_kerja` INT NOT NULL AUTO_INCREM
 
 ******* TAMBAH KOLOM DATE CREATED DI TABEL DATA KERJA
 ALTER TABLE `data_kerja` ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `telepon_perusahaan`; 
+
+
+================================ 28 FEBRUARI 2017 ===================================
+MOHAMMAD FAJAR AINUL BASHRI
+
+========> MEMBUAT TABEL ADMIN
+
+CREATE TABLE `blk_demak`.`admin` ( `id_admin` INT NOT NULL AUTO_INCREMENT , `nama_admin` VARCHAR(128) NOT NULL , `email` VARCHAR(64) NOT NULL , `password` VARCHAR(64) NOT NULL , `date_created` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP , PRIMARY KEY (`id_admin`)) ENGINE = InnoDB;
+
+
+******* TAMBAH KOLOM PASSWORD DI TABEL KARYAWAN
+
+ALTER TABLE `karyawan` ADD `password` VARCHAR(64) NOT NULL AFTER `jabatan`;
