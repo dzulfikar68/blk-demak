@@ -31,5 +31,6 @@
 		$_SESSION['error'] = "Email atau password tidak benar.";
 	}
 	
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php");
+	// header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
 	die();
