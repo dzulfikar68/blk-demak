@@ -133,3 +133,6 @@ CREATE TABLE `blk_demak`.`admin` ( `id_admin` INT NOT NULL AUTO_INCREMENT , `nam
 ******* TAMBAH KOLOM PASSWORD DI TABEL KARYAWAN
 
 ALTER TABLE `karyawan` ADD `password` VARCHAR(64) NOT NULL AFTER `jabatan`;
+
+******* TAMBAH KOLOM KODE KEJURUAN DI TABEL KEJURUAN
+ALTER TABLE `kejuruan` ADD `kode_kejuruan` VARCHAR(8) NOT NULL AFTER `nama_kejuruan`;
