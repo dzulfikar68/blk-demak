@@ -39,6 +39,7 @@
 			$_SESSION['nama'] = $row->nama_karyawan;
 			$_SESSION['jabatan'] = 'staff';
 			$_SESSION['email'] = $row->email;
+			$_SESSION['password'] = $row->password;
 			$_SESSION['login'] = true;
 			$_SESSION['success_login'] = true;
 
@@ -49,7 +50,7 @@
 			$_SESSION['nama'] = $row->nama_admin;
 			$_SESSION['jabatan'] = 'admin';
 			$_SESSION['email'] = $row->email;
-
+			$_SESSION['password'] = $row->password;
 			$_SESSION['login'] = true;
 
 			$_SESSION['success_login'] = true;
