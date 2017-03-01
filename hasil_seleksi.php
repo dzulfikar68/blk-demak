@@ -14,7 +14,7 @@
 				ORDER BY registrasi_pelatihan.no_registrasi";
 	$result = mysqli_query($connect, $get_sql);
 
-	// pencarian o_registrasi
+	// pencarian no_registrasi
 	$keyword = $_POST['search'];
 	if (!empty($keyword)) {
 		$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
