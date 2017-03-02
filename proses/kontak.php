@@ -30,5 +30,5 @@
 	}
 
 	// redirect ke halaman kontak
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+	header("Location: ". ROOT . $previous_page .".php");
 	die();

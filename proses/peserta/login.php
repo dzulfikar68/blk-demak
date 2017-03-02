@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	session_start();
 
@@ -31,6 +32,6 @@
 		$_SESSION['error'] = "Email atau password tidak benar.";
 	}
 	
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php");
-	// header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+	// redirect ke halaman profil
+	header("Location: ". ROOT . "peserta/index.php");
 	die();

@@ -2,16 +2,9 @@
 	/* Koneksi ke DB */
     require_once ('proses/koneksi_db.php');
     require_once ('proses/convert_date.php');
+    require_once ('.env.php');
 
-    $table = 'peserta';
-    $nama = 'nama';
-
-    $sql = "SELECT * FROM $table";
-    $result = mysqli_query($connect, $sql);
-	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-	
-
-	// echo $row['id'];
-    var_dump($row[$nama]);
+echo "<a href='".ROOT."'>root</a>";
+    
 
 // var_dump($row); die();

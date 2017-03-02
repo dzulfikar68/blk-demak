@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	session_start();
 
@@ -27,5 +28,5 @@
 	}
 
 	// redirect ke halaman beranda
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/");
+	header("Location: ". ROOT);
 	die();

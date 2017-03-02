@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="filter">
 				<div class="row">
-					<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/hasil_seleksi.php" method="POST">
+					<form action="<?php echo ROOT; ?>hasil_seleksi.php" method="POST">
 						<div class="form-group col-sm-3">
 							<label>Search</label>
 							<input type="search" name="search" placeholder="Nomor peserta" value="<?php echo (!empty($keyword)) ? $keyword : '';?>" >

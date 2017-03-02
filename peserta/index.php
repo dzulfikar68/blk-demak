@@ -70,7 +70,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Profil
-										<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/peserta/ubah_profil.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
+										<a href="<?php echo ROOT; ?>peserta/ubah_profil.php"><button type="button" class="btn btn-primary btn-xs">Ubah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">
@@ -144,7 +144,7 @@
 									<h3 class="panel-title">Registrasi Pelatihan</h3>
 								</div>
 								<div class="panel-body">
-									<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/reg_pelatihan.php" method="POST">
+									<form action="<?php echo ROOT; ?>proses/peserta/reg_pelatihan.php" method="POST">
 										<input type="hidden" name="id_peserta" value="<?php echo $id; ?>">
 										<?php
 											if ($_SESSION['error-register']) {
@@ -236,7 +236,7 @@
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h3 class="panel-title">Data Kerja
-										<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/peserta/tambah_data_kerja.php"><button type="button" class="btn btn-success btn-xs">Tambah</button></a>
+										<a href="<?php echo ROOT; ?>peserta/tambah_data_kerja.php"><button type="button" class="btn btn-success btn-xs">Tambah</button></a>
 									</h3>
 								</div>
 								<div class="panel-body">

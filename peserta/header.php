@@ -1,3 +1,7 @@
+<?php
+  require_once ('../.env.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -67,11 +71,11 @@
         <div class="container">
           <nav class="navbar navbar-collapse collapse pull-left">
             <ul class="nav navbar-nav">
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/index.php">Beranda</a></li>
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/tentang.php">Tentang</a></li>
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/kontak.php">Kontak</a></li>
+              <li><a href="<?php echo ROOT; ?>index.php">Beranda</a></li>
+              <li><a href="<?php echo ROOT; ?>jadwal.php">Lihat Jadwal dan Jenis Pelatihan</a></li>
+              <li><a href="<?php echo ROOT; ?>hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
+              <li><a href="<?php echo ROOT; ?>tentang.php">Tentang</a></li>
+              <li><a href="<?php echo ROOT; ?>kontak.php">Kontak</a></li>
             </ul>
           </nav>
 <?php
@@ -86,7 +90,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="profile-menu" role="tablist">
               <li role="presentation"><a href=".">Profil Saya</a></li>
-              <li><a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/logout.php">Logout</a></li>
+              <li><a href="<?php echo ROOT; ?>proses/peserta/logout.php">Logout</a></li>
             </ul>
           </div>
 <?php

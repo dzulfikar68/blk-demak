@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	session_start();
 
@@ -17,7 +18,7 @@
 		$_SESSION['error'] = "Formulir tidak lengkap.<br>
 								Anda harus mengisi semua bagian yang kosong.";
 		// redirect ke form tambah_data_kerja
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/tambah_data_kerja.php");
+		header("Location: ". ROOT . "peserta/tambah_data_kerja.php");
 		die();
 	}
 	else {
@@ -27,14 +28,14 @@
 		if (mysqli_query($connect, $sql)){
 			$_SESSION['success'] = "Tambah data kerja sukses.";
 			// redirect ke form peserta/index
-			header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php#job");
+			header("Location: ". ROOT . "peserta/index.php#job");
 			die();
 		}
 		else {
 			die("QUERY UPDATE FAILED : ". mysqli_error($connect));
 			$_SESSION['error'] = "Tambah data kerja gagal.";
 			// redirect ke form tambah_data_kerja
-			header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/tambah_data_kerja.php");
+			header("Location: ". ROOT . "peserta/tambah_data_kerja.php");
 			die();
 		}
 		mysqli_close($connect);

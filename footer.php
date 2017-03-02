@@ -22,7 +22,7 @@
           <div role="tabpanel" class="tab-pane fade collapse clearfix" id="login">
             <div class="col-md-7">
               <!-- Form Login -->
-              <form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/login.php" method="POST">
+              <form action="<?php echo ROOT; ?>proses/peserta/login.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
                   <input class="form-control" type="email" name="blk_email" placeholder="Email" required>
@@ -40,7 +40,7 @@
           <div role="tabpanel" class="tab-pane fade collapse clearfix" id="register">
             <div class="col-md-7">
               <!-- Form Register -->
-              <form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/daftar.php" method="POST">
+              <form action="<?php echo ROOT; ?>proses/peserta/daftar.php" method="POST">
                 <input type="hidden" name="page" value="<?php echo $_SESSION['page']; ?>">
                 <div class="form-group">
                   <input class="form-control" type="text" name="blk_nama" placeholder="Nama" required>

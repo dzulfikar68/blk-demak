@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
     session_start();
 
@@ -16,7 +17,7 @@
 
 	if ($row['flag'] == 0) {
 		$_SESSION['error'] = "Data profil Anda belum lengkap.";
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php#register");
+		header("Location: ". ROOT . "peserta/index.php#register");
 		die();
 	}
 
@@ -29,7 +30,7 @@
 			$_SESSION['error'] = "Pendaftaran gagal.";
 			$_SESSION['error-register'] = "Maaf, Anda tidak dapat mendaftar lebih dari satu kali.<br>
 									Anda memiliki riwayat pendaftaran yang belum memiliki status <b>Lulus</b> atau <b>Tidak Lulus</b>.";
-			header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php#register");
+			header("Location: ". ROOT . "peserta/index.php#register");
 			die();
 		}
 	}
@@ -75,5 +76,5 @@
 	mysqli_close($connect);
 
 	// redirect ke halaman sebelumnya
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/index.php#register");
+	header("Location: ". ROOT . "peserta/index.php#register");
 	die();

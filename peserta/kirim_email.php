@@ -1,3 +1,7 @@
+<?php
+  require_once ('../.env.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +45,7 @@
     		</div>
     		<div class="panel-body">
     			<p>Masukkan email Anda.<br>Link untuk mengganti password akan dikirim ke email Anda.</p>
-    			<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/kirim_email.php" method="POST">
+    			<form action="<?php echo ROOT; ?>proses/peserta/kirim_email.php" method="POST">
     				<div class="form-group">
     					<input class="form-control" type="email" name="blk_email" placeholder="Email" required autofocus>
     				</div>

@@ -1,4 +1,6 @@
 <?php
+    require_once ('../../.env.php');
+    
 	session_start();
 	$_SESSION['login-peserta'] = false;
 	session_unset($_SESSION['id-peserta']);
@@ -8,5 +10,5 @@
 	$_SESSION['success'] = "Logout sukses.";
 
 	// redirect ke beranda
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/");
+	header("Location: ". ROOT);
 	die();

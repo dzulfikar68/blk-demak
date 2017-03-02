@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	// require '../../helper.php';
 	require '_send_email.php';
@@ -29,7 +30,7 @@
 	if (empty($nama) || empty($no_ktp) || empty($telepon) || empty($email) || empty($password)) {
 		$_SESSION['error'] = "Formulir tidak lengkap.<br>
 								Anda harus mengisi semua bagian yang kosong.";
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+		header("Location: ". ROOT . $previous_page .".php");
 		die();
 	}
 
@@ -41,7 +42,7 @@
 	
 	if ($row['no_ktp'] != null) {
 		$_SESSION['error'] = "Nomor KTP Anda telah terdaftar sebagai peserta.";
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+		header("Location: ". ROOT . $previous_page .".php");
 		die();
 	}
 
@@ -54,7 +55,7 @@
 		
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email
-			$link = "http://". $_SERVER['HTTP_HOST'] ."/proses/peserta/aktivasi_akun.php?token=". $token;
+			$link = ROOT ."proses/peserta/aktivasi_akun.php?token=". $token;
 			$subyek = "Pengaktifan Akun";
 			$pesanEmail = "Halo, " .$nama. ".<br>
 							Silakan klik link di bawah ini untuk mengaktifkan akun Anda.<br>
@@ -81,5 +82,5 @@
 	}
 
 	// redirect ke halaman sebelumnya
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/". $previous_page .".php");
+	header("Location: ". ROOT . $previous_page .".php");
 	die();

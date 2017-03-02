@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	require '../_send_email.php';
 
@@ -23,7 +24,7 @@
 
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email
-			$link = "http://". $_SERVER['HTTP_HOST'] ."/proses/peserta/cek_token.php?token=". $token;
+			$link = ROOT ."/proses/peserta/cek_token.php?token=". $token;
 			$subyek = "Ganti Password";
 			$pesanEmail = "Dear, " .$row['nama']. ".<br>
 							Silakan klik link di bawah ini untuk mengganti password Anda.<br>
@@ -51,5 +52,5 @@
 	mysqli_close($connect);
 
 	// redirect ke halaman kirim_email
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/kirim_email.php");
+	header("Location: ". ROOT . "peserta/kirim_email.php");
 	die();

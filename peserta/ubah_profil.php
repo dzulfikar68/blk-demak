@@ -29,11 +29,11 @@
 					<div class="panel panel-default">
 						<div class="panel-heading">
 							<h3 class="panel-title">Ubah Profil
-								<a href="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/peserta/index.php"><button type="button" class="btn btn-danger btn-xs">Batal</button></a>
+								<a href="<?php echo ROOT; ?>peserta/index.php"><button type="button" class="btn btn-danger btn-xs">Batal</button></a>
 							</h3>
 						</div>
 						<div class="panel-body">
-							<form action="<?php echo 'http://'.$_SERVER['HTTP_HOST']; ?>/proses/peserta/ubah_profil.php" method="POST">
+							<form action="<?php echo ROOT; ?>proses/peserta/ubah_profil.php" method="POST">
 								<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']?>">
 								<table class="table">
 									<tbody>

@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	session_start();
 
@@ -18,13 +19,13 @@
 	if ($row['id'] != null) {
 		$_SESSION['id-peserta'] = $row['id'];
 		// redirect ke ganti_password
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/ganti_password.php");
+		header("Location: ". ROOT . "peserta/ganti_password.php");
 		die();
 	}
 	else{
 		$_SESSION['error'] = "Token telah kadaluarsa.<br>
 							Silakan masukkan email kembali.";
 		// redirect ke beranda
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/kirim_email.php");
+		header("Location: ". ROOT . "peserta/kirim_email.php");
 		die();
 	}
