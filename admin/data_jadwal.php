@@ -188,9 +188,12 @@
                           $pelatihan_awal = convertDate($row->pelatihan_awal, "d M Y");
                           $pelatihan_akhir = convertDate($row->pelatihan_akhir, "d M Y");
 
-                          $query_jumlah_peserta = mysqli_query($connect, "SELECT count(*) FROM jadwal_assign WHERE id_jadwal=$row->id_jadwal ");
+                          $query_jumlah_peserta = mysqli_query($connect, "SELECT count(*) as jumlah_peserta FROM jadwal_assign WHERE id_jadwal=$row->id_jadwal ");
 
-                          $jumlah_peserta = mysqli_num_rows($query_jumlah_peserta);
+
+                          $data = mysqli_fetch_object($query_jumlah_peserta);
+
+                          $jumlah_peserta = $data->jumlah_peserta;
 
                           echo "<tr>";
                           echo "<td>".$row->angkatan."</td>";
