@@ -2,9 +2,9 @@
       <footer class="site-footer">
         <div class="text-center">
           &copy Balai Latihan Kerja Demak
-          <a href="blank.html#" class="go-top">
+         <!--  <a href="blank.html#" class="go-top">
             <i class="fa fa-angle-up"></i>
-          </a>
+          </a> -->
         </div>
       </footer>
     <!--footer end-->
