@@ -19,6 +19,8 @@
     <link href="../assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet"> 
 
+    <link href="../assets/css/jquery-ui.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
     <link href="../assets/css/blk-demak.css" rel="stylesheet">
     <!-- <link href="assets/css/style-responsive.css" rel="stylesheet"> -->
@@ -80,7 +82,6 @@
           </nav>
 <?php
   // check is user logged in?
-  session_start();
   if (isset($_SESSION['login-peserta']) && ($_SESSION['status-peserta'] == "Aktif")) {
 ?>
           <div class="dropdown pull-right">

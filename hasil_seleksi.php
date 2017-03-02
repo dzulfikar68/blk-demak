@@ -15,22 +15,24 @@
 	$result = mysqli_query($connect, $get_sql);
 
 	// pencarian no_registrasi
-	$keyword = $_POST['search'];
-	if (!empty($keyword)) {
-		$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
-					FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
-					ORDER BY registrasi_pelatihan.no_registrasi";
-		$search_result = mysqli_query($connect, $search);
-
-		$check = mysqli_query($connect, $search);
-		$check = mysqli_fetch_array($check);
-		if (empty($check['no_registrasi'])) {
-			$search_2 = "SELECT registrasi_pelatihan.no_registrasi, kejuruan.nama_kejuruan, peserta.nama,
-							registrasi_pelatihan.status
-						FROM registrasi_pelatihan, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(registrasi_pelatihan.tanggal_registrasi)='$tahun'
+	if (isset($_POST['search'];)) {
+		$keyword = $_POST['search'];
+		// if (!empty($keyword)) {
+			$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
+						FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
 						ORDER BY registrasi_pelatihan.no_registrasi";
-			$search_result = mysqli_query($connect, $search_2);
-		}
+			$search_result = mysqli_query($connect, $search);
+
+			$check = mysqli_query($connect, $search);
+			$check = mysqli_fetch_array($check);
+			if (empty($check['no_registrasi'])) {
+				$search_2 = "SELECT registrasi_pelatihan.no_registrasi, kejuruan.nama_kejuruan, peserta.nama,
+								registrasi_pelatihan.status
+							FROM registrasi_pelatihan, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(registrasi_pelatihan.tanggal_registrasi)='$tahun'
+							ORDER BY registrasi_pelatihan.no_registrasi";
+				$search_result = mysqli_query($connect, $search_2);
+			}
+		// }
 	}
 
 ?>
