@@ -78,14 +78,14 @@
                           $tanggal_registrasi = convertDate($row->tanggal_registrasi, 'd M Y');
 
                           echo "<tr>";
-                          echo "<td>".$row->no_pendaftaran."</td>";
+                          echo "<td>".$row->no_registrasi."</td>";
                           echo "<td>".$row->nama."</td>";
                           echo "<td>".$row->nama_kejuruan."</td>";
                           echo "<td>".$tanggal_registrasi."</td>";
                           echo "<td>".convertStatusRegistrasi($row->status)."</td>";
                           echo "<td>";
                           echo "<a href=\"detail_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
-                          echo "<a href=\"#\" data-id_registrasi=\"".$row->id_registrasi."\" data-no_pendaftaran=\"".$row->no_pendaftaran."\" data-nama=\"".$row->nama."\" data-nama_kejuruan=\"".$row->nama_kejuruan."\" data-tanggal=\"".$tanggal_registrasi."\" data-status=\"".$row->status."\" data-target=\"#modalPeserta\" data-toggle=\"modal\"  class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Status Peserta\" ><i class=\"fa fa-pencil\"></i></a> ";
+                          echo "<a href=\"#\" data-id_registrasi=\"".$row->id_registrasi."\" data-no_pendaftaran=\"".$row->no_registrasi."\" data-nama=\"".$row->nama."\" data-nama_kejuruan=\"".$row->nama_kejuruan."\" data-tanggal=\"".$tanggal_registrasi."\" data-status=\"".$row->status."\" data-target=\"#modalPeserta\" data-toggle=\"modal\"  class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Status Peserta\" ><i class=\"fa fa-pencil\"></i></a> ";
                           /*echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus peserta ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Peserta\" ><i class=\"fa fa-trash-o\"></i></a>";*/
                           echo "</td>";
                           echo "</tr>";

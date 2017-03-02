@@ -136,3 +136,12 @@ ALTER TABLE `karyawan` ADD `password` VARCHAR(64) NOT NULL AFTER `jabatan`;
 
 ******* TAMBAH KOLOM KODE KEJURUAN DI TABEL KEJURUAN
 ALTER TABLE `kejuruan` ADD `kode_kejuruan` VARCHAR(8) NOT NULL AFTER `nama_kejuruan`;
+
+================================ 2 MARET 2017 ===================================
+M. FEBRA S
+
+******* TAMBAH KOLOM TOKEN DI TABEL ADMIN
+ALTER TABLE `admin` ADD `token` VARCHAR(32) NOT NULL AFTER `date_created`;
+
+******* TAMBAH KOLOM TOKEN DI TABEL KARYAWAN
+ALTER TABLE `karyawan` ADD `token` VARCHAR(32) NOT NULL AFTER `date_created`;

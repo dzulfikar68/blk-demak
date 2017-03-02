@@ -41,8 +41,8 @@
 	  	<div class="container">
 	  		
 	  		
-		      <form class="form-login" action="../proses/admin/cek_login.php" method="POST" >
-		        <h2 class="form-login-heading">Login Area</h2>
+		      <form class="form-login" action="../proses/admin/ganti_password.php" method="POST" >
+		        <h2 class="form-login-heading">Ganti Password</h2>
 		        <div class="login-wrap">
 		        	<?php
 
@@ -64,79 +64,23 @@
 			              }
 
 			            ?>
-		            <input type="text" class="form-control" name="email" placeholder="Email" autofocus>
+        			<input type="hidden" name="id" value="<?php echo $_SESSION['id-operator']; ?>">
+		            <input type="password" class="form-control" name="password" placeholder="Password Baru">
 		            <br>
-		            <input type="password" class="form-control" name="password" placeholder="Password">
+		            <input type="password" class="form-control" name="password_confirm" placeholder="Konfirmasi Password">
 		            <br>
 		            <select name="jabatan" class="form-control" required>
-			                    
-	                    <option value="staff" selected>Staff / Ketua</option> 
+	                    <option value="karyawan" selected>Staff / Ketua</option> 
 	                    <option value="admin">Admin</option> 
-	                    
-	                    
 	                 </select>
-		            <label class="checkbox">
-		                <span class="pull-right">
-		                    <a data-toggle="modal" href="login.html#myModal"> Lupa Password?</a>
-		
-		                </span>
-		            </label>
-		            <button class="btn btn-primary btn-block" type="submit"><i class="fa fa-lock"></i> Login</button>
+	                 <br>
+		            <button class="btn btn-primary btn-block" type="submit">Kirim</button>
 		            <hr>
-		            
-		            
-		
 		        </div>
-		
-		          
-		
 		      </form>	  	
 	  	
 	  	</div>
 	  </div>
-
-
-	  <!-- Modal -->
-      <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-          <div class="modal-dialog">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Lupa Password</h4>
-                  </div>
-                  <div class="modal-body col-sm-12">
-                      <form class="form-horizontal style-form" action="../proses/admin/kirim_email.php" method="POST">
-			              
-			              <div class="form-group">
-			                <label class="col-sm-4 control-label">Email</label>
-			                <div class="col-sm-8">
-			                  <input type="email" name="email" class="form-control" placeholder="Email" required >
-			                </div>
-			              </div>
-
-			              <div class="form-group">
-			                <label class="col-sm-4 control-label">Jabatan</label>
-			                <div class="col-sm-8">
-			                  <select name="jabatan" class="form-control" required>
-			                    
-			                    <option value="karyawan" selected>Staff / Ketua</option> 
-			                    <option value="admin">Admin</option> 
-			                    
-			                    
-			                  </select>
-			                </div>
-			              </div>
-
-	                  </div>
-	                  <div class="modal-footer">
-	                      <button data-dismiss="modal" class="btn btn-danger" type="button">Batal</button>
-	                      <input class="btn btn-primary" type="submit" value="Kirim">
-	                  </div>
-                  </form>
-              </div>
-          </div>
-      </div>
-      <!-- modal -->
 
     <!-- js placed at the end of the document so the pages load faster -->
     <script src="../assets/js/jquery.js"></script>

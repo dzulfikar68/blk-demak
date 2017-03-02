@@ -3,30 +3,34 @@
     require_once ('../koneksi_db.php');
 
 	require '../_send_email.php';
+	require '../helper.php';
 
 	session_start();
 
-	$email = $_POST['blk_email'];
+	$email = $_POST['email'];
+	$jabatan = $_POST['jabatan'];
 
-	$check_sql = "SELECT id, no_ktp, nama FROM peserta WHERE email = '$email'";
+	$id_column = 'id_'. $jabatan;
+
+	$check_sql = "SELECT $id_column FROM $jabatan WHERE email='$email'";
 	$result = mysqli_query($connect, $check_sql);
 
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
-	if ($row['no_ktp'] != null) {
+	if ($row[$id_column] != null) {
 		// membuat token
 		$timestamp = date('Ymd-His');
-		$token = $row['no_ktp'] ."-". $timestamp;
+		$random_string = rand_string(10);
+		$token = $row[$id_column]. $random_string ."-". $timestamp;
+		$token = md5($token);
 
-		$id = $row['id'];
-		$sql = "UPDATE peserta SET token='$token' WHERE id=$id";
-
+		$id = $row[$id_column];
+		$sql = "UPDATE $jabatan SET token='$token' WHERE $id_column=$id";
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email
-			$link = "http://". $_SERVER['HTTP_HOST'] ."/proses/peserta/cek_token.php?token=". $token;
-			$subyek = "Ganti Password";
-			$pesanEmail = "Dear, " .$row['nama']. ".<br>
-							Silakan klik link di bawah ini untuk mengganti password Anda.<br>
+			$link = "http://". $_SERVER['HTTP_HOST'] ."/proses/admin/cek_token.php?type=".$jabatan."&token=". $token;
+			$subyek = "Ganti Password [".$jabatan."]";
+			$pesanEmail = "	Silakan klik link di bawah ini untuk mengganti password Anda.<br>
 							<a href='". $link ."'>". $link ."</a>
 							<br><br>
 							BLK Kabupaten Demak<br>
@@ -51,5 +55,5 @@
 	mysqli_close($connect);
 
 	// redirect ke halaman kirim_email
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/peserta/kirim_email.php");
+	header("Location: http://". $_SERVER['HTTP_HOST']. "/admin/login.php");
 	die();
