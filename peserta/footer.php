@@ -6,10 +6,10 @@
 
 <!-- Pesan -->
 <?php
-  if ($_SESSION['success']) {
+  if (isset($_SESSION['success'])) {
     include '../_pesan_sukses.php';
   }
-  if ($_SESSION['error']) {
+  if (isset($_SESSION['error'])) {
     include '../_pesan_error.php';
   }
 

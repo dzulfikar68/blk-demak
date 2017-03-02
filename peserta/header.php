@@ -53,7 +53,7 @@
 <?php
   // check is user logged in?
   session_start();
-  if (!$_SESSION['login-peserta'] || ($_SESSION['status-peserta'] != "Aktif")) {
+  if (!isset($_SESSION['login-peserta']) || ($_SESSION['status-peserta'] != "Aktif")) {
     header("Location: ../");
     die();
 ?>
@@ -81,7 +81,7 @@
 <?php
   // check is user logged in?
   session_start();
-  if ($_SESSION['login-peserta'] && ($_SESSION['status-peserta'] == "Aktif")) {
+  if (isset($_SESSION['login-peserta']) && ($_SESSION['status-peserta'] == "Aktif")) {
 ?>
           <div class="dropdown pull-right">
             <button id="profile-menu" class="login-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

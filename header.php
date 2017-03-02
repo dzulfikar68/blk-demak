@@ -53,7 +53,7 @@
 <?php
   // check is user logged in?
   session_start();
-  if (!$_SESSION['login-peserta']) {
+  if (!isset($_SESSION['login-peserta'])) {
 ?>
               <div class="auth valign">
                 <button class="login-btn" data-tab="login" data-toggle="modal" data-target="#modal-auth">Login</button>
@@ -78,7 +78,7 @@
           </nav>
 <?php
   // check is user logged in?
-  if ($_SESSION['login-peserta']) {
+  if (isset($_SESSION['login-peserta'])) {
 ?>
           <div class="dropdown pull-right">
             <button id="profile-menu" class="login-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
