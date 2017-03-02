@@ -36,6 +36,11 @@
 	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
 	$result_pelatihan = mysqli_query($connect, $get_sql);
 
+	// ambil riwayat pelatihan untuk peserta dengan status <= 3
+	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, registrasi_pelatihan.tanggal_registrasi, kejuruan.nama_kejuruan
+		FROM registrasi_pelatihan, kejuruan WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.status<='3'";
+	$result_pelatihan_status = mysqli_query($connect, $get_sql);
+
 	// ambil daftar kerja
 	$get_sql = "SELECT * FROM data_kerja WHERE id_peserta = '$id' ORDER BY date_created";
 	$result_kerja = mysqli_query($connect, $get_sql);
@@ -192,6 +197,17 @@
 										<tbody>
 											<?php
 												$no_pelatihan = 1;
+												while ($row_pelatihan_status = mysqli_fetch_array($result_pelatihan_status)) {
+													echo "<tr>";
+													echo "<td>$no_pelatihan</td>";
+													echo "<td>". $row_pelatihan_status['no_registrasi'] ."</td>";
+													echo "<td>". $row_pelatihan_status['nama_kejuruan'] ."</td>";
+													echo "<td></td>";
+													echo "<td>". date('Y', strtotime($row_pelatihan_status['tanggal_registrasi'])). "</td>";
+													echo "<td>". convertStatusRegistrasi($row_pelatihan_status['status']) ."</td>";
+													echo "</tr>";
+													$no_pelatihan++;
+												}
 												while ($row_pelatihan = mysqli_fetch_array($result_pelatihan)) {
 													echo "<tr>";
 													echo "<td>$no_pelatihan</td>";
