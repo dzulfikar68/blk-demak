@@ -84,7 +84,7 @@
 					}
 					else {
 				?>
-				<h4 class="schedule-title">Daftar Peserta Lulus Registrasi Pelatihan Tahun </h4>
+				<h4 class="schedule-title">Daftar Peserta Lulus Registrasi Pelatihan Tahun <?php echo $tahun;?></h4>
 				<div class="col-sm-8 col-sm-offset-2">
 					<table class="table table-striped green-table">
 						<thead>
