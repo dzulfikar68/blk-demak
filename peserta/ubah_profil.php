@@ -14,8 +14,6 @@
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 ?>
 
-<link href="../assets/css/jquery-ui.css" rel="stylesheet">
-
 <div class="page">
 	<div class="page-title">
 		<div class="container">

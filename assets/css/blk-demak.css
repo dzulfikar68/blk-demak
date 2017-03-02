@@ -331,6 +331,28 @@ table .date{
 .table > tbody > tr > td{
 	border-top: none;
 }
+/* Date picker */
+.ui-datepicker-header a{
+	border: 1px solid #888;
+}
+.ui-icon{
+	width: 0px;
+	height: 0px;
+}
+.ui-datepicker .ui-datepicker-prev span{
+	border-right: 6px solid #888;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	left: 67%;
+	top: 52%;
+}
+.ui-datepicker .ui-datepicker-next span{
+	border-left: 6px solid #888;
+	border-top: 7px solid transparent;
+	border-bottom: 7px solid transparent;
+	left: 72%;
+	top: 52%;
+}
 
 /* Table */
 .green-table > thead > tr > th{
