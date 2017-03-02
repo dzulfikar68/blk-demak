@@ -7,8 +7,9 @@
 	$email = $_POST['email'];
 	$nama_karyawan = $_POST['nama_karyawan'];
 	$jabatan = $_POST['jabatan'];
+	$password = $_POST['password'];
 
-	$password = md5($email);
+	$password = md5($password);
 
 
 	$query_check = mysqli_query($connect, "SELECT * FROM karyawan WHERE email='".$email."' "); 

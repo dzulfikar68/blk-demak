@@ -2,6 +2,10 @@
 
       <?php
 
+        if($_SESSION['jabatan']!='admin'){
+
+          header("Location: index.php");
+        }
         include 'header.php';
         require_once ('../proses/koneksi_db.php');
 
@@ -57,14 +61,7 @@
                           <div class="col-sm-8">
                             <input type="text" name="nama_karyawan" class="form-control" placeholder="Nama Karyawan" required >
                           </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label class="col-sm-4 control-label">Email</label>
-                          <div class="col-sm-8">
-                            <input type="email" name="email" class="form-control" placeholder="Email" required >
-                          </div>
-                        </div>
+                        </div>                        
 
                         <div class="form-group">
                           <label class="col-sm-4 control-label">Jabatan</label>
@@ -76,6 +73,20 @@
                               
                               
                             </select>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Email</label>
+                          <div class="col-sm-8">
+                            <input type="email" name="email" class="form-control" placeholder="Email" required >
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-sm-4 control-label">Password</label>
+                          <div class="col-sm-8">
+                            <input type="text" name="password" class="form-control" placeholder="Password" required >
                           </div>
                         </div>
 
