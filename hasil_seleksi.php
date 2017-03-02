@@ -15,7 +15,7 @@
 	$result = mysqli_query($connect, $get_sql);
 
 	// pencarian no_registrasi
-	if (isset($_POST['search'];)) {
+	if (isset($_POST['search'])) {
 		$keyword = $_POST['search'];
 		// if (!empty($keyword)) {
 			$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
