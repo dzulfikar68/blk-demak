@@ -6,6 +6,7 @@
 
 	$id_peserta = $_POST['id_peserta'];
 	$id_kejuruan = $_POST['id_kejuruan'];
+	$kode_kejuruan = $_POST['kode_kejuruan'];
 	$status = 1;	// belum dipanggil
 
 	// mengecek kelengkapan data profil peserta
@@ -34,13 +35,12 @@
 	}
 
 	// membuat no. pendaftaran
-	$id = str_pad($id_kejuruan, 2, '0', STR_PAD_LEFT);
 	$tahun = date('y');
-	$prefix = $id.$tahun;
+	$prefix = $kode_kejuruan.$tahun;
 
     $check_sql = "SELECT no_registrasi FROM registrasi_pelatihan WHERE id_kejuruan = '$id_kejuruan'";
 	$result = mysqli_query($connect, $check_sql);
-
+	// membuat no_urut
 	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 	    preg_match("/^". $prefix .".*/", $row['no_registrasi'], $output_array);
 	    if (!empty($output_array))

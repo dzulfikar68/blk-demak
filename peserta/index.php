@@ -160,14 +160,16 @@
 										Silakan memilih kejuruan yang ingin diikuti.</p>
 										<div class="col-sm-4">
 											<div class="form-group row">
-												<select class="form-control" name="id_kejuruan" required>
+												<select id="kejuruan" class="form-control" name="id_kejuruan" required>
 													<option value="" selected>Pilih kejuruan</option>
 													<?php
 														while ($row_kejuruan = mysqli_fetch_array($result_kejuruan)) {
-															echo "<option value='".$row_kejuruan['id_kejuruan']."'>".$row_kejuruan['nama_kejuruan']."</option>";
+															echo "<option value='".$row_kejuruan['id_kejuruan']."' data-kode='".$row_kejuruan['kode_kejuruan']."'>".$row_kejuruan['nama_kejuruan']."</option>";
 														}
 													?>
 												</select>
+												<!-- untuk menyimpan kode kejuruan -->
+												<input id="kode_kejuruan" type="hidden" name="kode_kejuruan">
 											</div>
 											<div class="form-group row">
 												<input class="btn btn-primary" type="submit" value="Kirim">
@@ -283,7 +285,13 @@
 <?php
 	include 'footer.php';
 ?>
-
+	<script type="text/javascript">
+		// ambil data kode kejuruan dan mengisikannya ke form
+		$('#kejuruan option').click(function(){
+			var kode = $(this).data('kode');
+			$('#kode_kejuruan').val(kode);
+		});
+	</script>
 
   </body>
 </html>
