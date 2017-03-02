@@ -21,6 +21,15 @@
 					FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
 					ORDER BY registrasi_pelatihan.no_registrasi";
 		$result = mysqli_query($connect, $search);
+
+		$check = mysqli_fetch_array($result);
+		if (empty($check['no_registrasi'])) {
+			$search_2 = "SELECT registrasi_pelatihan.no_registrasi, kejuruan.nama_kejuruan, peserta.nama,
+							registrasi_pelatihan.status
+						FROM registrasi_pelatihan, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(registrasi_pelatihan.tanggal_registrasi)='$tahun'
+						ORDER BY registrasi_pelatihan.no_registrasi";
+			$result = mysqli_query($connect, $search_2);
+		}
 	}
 
 ?>
@@ -52,7 +61,7 @@
 					if (!empty($keyword)) {
 				?>
 				<div class="col-sm-10 col-sm-offset-1">
-				<h4 style="font-weight: 600">Hasil Pencarian</h4>
+				<h4 style="font-weight: 600">Hasil Pencarian untuk Seleksi Tahun <?php echo $tahun;?></h4>
 					<table class="table table-striped green-table">
 						<thead>
 							<tr>
