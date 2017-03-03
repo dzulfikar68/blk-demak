@@ -8,8 +8,8 @@
 	$_SESSION['page'] = "peserta/index";
 
 	// ambil data peserta
-	$id = $_SESSION['id-peserta'];
-	if ($id != null) {
+	if (isset($_SESSION['id-peserta'])) {
+		$id = $_SESSION['id-peserta'];
 		$sql = "SELECT * FROM peserta WHERE id = '$id'";
 
 		$result = mysqli_query($connect, $sql);
@@ -147,21 +147,22 @@
 									<form action="<?php echo ROOT; ?>proses/peserta/reg_pelatihan.php" method="POST">
 										<input type="hidden" name="id_peserta" value="<?php echo $id; ?>">
 										<?php
-											if ($_SESSION['error-register']) {
+											if (isset($_SESSION['error-register'])) {
 												echo '<div class="alert alert-danger">'. $_SESSION['error-register'] .'</div>';
 												session_unset($_SESSION['error-register']);
 											}
-											if ($_SESSION['success-register']) {
+											if (isset($_SESSION['success-register'])) {
 												echo '<div class="alert alert-success">'. $_SESSION['success-register'] .'</div>';
 												session_unset($_SESSION['success-register']);
 											}
 										?>
-										<p>Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
-										Silakan memilih kejuruan yang ingin diikuti.</p>
+										<div class="alert alert-success">Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
+										</div>
+										<p>Silakan memilih kejuruan yang ingin diikuti.</p>
 										<div class="col-sm-4">
 											<div class="form-group row">
 												<select id="kejuruan" class="form-control" name="id_kejuruan" required>
-													<option value="" selected>Pilih kejuruan</option>
+													<option value="">-- Pilih kejuruan --</option>
 													<?php
 														while ($row_kejuruan = mysqli_fetch_array($result_kejuruan)) {
 															echo "<option value='".$row_kejuruan['id_kejuruan']."' data-kode='".$row_kejuruan['kode_kejuruan']."'>".$row_kejuruan['nama_kejuruan']."</option>";
@@ -287,8 +288,8 @@
 ?>
 	<script type="text/javascript">
 		// ambil data kode kejuruan dan mengisikannya ke form
-		$('#kejuruan option').click(function(){
-			var kode = $(this).data('kode');
+		$('#kejuruan').change(function(){
+			var kode = $('#kejuruan option:selected').data('kode');
 			$('#kode_kejuruan').val(kode);
 		});
 	</script>

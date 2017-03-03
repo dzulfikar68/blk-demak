@@ -7,31 +7,43 @@
 
 	$_SESSION['page'] = "hasil_seleksi";
 
+	// pagination
+	// http://code.runnable.com/U8dzQWEzMxxqeQ_E/php-pagination-example-using-mysql-database-for-dbms
+	$num_rec_per_page=25;
+	if (isset($_GET["page"])) {
+		$page  = $_GET["page"]; }
+	else {
+		$page = 1;
+	}
+	$start_from = ($page-1) * $num_rec_per_page;
+
 	// ambil daftar peserta lulus
 	$tahun = date('Y');
 	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama
 				FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.status='6' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
-				ORDER BY registrasi_pelatihan.no_registrasi";
+				ORDER BY registrasi_pelatihan.no_registrasi LIMIT $start_from, $num_rec_per_page";
 	$result = mysqli_query($connect, $get_sql);
 
 	// pencarian no_registrasi
-	$keyword = $_POST['search'];
-	if (!empty($keyword)) {
-		$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
-					FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
-					ORDER BY registrasi_pelatihan.no_registrasi";
-		$result = mysqli_query($connect, $search);
-
-		$check = mysqli_fetch_array($result);
-		if (empty($check['no_registrasi'])) {
-			$search_2 = "SELECT registrasi_pelatihan.no_registrasi, kejuruan.nama_kejuruan, peserta.nama,
-							registrasi_pelatihan.status
-						FROM registrasi_pelatihan, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(registrasi_pelatihan.tanggal_registrasi)='$tahun'
+	if (isset($_POST['search'])) {
+		$keyword = $_POST['search'];
+		// if (!empty($keyword)) {
+			$search = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama, registrasi_pelatihan.status
+						FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
 						ORDER BY registrasi_pelatihan.no_registrasi";
-			$result = mysqli_query($connect, $search_2);
-		}
-	}
+			$search_result = mysqli_query($connect, $search);
 
+			$check = mysqli_query($connect, $search);
+			$check = mysqli_fetch_array($check);
+			if (empty($check['no_registrasi'])) {
+				$search_2 = "SELECT registrasi_pelatihan.no_registrasi, kejuruan.nama_kejuruan, peserta.nama,
+								registrasi_pelatihan.status
+							FROM registrasi_pelatihan, kejuruan, peserta WHERE registrasi_pelatihan.no_registrasi='$keyword' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(registrasi_pelatihan.tanggal_registrasi)='$tahun'
+							ORDER BY registrasi_pelatihan.no_registrasi";
+				$search_result = mysqli_query($connect, $search_2);
+			}
+		// }
+	}
 ?>
 
 <div class="page">
@@ -76,7 +88,7 @@
 						<tbody>
 							<?php
 								$no = 1;
-								while ($row=mysqli_fetch_array($result)) {
+								while ($row=mysqli_fetch_array($search_result)) {
 									echo "<tr>";
 									echo '<td class="number">'. $no .'</td>';
 									echo '<td>'. $row['no_registrasi'] .'</td>';
@@ -120,29 +132,38 @@
 							?>
 						</tbody>
 					</table>
-				<?php
-					}
-				?>
 					<!-- Pagination -->
+					<?php
+						$page_sql = "SELECT registrasi_pelatihan.no_registrasi, jadwal.angkatan, kejuruan.nama_kejuruan, peserta.nama
+							FROM registrasi_pelatihan, jadwal, kejuruan, peserta WHERE registrasi_pelatihan.status='6' AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_peserta=peserta.id AND YEAR(jadwal.pelatihan_awal)='$tahun'
+							ORDER BY registrasi_pelatihan.no_registrasi";
+						$page_result = mysqli_query($connect, $page_sql);
+						$total_records = mysqli_num_rows($page_result);  //count number of records
+						$total_pages = ceil($total_records / $num_rec_per_page);
+					?>
 					<nav aria-label="Page navigation">
 						<ul class="pagination">
-							<li>
-								<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-								</a>
-							</li>
-							<li class="active"><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li>
-								<a href="#" aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-								</a>
-							</li>
+						<?php
+							echo "<li><a href='hasil_seleksi.php?page=1' aria-label='Previous'>".
+								'<span aria-hidden="true">|&laquo;</span>'.
+								"</a></li> "; // Goto 1st page  
+
+							for ($i=1; $i<=$total_pages; $i++) {
+								if($i == $page)
+									echo "<li class='active'><a href='hasil_seleksi.php?page=".$i."'>".$i."</a><li> ";
+								else
+									echo "<li><a href='hasil_seleksi.php?page=".$i."'>".$i."</a><li> "; 
+							}; 
+							echo "<li><a href='hasil_seleksi.php?page=$total_pages' aria-label='Next'>".
+								'<span aria-hidden="true">&raquo;|</span>'.
+								"</a></li> "; // Goto last page
+						?>
 						</ul>
 					</nav>
+
+				<?php
+					}	// end of else
+				?>
 				</div>
 			</div>
 
