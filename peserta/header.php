@@ -55,7 +55,7 @@
 <?php
   // check is user logged in?
   session_start();
-  if (!isset($_SESSION['login-peserta']) || ($_SESSION['status-peserta'] != "Aktif")) {
+  if (!isset($_SESSION['login-peserta']) || ($_SESSION['status-peserta'] != "Sudah konfirmasi")) {
     header("Location: ../");
     die();
 ?>
@@ -82,7 +82,7 @@
           </nav>
 <?php
   // check is user logged in?
-  if (isset($_SESSION['login-peserta']) && ($_SESSION['status-peserta'] == "Aktif")) {
+  if (isset($_SESSION['login-peserta']) && ($_SESSION['status-peserta'] == "Sudah konfirmasi")) {
 ?>
           <div class="dropdown pull-right">
             <button id="profile-menu" class="login-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

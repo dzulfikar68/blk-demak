@@ -7,18 +7,18 @@
 
 	$token = $_GET['token'];
 
-	$no_ktp = explode('-', $token);
-	$no_ktp = $no_ktp[0];
+	// $no_ktp = explode('-', $token);
+	// $no_ktp = $no_ktp[0];
 
 	// mengecek token
-	$check_sql = "SELECT id FROM peserta WHERE no_ktp = '$no_ktp' AND token = '$token'";
+	$check_sql = "SELECT id FROM peserta WHERE token = '$token'";
 	$result = mysqli_query($connect, $check_sql);
 
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
 	
 	if ($row['id'] != null) {
 		$id = $row['id'];
-		$sql = "UPDATE peserta SET status='Aktif', token='' WHERE id=$id";
+		$sql = "UPDATE peserta SET status='Sudah konfirmasi', token='' WHERE id=$id";
 
 		if (mysqli_query($connect, $sql)){
 			$_SESSION['success'] = "Aktivasi akun telah berhasil.<br>

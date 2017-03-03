@@ -18,6 +18,7 @@
 		// membuat token
 		$timestamp = date('Ymd-His');
 		$token = $row['no_ktp'] ."-". $timestamp;
+		$token = md5($token);
 
 		$id = $row['id'];
 		$sql = "UPDATE peserta SET token='$token' WHERE id=$id";

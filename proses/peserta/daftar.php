@@ -22,6 +22,7 @@
 	$timestamp = date('Ymd-His');
 	// $random = rand_string(17);
 	$token = $no_ktp ."-". $timestamp;
+	$token = md5($token);
 
 	$previous_page = $_POST['page'];
 
@@ -56,7 +57,7 @@
 			// kirim notifikasi email
 			$link = ROOT ."proses/peserta/aktivasi_akun.php?token=". $token;
 			$subyek = "Pengaktifan Akun";
-			$pesanEmail = "Halo, " .$nama. ".<br>
+			$pesanEmail = "Dear, " .$nama. ".<br>
 							Silakan klik link di bawah ini untuk mengaktifkan akun Anda.<br>
 							<a href='". $link ."'>". $link ."</a><br>
 							Anda dapat mendaftar pelatihan setelah aktivasi akun.<br><br>

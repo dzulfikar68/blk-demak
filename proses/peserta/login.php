@@ -18,7 +18,7 @@
 	$password = md5($password);
 
 	if (isset($row['password']) && $row['password'] == $password) {
-		if (($row['status']) == "Aktif") {
+		if (($row['status']) == "Sudah konfirmasi") {
 			$_SESSION['success'] = "Login sukses.";
 			$_SESSION['login-peserta'] = true;
 			$_SESSION['id-peserta'] = $row['id'];

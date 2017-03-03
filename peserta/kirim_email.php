@@ -1,5 +1,7 @@
 <?php
   require_once ('../.env.php');
+
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +47,17 @@
     		</div>
     		<div class="panel-body">
     			<p>Masukkan email Anda.<br>Link untuk mengganti password akan dikirim ke email Anda.</p>
+          <?php
+            if (isset($_SESSION['error'])) {
+              echo '<div class="alert alert-danger">'. $_SESSION['error'] .'</div>';
+              session_unset($_SESSION['error']);
+            }
+            if (isset($_SESSION['success'])) {
+              echo '<div class="alert alert-success">'. $_SESSION['success'] .'</div>';
+              session_unset($_SESSION['success']);
+            }
+            var_dump($_SESSION['success']);
+          ?>
     			<form action="<?php echo ROOT; ?>proses/peserta/kirim_email.php" method="POST">
     				<div class="form-group">
     					<input class="form-control" type="email" name="blk_email" placeholder="Email" required autofocus>
@@ -57,57 +70,9 @@
     	</div>
     </div>
 
-<!-- Pesan -->
-<?php
-  if (isset($_SESSION['success'])) {
-    include '../_pesan_sukses.php';
-  }
-  if (isset($_SESSION['error'])) {
-    include '../_pesan_error.php';
-  }
-
-  // Menghapus pesan sukses dan error
-  unset($_SESSION['error']);
-  unset($_SESSION['success']);
-?>
   
   <!-- js placed at the end of the document so the pages load faster -->
   <script src="../assets/js/jquery.js"></script>
 
-  <script>
-      $(function(){
-        // Fungsi menghilangkan pesan/ notifikasi
-        function close_pop_up(){
-          var width = $('.pop-up').width();
-          $('.pop-up').animate({
-            'opacity': 0,
-            'right': -width
-          }, 300);
-        }
-
-        // Menampilkan pesan/ notifikasi
-        if ($('.pop-up').length) {
-          $('.pop-up').css('z-index', 1).animate({
-            'opacity': 1,
-            'right': "75px"
-          }, 300).animate({ 'right': "65px" }, 400);
-
-          // menghilangkan notifikasi
-          setTimeout(close_pop_up, 4000);
-        }
-
-        // Menghilangkan pesan/ notifikasi
-        $('.pop-up .close').click(close_pop_up);
-
-        // Menghilangkan notifikasi ketika diklik pada selain notifikasi
-        $(document).click(function(e) {
-          var pop_up = $('.pop-up');
-          if (!pop_up.is(e.target)) {
-            close_pop_up();
-          }
-        });
-
-      });
-  </script>
   </body>
 </html>
