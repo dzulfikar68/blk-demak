@@ -128,6 +128,13 @@
                 <li><a  href="todo_list.html">Laporan Daftar Pelatihan</a></li>
               </ul>
             </li>
+
+            <li>
+              <a href="kontak.php">
+                <i class="fa fa-home"></i>
+                <span>Kontak</span>
+              </a>
+            </li>
             
           </ul>
         <!-- sidebar menu end-->
