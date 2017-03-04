@@ -6,6 +6,17 @@
         require_once ('../proses/koneksi_db.php');
         require_once ('../proses/helper.php');
 
+
+        $query = mysqli_query($connect, "SELECT COUNT(*) as jumlah_unread FROM pesan WHERE status='belum' ");
+
+        if(!$query){
+          die("QuERY CHECK UNREAD PESAN GAGAL ".mysqli_error($connect));
+        }
+
+        $data = mysqli_fetch_object($query);
+
+        $unread = $data->jumlah_unread;
+
       ?>
 
       <!--main content start-->
@@ -15,7 +26,7 @@
           <div class="row mt">
             <div class="col-lg-12">
               <div class="showback">
-                <h4><i class="fa fa-angle-right"></i> Tabel Pesan</h4>  
+                <h4><i class="fa fa-angle-right"></i> Tabel Pesan <?php if($unread>0){ echo "<b>(".$unread." pesan belum dibaca)</b>"; } ?></h4>  
                 <hr>
 
                                            
