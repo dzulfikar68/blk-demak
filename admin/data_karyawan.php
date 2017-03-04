@@ -1,13 +1,15 @@
       
 
-      <?php
+      <?php        
+        
+        include 'header.php';
+        require_once ('../proses/koneksi_db.php');
 
         if($_SESSION['jabatan']!='admin'){
 
           header("Location: index.php");
         }
-        include 'header.php';
-        require_once ('../proses/koneksi_db.php');
+        
 
       ?>
 
