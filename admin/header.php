@@ -130,9 +130,9 @@
             </li>
 
             <li>
-              <a href="kontak.php">
-                <i class="fa fa-home"></i>
-                <span>Kontak</span>
+              <a href="pesan.php">
+                <i class="fa fa-envelope"></i>
+                <span>Pesan</span>
               </a>
             </li>
             
