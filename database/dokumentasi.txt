@@ -145,3 +145,23 @@ ALTER TABLE `admin` ADD `token` VARCHAR(32) NOT NULL AFTER `date_created`;
 
 ******* TAMBAH KOLOM TOKEN DI TABEL KARYAWAN
 ALTER TABLE `karyawan` ADD `token` VARCHAR(32) NOT NULL AFTER `date_created`;
+
+
+
+================================ 3 MARET 2017 ===================================
+MOHAMMAD FAJAR AINUL BASHRI
+
+******* TAMBAH KOLOM TABEL KONTAK
+ALTER TABLE `kontak` ADD `status` VARCHAR(8) NOT NULL COMMENT 'status apakah pesan sudah dibaca atau belum' AFTER `pesan`, ADD `date_created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP AFTER `status`;
+
+
+
+TABEL KONTAK SUDAH DIUBAH MENJADI TABEL PESAN, TAPI QUERY TIDAK ADA
+UBAH SECARA MANUAL!!!!
+
+================================ 4 MARET 2017 ===================================
+MOHAMMAD FAJAR AINUL BASHRI
+
+******* EDIT KOLOM STATUS DI TABEL PESAN
+
+ALTER TABLE `pesan` CHANGE `status` `status` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'belum' COMMENT 'status apakah pesan sudah dibaca atau belum';
