@@ -30,7 +30,6 @@
     <!-- Custom styles for this template -->
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
     <link href="../assets/css/jquery-ui.css" rel="stylesheet">
-    <link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/js/gritter/css/jquery.gritter.css" />
     <link href="../assets/css/style.css" rel="stylesheet">
 
