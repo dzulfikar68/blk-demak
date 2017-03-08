@@ -115,7 +115,7 @@
               </ul>
             </li>
 
-            <li class="sub-menu">
+            <!-- <li class="sub-menu">
               <a href="javascript:;" >
                 <i class=" fa fa-bar-chart-o"></i>
                 <span>Laporan - Laporan</span>
@@ -126,6 +126,13 @@
                 <li><a  href="todo_list.html">Laporan Sesi</a></li>
                 <li><a  href="todo_list.html">Laporan Daftar Pelatihan</a></li>
               </ul>
+            </li> -->
+
+            <li>
+              <a href="laporan.php">
+                <i class="fa fa-file"></i>
+                <span>Laporan</span>
+              </a>
             </li>
 
             <li>
