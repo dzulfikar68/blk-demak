@@ -171,3 +171,6 @@ MOHAMMAD FAJAR AINUL BASHRI
 
 ******* TAMBAH KOLOM STATUS HAPUS DI TABEL KEJURUAN
 ALTER TABLE `kejuruan` ADD `status_hapus` INT NOT NULL DEFAULT '0' AFTER `kode_kejuruan`;
+
+******* TAMBAH KOLOM STATUS HAPUS DI TABEL PESERTA
+ALTER TABLE `peserta` ADD `status_hapus` INT NOT NULL DEFAULT '0' COMMENT '0 = belum dihapus, 1 = sudah dihapus' AFTER `status`;
