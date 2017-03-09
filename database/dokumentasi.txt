@@ -165,3 +165,9 @@ MOHAMMAD FAJAR AINUL BASHRI
 ******* EDIT KOLOM STATUS DI TABEL PESAN
 
 ALTER TABLE `pesan` CHANGE `status` `status` VARCHAR(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'belum' COMMENT 'status apakah pesan sudah dibaca atau belum';
+
+================================ 9 MARET 2017 ===================================
+MOHAMMAD FAJAR AINUL BASHRI
+
+******* TAMBAH KOLOM STATUS HAPUS DI TABEL KEJURUAN
+ALTER TABLE `kejuruan` ADD `status_hapus` INT NOT NULL DEFAULT '0' AFTER `kode_kejuruan`;
