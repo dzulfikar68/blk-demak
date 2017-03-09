@@ -5,7 +5,7 @@
 
 	$id = $_GET['id'];
 
-	$query = mysqli_query($connect, "DELETE FROM kejuruan WHERE id_kejuruan=$id");
+	$query = mysqli_query($connect, "UPDATE kejuruan SET status_hapus=1 WHERE id_kejuruan=$id");
 
 
 	if(!$query){
@@ -13,7 +13,7 @@
 	}
 
 
-	$_SESSION['success'] = "Hapus kejuruan sukses!";
+	$_SESSION['success'] = "Kejuruan sukses dinonaktifkan!";
 
 	header("Location: ../../admin/data_kejuruan.php");
 	

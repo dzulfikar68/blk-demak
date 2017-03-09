@@ -85,6 +85,7 @@
                       <th>No</th>
                       <th>Nama Kejuruan</th>
                       <th>Kode Kejuruan</th>
+                      <th>Status</th>
                       <th>Aksi</th>
       
                     </tr>
@@ -106,13 +107,28 @@
                         $no = 1;
                         while ($row=mysqli_fetch_object($query)) {
 
+                          //jika status hapus == 0 maka belum dihapus
+                          //jika status hapus == 1 maka sudah dihapus
+                          if($row->status_hapus==0){
+
+                            $action = "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menonaktifkan kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Non Aktifkan Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                            
+                            $status = "<span class=\"label label-success\">Aktif</span>";
+                          }else{
+
+                            $action = "<a href=\"../proses/admin/kembalikan_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan mengaktifkan kejuruan ini??')\"class=\"btn btn-success btn-xs\" data-tooltip=\"true\" title=\"Aktifkan Kejuruan\" ><i class=\"fa fa-undo\"></i></a>";
+                            
+                            $status = "<span class=\"label label-danger\">Tidak Aktif</span>";
+                          }
+
                           echo "<tr>";
                           echo "<td>".$no."</td>";
                           echo "<td>".$row->nama_kejuruan."</td>";
                           echo "<td>".$row->kode_kejuruan."</td>";
+                          echo "<td>".$status."</td>";
                           echo "<td>";
                           echo "<a href=\"#\" data-target=\"#modalKejuruan\" data-toggle=\"modal\" data-id=\"".$row->id_kejuruan."\" data-kejuruan=\"".$row->nama_kejuruan."\" data-kode=\"".$row->kode_kejuruan."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Kejuruan\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo $action;
                           /*echo "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menghapus kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";*/
                           echo "</td>";
                           echo "</tr>";
