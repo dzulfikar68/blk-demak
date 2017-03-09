@@ -111,7 +111,7 @@
                           //jika status hapus == 1 maka sudah dihapus
                           if($row->status_hapus==0){
 
-                            $action = "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menonaktifkan kejuruan ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Non Aktifkan Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
+                            $action = "<a href=\"../proses/admin/hapus_kejuruan.php?id=".$row->id_kejuruan."\" onclick=\"return confirm('Anda Yakin akan menonaktifkan kejuruan ini??')\" class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Non Aktifkan Kejuruan\" ><i class=\"fa fa-trash-o\"></i></a>";
                             
                             $status = "<span class=\"label label-success\">Aktif</span>";
                           }else{
