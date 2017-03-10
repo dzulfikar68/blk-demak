@@ -21,15 +21,14 @@
                     echo "<p>".$_SESSION['error']."</p>";
                     echo "</div>";
 
-
                     unset($_SESSION['error']);
-
-                  }else if(isset($_SESSION['success'])){
+                  }
+                  else if(isset($_SESSION['success'])){
                     echo "<div class=\"alert alert-success\" style=\"margin-top:15px\">";
                     echo "<p>".$_SESSION['success']."</p>";
                     echo "</div>";
-                    unset($_SESSION['success']);
 
+                    unset($_SESSION['success']);
                   }
 
                 ?>
