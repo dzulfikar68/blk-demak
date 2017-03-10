@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('koneksi_db.php');
+    require_once ('../.env.php');
 
 	session_start();
 
@@ -17,7 +18,7 @@
 							Pastikan semua formulir sudah terisi";
 	}
 	else{
-		$sql = "INSERT INTO kontak (nama, email, subyek, pesan)
+		$sql = "INSERT INTO pesan (nama, email, subyek, pesan)
 					VALUES ('$nama', '$email', '$subyek', '$pesan')";
 
 		if (mysqli_query($connect, $sql)){
