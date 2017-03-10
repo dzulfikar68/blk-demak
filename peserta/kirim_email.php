@@ -56,7 +56,6 @@
               echo '<div class="alert alert-success">'. $_SESSION['success'] .'</div>';
               session_unset($_SESSION['success']);
             }
-            var_dump($_SESSION['success']);
           ?>
     			<form action="<?php echo ROOT; ?>proses/peserta/kirim_email.php" method="POST">
     				<div class="form-group">
