@@ -30,7 +30,6 @@
     <!-- Custom styles for this template -->
     <link href="../assets/css/style-responsive.css" rel="stylesheet">
     <link href="../assets/css/jquery-ui.css" rel="stylesheet">
-    <link href="../datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/js/gritter/css/jquery.gritter.css" />
     <link href="../assets/css/style.css" rel="stylesheet">
 
@@ -116,7 +115,7 @@
               </ul>
             </li>
 
-            <li class="sub-menu">
+            <!-- <li class="sub-menu">
               <a href="javascript:;" >
                 <i class=" fa fa-bar-chart-o"></i>
                 <span>Laporan - Laporan</span>
@@ -127,12 +126,19 @@
                 <li><a  href="todo_list.html">Laporan Sesi</a></li>
                 <li><a  href="todo_list.html">Laporan Daftar Pelatihan</a></li>
               </ul>
+            </li> -->
+
+            <li>
+              <a href="laporan.php">
+                <i class="fa fa-file"></i>
+                <span>Laporan</span>
+              </a>
             </li>
 
             <li>
-              <a href="kontak.php">
-                <i class="fa fa-home"></i>
-                <span>Kontak</span>
+              <a href="pesan.php">
+                <i class="fa fa-envelope"></i>
+                <span>Pesan</span>
               </a>
             </li>
 

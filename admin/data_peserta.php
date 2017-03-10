@@ -37,6 +37,26 @@
                   </div>
                 </div> -->
 
+                <?php
+
+                  if(isset($_SESSION['error'])){
+
+                    echo "<div class=\"alert alert-danger\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['error']."</p>";
+                    echo "</div>";
+
+
+                    unset($_SESSION['error']);
+
+                  }else if(isset($_SESSION['success'])){
+                    echo "<div class=\"alert alert-success\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['success']."</p>";
+                    echo "</div>";
+                    unset($_SESSION['success']);
+
+                  }
+
+                ?>
 
                 <table class="table table-hover" id="table_peserta">
                   <thead>
@@ -57,7 +77,7 @@
 
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM peserta ORDER BY peserta.tanggal_daftar DESC");
+                      $query = mysqli_query($connect, "SELECT * FROM peserta WHERE status_hapus = 0 ORDER BY peserta.tanggal_daftar DESC");
 
                       if(!$query){
                         die("QUERY FAILED : ". mysqli_error($connect));
@@ -86,7 +106,7 @@
                           echo "<td>";
                           echo "<a href=\"detail_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Lihat Detail Peserta\" ><i class=\"fa fa-eye\"></i></a> ";
                           echo "<a href=\"form_ubah_peserta.php?id_peserta=".$row->id."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Data Peserta\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"#\" class=\"btn btn-danger btn-xs\" data-toggle=\"tooltip\" title=\"Hapus Peserta\" ><i class=\"fa fa-trash-o\"></i></a>";
+                          echo "<a href=\"../proses/admin/hapus_peserta.php?id_peserta=".$row->id."\" onclick=\"return confirm('Anda Yakin akan menghapus peserta ini??')\" class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Peserta\" ><i class=\"fa fa-trash-o\"></i></a>";
                           echo "</td>";
                           echo "</tr>";
 

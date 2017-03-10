@@ -50,4 +50,17 @@
 		return $str;
 	}
 
+
+
+	function convertStatusPesan($status){
+
+		if($status=='belum'){
+			$result = '<span class="label label-danger">Belum dibaca</span>';
+		}else if($status=='sudah'){
+			$result = '<span class="label label-success">Sudah dibaca</span>';
+		}
+
+		return $result;
+	}
+
 ?>
