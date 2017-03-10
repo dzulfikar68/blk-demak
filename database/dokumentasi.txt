@@ -174,3 +174,6 @@ ALTER TABLE `kejuruan` ADD `status_hapus` INT NOT NULL DEFAULT '0' AFTER `kode_k
 
 ******* TAMBAH KOLOM STATUS HAPUS DI TABEL PESERTA
 ALTER TABLE `peserta` ADD `status_hapus` INT NOT NULL DEFAULT '0' COMMENT '0 = belum dihapus, 1 = sudah dihapus' AFTER `status`;
+
+******* TAMBAH KOLOM STATUS HAPUS DI TABEL JADWAL
+ALTER TABLE `jadwal` ADD `status_hapus` INT NOT NULL DEFAULT '0' COMMENT '0 = belum dihapus, 1 = sudah dihapus' AFTER `pelatihan_akhir`;
