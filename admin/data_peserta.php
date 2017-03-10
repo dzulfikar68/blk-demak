@@ -37,6 +37,26 @@
                   </div>
                 </div> -->
 
+                <?php
+
+                  if(isset($_SESSION['error'])){
+
+                    echo "<div class=\"alert alert-danger\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['error']."</p>";
+                    echo "</div>";
+
+
+                    unset($_SESSION['error']);
+
+                  }else if(isset($_SESSION['success'])){
+                    echo "<div class=\"alert alert-success\" style=\"margin-top:15px\">";
+                    echo "<p>".$_SESSION['success']."</p>";
+                    echo "</div>";
+                    unset($_SESSION['success']);
+
+                  }
+
+                ?>
 
                 <table class="table table-hover" id="table_peserta">
                   <thead>

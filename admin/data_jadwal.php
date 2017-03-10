@@ -73,7 +73,7 @@
                             <select name="kejuruan" class="form-control" required>
                               <?php
 
-                                $query = mysqli_query($connect, "SELECT * FROM kejuruan ORDER BY date_created DESC");
+                                $query = mysqli_query($connect, "SELECT * FROM kejuruan WHERE  status_hapus = 0 ORDER BY date_created DESC");
 
                                 while($row=mysqli_fetch_object($query)){
                                   echo "<option value=".$row->id_kejuruan.">".$row->nama_kejuruan."</option>";
@@ -157,7 +157,7 @@
                   <tbody>
                     <?php
 
-                      $query = mysqli_query($connect, "SELECT * FROM jadwal, kejuruan WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan ORDER BY jadwal.date_created DESC");
+                      $query = mysqli_query($connect, "SELECT * FROM jadwal, kejuruan WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan AND jadwal.status_hapus=0 ORDER BY jadwal.date_created DESC");
 
                       if(!$query){
                         die("QUERY FAILED : ". mysqli_error($connect));
@@ -207,8 +207,8 @@
                           echo "<td>";
                           echo "<a href=\"detail_jadwal.php?id=".$row->id_jadwal."\" class=\"btn btn-primary btn-xs\" data-tooltip=\"true\" title=\"Detail Jadwal\" ><i class=\"fa fa-eye\"></i></a> ";
                           echo "<a href=\"#\" data-target=\"#modalJadwal\" data-toggle=\"modal\" data-id=\"".$row->id_jadwal."\" data-id_kejuruan=\"".$row->id_kejuruan."\" data-angkatan=\"".$row->angkatan."\" data-kapasitas=\"".$row->kapasitas."\" data-status=\"".$row->status_pelaksanaan."\"  data-sumber_dana=\"".$row->sumber_dana."\" data-seleksi_awal=\"".$seleksi_awal."\" data-seleksi_akhir=\"".$seleksi_akhir."\" data-pelatihan_awal=\"".$pelatihan_awal."\" data-pelatihan_akhir=\"".$pelatihan_akhir."\" class=\"btn btn-info btn-xs\" data-tooltip=\"true\" title=\"Ubah Jadwal\" ><i class=\"fa fa-pencil\"></i></a> ";
-                          echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";
-                          /*echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";*/
+                          /*echo "<a href=\"#\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";*/
+                          echo "<a href=\"../proses/admin/hapus_jadwal.php?id=".$row->id_jadwal."\" onclick=\"return confirm('Anda Yakin akan menghapus jadwal ini??')\"class=\"btn btn-danger btn-xs\" data-tooltip=\"true\" title=\"Hapus Jadwal\" ><i class=\"fa fa-trash-o\"></i></a>";
                           echo "</td>";
                           echo "</tr>";
 
