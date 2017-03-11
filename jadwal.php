@@ -9,7 +9,8 @@
 
   // ambil daftar jadwal
   $tahun = date('Y');
-  $get_sql = "SELECT jadwal.*, kejuruan.nama_kejuruan FROM jadwal, kejuruan WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan
+  $get_sql = "SELECT jadwal.*, kejuruan.nama_kejuruan FROM jadwal, kejuruan 
+              WHERE jadwal.id_kejuruan=kejuruan.id_kejuruan AND jadwal.status_hapus=0
               AND YEAR(jadwal.pelatihan_awal)='$tahun' ORDER BY jadwal.angkatan";
   $result = mysqli_query($connect, $get_sql);
 

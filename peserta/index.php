@@ -29,7 +29,7 @@
 	}
 
 	// ambil daftar kejuruan
-	$get_sql = "SELECT * FROM kejuruan ORDER BY date_created";
+	$get_sql = "SELECT * FROM kejuruan WHERE status_hapus=0 ORDER BY date_created";
 	$result_kejuruan = mysqli_query($connect, $get_sql);
 
 	// ambil riwayat pelatihan
@@ -289,9 +289,6 @@
 <?php
 	include 'footer.php';
 ?>
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap.min.js"></script>
-
 	<script type="text/javascript">
 
 		$(document).ready(function () {
