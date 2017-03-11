@@ -4,7 +4,9 @@
     require_once ('proses/convert_date.php');
     require_once ('.env.php');
 
-echo "<a href='".ROOT."'>root</a>";
+	$timeout = $_SERVER['REQUEST_TIME'];
+	echo gmdate("H:i:s", $timeout);
+	
     
 
 // var_dump($row); die();

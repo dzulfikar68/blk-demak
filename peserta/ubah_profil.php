@@ -32,7 +32,7 @@
 						</div>
 						<div class="panel-body">
 							<form action="<?php echo ROOT; ?>proses/peserta/ubah_profil.php" method="POST">
-								<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']?>">
+								<input type="hidden" name="id_peserta" value="<?php echo $_SESSION['id-peserta']; ?>">
 								<table class="table">
 									<tbody>
 										<tr>
@@ -155,18 +155,7 @@
 
     <script src="../assets/js/jquery-ui-1.9.2.custom.min.js"></script>
 	<script type="text/javascript">
-		/*$('input[name="tanggal_lahir"]').click(function(){
-          var date_input = $('input[name="tanggal_lahir"]');
-          var options = {
-                    // format: 'mm/dd/yyyy',
-                    format: 'dd-mm-yy',
-                    todayHighlight: true,
-                    autoclose: true,
-          };
-
-          date_input.datepicker(options);
-
-        });*/
+	
         $('input[name="tanggal_lahir"]').datepicker({
             dateFormat: "mm/dd/yy ",
             altField : $('input[name="pelatihan_akhir"]'),

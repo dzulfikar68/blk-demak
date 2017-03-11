@@ -141,6 +141,18 @@
                 <span>Pesan</span>
               </a>
             </li>
+
+
+
+
+
+            <li>
+              <a href="ekspor.php">
+                <i class="fa fa-database"></i>
+                <span>Ekspor Basis Data</span>
+              </a>
+            </li>
+            
             
           </ul>
         <!-- sidebar menu end-->
