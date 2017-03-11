@@ -249,6 +249,7 @@
 												<th>Nama Perusahaan</th>
 												<th>Alamat Perusahaan</th>
 												<th>Telepon Perusahaan</th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
@@ -258,7 +259,8 @@
 													echo "<tr>";
 													if ($row_kerja['status_kerja'] == "Belum"){
 														echo "<td>$no_kerja</td>";
-														echo "<td class='text-center' colspan=4>Belum Bekerja</tr>";
+														echo "<td class='text-center' colspan=4>Belum Bekerja</td>";
+														echo '<td><a href="ubah_data_kerja.php?data-kerja='.$row_kerja["id_data_kerja"]. '" class="btn btn-primary btn-xs" data-tooltip="true" title="" data-original-title="Ubah Data Kerja"><i class="fa fa-pencil"></i></a></td>';
 													}
 													else {
 														echo "<td>$no_kerja</td>";
@@ -266,6 +268,7 @@
 														echo "<td>". $row_kerja['nama_perusahaan'] ."</td>";
 														echo "<td>". $row_kerja['alamat_perusahaan'] ."</td>";
 														echo "<td>". $row_kerja['telepon_perusahaan'] ."</td>";
+														echo '<td><a href="ubah_data_kerja.php?data-kerja='.$row_kerja["id_data_kerja"]. '" class="btn btn-primary btn-xs" data-tooltip="true" title="" data-original-title="Ubah Data Kerja"><i class="fa fa-pencil"></i></a></td>';
 													}
 													echo "</tr>";
 													$no_kerja++;
@@ -286,7 +289,15 @@
 <?php
 	include 'footer.php';
 ?>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript">
+
+		$(document).ready(function () {
+        	$('[data-tooltip="true"]').tooltip();
+        });
+
 		// ambil data kode kejuruan dan mengisikannya ke form
 		$('#kejuruan').change(function(){
 			var kode = $('#kejuruan option:selected').data('kode');
