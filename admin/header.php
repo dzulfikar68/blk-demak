@@ -7,6 +7,16 @@
 
   }
 
+  require_once ('../proses/koneksi_db.php');
+  // cek pesan
+  $query = mysqli_query($connect, "SELECT COUNT(*) as jumlah_unread FROM pesan WHERE status='belum' ");
+
+  if(!$query){
+    die("QuERY CHECK UNREAD PESAN GAGAL ".mysqli_error($connect));
+  }
+
+  $message = mysqli_fetch_array($query, MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +48,15 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
+    <style type="text/css">
+      .message .badge{
+        margin-left: 5px;
+        background-color: #fff;
+        color: #ffb300;
+        padding-left: 9px;
+        padding-right: 9px;
+      }
+    </style>
   </head>
 
   <body>
@@ -135,16 +154,13 @@
               </a>
             </li>
 
-            <li>
+            <li class="message">
               <a href="pesan.php">
                 <i class="fa fa-envelope"></i>
                 <span>Pesan</span>
+                <?php echo ($message['jumlah_unread'] > 0) ? "<span class='badge'>".$message['jumlah_unread']."</span>" : "";?>
               </a>
             </li>
-
-
-
-
 
             <li>
               <a href="ekspor.php">
