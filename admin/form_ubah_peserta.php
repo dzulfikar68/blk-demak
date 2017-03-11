@@ -54,7 +54,7 @@
 
                 <?php
 
-                  if ($status!='Aktif'){
+                  if ($status!='Sudah konfirmasi'){
                     echo "<div class=\"alert alert-danger\"><span>Tidak dapat mengubah data peserta. Peserta belum melakukan konfirmasi email! </span></div>";
                   }else{
 
