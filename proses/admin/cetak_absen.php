@@ -24,6 +24,8 @@
 	
 	$pdf->AddPage('L', 'A4');
 
+	$pdf->Image('../../assets/img/logo.png', 20, 10, 0, 20);
+
 	//set font header
 	$pdf->SetFont('Arial','B',16);
 
