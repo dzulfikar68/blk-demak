@@ -1,3 +1,15 @@
+<?php
+  require_once ('../proses/koneksi_db.php');
+  // cek pesan
+  $query = mysqli_query($connect, "SELECT COUNT(*) as jumlah_unread FROM pesan WHERE status='belum' ");
+
+  if(!$query){
+    die("QuERY CHECK UNREAD PESAN GAGAL ".mysqli_error($connect));
+  }
+
+  $message = mysqli_fetch_array($query, MYSQLI_ASSOC);
+?>
+
     <!--footer start-->
       <footer class="site-footer">
         <div class="text-center">
@@ -50,8 +62,6 @@
 
             $jabatan = $_SESSION['jabatan'];
 
-
-          
         ?>
 
         var unique_id = $.gritter.add({
@@ -79,6 +89,11 @@
         ?>
       });
       
+      // Penghitung pesan belum terbaca
+      var countMessage = "<?php echo $message['jumlah_unread']; ?>";
+      if (countMessage > 0) {
+        $('aside .message a').append('<span class="badge">'+ countMessage +'</span>');
+      }
 
     </script>
 

@@ -7,16 +7,6 @@
 
   }
 
-  require_once ('../proses/koneksi_db.php');
-  // cek pesan
-  $query = mysqli_query($connect, "SELECT COUNT(*) as jumlah_unread FROM pesan WHERE status='belum' ");
-
-  if(!$query){
-    die("QuERY CHECK UNREAD PESAN GAGAL ".mysqli_error($connect));
-  }
-
-  $message = mysqli_fetch_array($query, MYSQLI_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -158,7 +148,6 @@
               <a href="pesan.php">
                 <i class="fa fa-envelope"></i>
                 <span>Pesan</span>
-                <?php echo ($message['jumlah_unread'] > 0) ? "<span class='badge'>".$message['jumlah_unread']."</span>" : "";?>
               </a>
             </li>
 
