@@ -166,6 +166,17 @@
 		
 
 ?>
+		<div class="table-title">
+			<div class="logo col-sm-2" style="text-align: right;">
+				<img src="../../assets/img/logo.png">
+			</div>
+			<div class="col-sm-8" style="text-align: center;">
+				<h3>DATA PELATIHAN</h3>
+				<h3 style="margin-bottom: 5px;">UPTD BALAI LATIHAN KERJA KABUPATEN DEMAK</h3>
+				<p>Jl. Kantonsari No. 19 Demak. Telp (0291) 681718</p>
+				<p>Email : blkdemak@gmail.com</p>
+			</div>
+		</div>
 
 		<table border="1" class="table table-striped" align="center" valign="center" style="vertical-align:middle">
 
@@ -210,7 +221,7 @@
 					
 						echo "<tr>";
 						echo "<td>".$no."</td>";
-						echo "<td>".$nama_kejuruan."</td>";
+						echo "<td class='kejuruan'>".$nama_kejuruan."</td>";
 						foreach ($arrayAngkatan as $key => $angkatanItem) {
 							echo "<td>";echo isset($data[$angkatanItem][$id_kejuruan]['l']) ? $data[$angkatanItem][$id_kejuruan]['l'] : 0;echo "</td>";
 							echo "<td>";echo isset($data[$angkatanItem][$id_kejuruan]['p']) ? $data[$angkatanItem][$id_kejuruan]['p'] : 0;echo "</td>";
@@ -232,7 +243,7 @@
 
 				?>
 
-				<tr bgcolor="#FF0000" style="background-color:red;">
+				<tr>
 					<td colspan="2"><b>Jumlah</b></td>
 					<?php
 

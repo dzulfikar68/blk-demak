@@ -2240,3 +2240,31 @@ label {
     min-height: 900px;
 }
 
+/* tabel laporan */
+.table-title{
+    height: 115px;
+    margin-bottom: 30px;
+}
+.table-title .logo img{
+    margin-top: 10px;
+    height: 90px;
+}
+.table-title h3{
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+.table-title p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#resultLaporan .table th{
+    vertical-align: middle;
+    text-align: center;
+}
+#resultLaporan .table td{
+    text-align: center;
+}
+#resultLaporan .table .kejuruan{
+    text-align: left;
+}
