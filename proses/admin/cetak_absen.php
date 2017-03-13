@@ -78,7 +78,7 @@
 		$pdf->Cell(50,7,'Tempat, Tanggal Lahir',1);
 		$pdf->Cell(20,7,'Pendidikan',1);
 		$pdf->Cell(30,7,'',1);*/
-		$pdf->Ln();
+		//$pdf->Ln();
 
 	}
 

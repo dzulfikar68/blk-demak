@@ -222,8 +222,8 @@
 							$total[$angkatanItem]['p'] +=  isset($data[$angkatanItem][$id_kejuruan]['p']) ? $data[$angkatanItem][$id_kejuruan]['p'] : 0;
 							$total[$angkatanItem]['j'] +=  isset($data[$angkatanItem][$id_kejuruan]['j']) ? $data[$angkatanItem][$id_kejuruan]['j'] : 0;
 							$total[$angkatanItem]['i'] +=  isset($data[$angkatanItem][$id_kejuruan]['i']) ? $data[$angkatanItem][$id_kejuruan]['i'] : 0;
-						}	$total[$angkatanItem]['w'] +=  isset($data[$angkatanItem][$id_kejuruan]['w']) ? $data[$angkatanItem][$id_kejuruan]['w'] : 0;
-
+							$total[$angkatanItem]['w'] +=  isset($data[$angkatanItem][$id_kejuruan]['w']) ? $data[$angkatanItem][$id_kejuruan]['w'] : 0;
+						}
 						echo "</tr>";
 
 						$no++;
@@ -255,7 +255,7 @@
 
 		<div style="text-align:right" >
 
-			<a href="../proses/admin/cetak_laporan.pdf?tahun=<?php echo $tahun;?>&angkatan=<?php echo $angkatan;?>" target="_blank" class="btn btn-primary">Cetak Laporan</a>	
+			<a href="../proses/admin/cetak_laporan.php?tahun=<?php echo $tahun;?>&angkatan=<?php echo $angkatan;?>" target="_blank" class="btn btn-primary">Cetak Laporan</a>	
            
         </div>
 			
