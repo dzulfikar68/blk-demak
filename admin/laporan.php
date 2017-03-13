@@ -24,7 +24,7 @@
                       <?php
 
                         $yearNow = date('Y');
-                        $minYear = date('Y', strtotime('-10 years'));                        
+                        $minYear = date('Y', strtotime('-5 years'));                        
                         
                         for ($i=$minYear; $i <= $yearNow; $i++) { 
                           $selected = '';
@@ -73,3 +73,50 @@
         include 'footer.php';
 
       ?>
+
+      <script>
+
+        $('#cari').click(function(){
+          
+          var tahun = $("select[name='tahun']").val();
+          var angkatan = $("select[name='angkatan']").val();
+
+          var url = "../proses/admin/ambil_laporan.php";
+
+          $.ajax({
+
+            url       : url,
+
+            method    : 'POST',
+
+            data      : {tahun : tahun, angkatan:angkatan},
+
+            dataType  : 'html',
+
+            cache     : false,
+
+            success   : function(data){
+
+              $("#resultLaporan").removeClass('hidden');
+              $("#resultLaporan").html(data);
+
+            },
+
+            error     : function(){
+
+              alert("Terjadi error saat mengambil data Laporan");
+
+            },
+
+            complete  : function(){
+
+            }
+
+          });
+          
+
+        });
+
+
+      </script>
+
