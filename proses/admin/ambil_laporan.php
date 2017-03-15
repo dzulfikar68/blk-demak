@@ -2,6 +2,7 @@
 	
 	session_start();
 	require_once ('../koneksi_db.php');
+	require_once ('../../.env.php');
 
 	$tahun 		= $_POST['tahun'];
 	$angkatan 	= $_POST['angkatan'];
@@ -168,7 +169,7 @@
 ?>
 		<div class="table-title">
 			<div class="logo col-sm-2" style="text-align: right;">
-				<img src="../../assets/img/logo.png">
+				<img src="<?php echo ROOT; ?>assets/img/logo.png">
 			</div>
 			<div class="col-sm-8" style="text-align: center;">
 				<h3>DATA PELATIHAN</h3>

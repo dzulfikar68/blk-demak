@@ -4,7 +4,7 @@
 
     session_start();
 
-    $date = date('Y-m-d:H-i-s');
+    $date = date('Y-m-d-H-i-s');
     $filename = 'BlkDemakBackup'. $date .'.sql';
     $exportPath ='../../database/'. $filename;
 
@@ -18,7 +18,7 @@
     $sql = "/opt/lampp/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
 
     // untuk windows
-    // $sql = "mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
+    // $sql = "C://xampp/mysql/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
    
 	// ekspor sql
 	exec($sql, $output, $return_var);
