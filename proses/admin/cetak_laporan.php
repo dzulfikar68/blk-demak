@@ -238,9 +238,15 @@
 		$no = 1;
 
 		foreach ($arrayNamaKejuruan as $id_kejuruan => $nama_kejuruan) {
-			$pdf->Cell(10,7,$no,1, 0, 'C');
-			$pdf->Cell(30,7,$nama_kejuruan,1, 0, 'C');
+			/*$pdf->Cell(10,7,$no,1, 0, 'C');
+			$pdf->Cell(30,7,$nama_kejuruan,1, 0, 'C');*/
 
+			$width = array(10, 30);
+
+			$content = array($no, $nama_kejuruan);
+
+			$align = array('C', '');
+			
 			foreach ($arrayAngkatan as $key => $angkatanItem) {
 				$laki 		= isset($data[$angkatanItem][$id_kejuruan]['l']) ? $data[$angkatanItem][$id_kejuruan]['l'] : 0;
 				$perempuan 	= isset($data[$angkatanItem][$id_kejuruan]['p']) ? $data[$angkatanItem][$id_kejuruan]['p'] : 0;
@@ -254,15 +260,34 @@
 				$total[$angkatanItem]['i'] +=  $industri;
 				$total[$angkatanItem]['w'] +=  $wirausaha;
 
-				$pdf->Cell(9,7,$laki,1, 0, 'C');
+				$tempWidth = array(9,9,9,9,9);
+
+				$tempContent = array($laki, $perempuan, $jumlah, $industri, $wirausaha);
+
+				$tempAlign = array('C', 'C', 'C', 'C', 'C');
+
+				/*$pdf->Cell(9,7,$laki,1, 0, 'C');
 				$pdf->Cell(9,7,$perempuan,1, 0, 'C');
 				$pdf->Cell(9,7,$jumlah,1, 0, 'C');
 				$pdf->Cell(9,7,$industri,1, 0, 'C');
-				$pdf->Cell(9,7,$wirausaha,1, 0, 'C');
+				$pdf->Cell(9,7,$wirausaha,1, 0, 'C');*/
+
+				$width = array_merge($width, $tempWidth);
+
+				$content = array_merge($content, $tempContent);
+
+				$align = array_merge($align, $tempAlign);
 			}
 
+			//print_r($width);echo "<br><br>";print_r($content);die();
+
+			$pdf->SetAligns($align);
+			$pdf->SetWidths($width);
+
+			$pdf->Row($content);
+
 			$no++;
-			$pdf->ln();
+			//$pdf->ln();
 		}
 
 		$pdf->SetFont('Arial','B',10);
