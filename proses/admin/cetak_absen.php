@@ -72,7 +72,7 @@
 
 		$ttl = $row->tempat_lahir." ".$tgl_lahir;
 
-		$pdf->Row(array($row->nama, $row->telepon, $row->email, $row->alamat, $ttl, 'pendidikan', ''));
+		$pdf->Row(array($row->nama, $row->telepon, $row->email, $row->alamat, $ttl, $row->pendidikan_terakhir, ''));
 		/*$pdf->Cell(50,7,$row->nama,1);
 		$pdf->Cell(30,7,$row->telepon,1);
 		$pdf->MultiCell(30,7,$row->email,1);
