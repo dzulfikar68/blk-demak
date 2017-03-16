@@ -2258,6 +2258,13 @@ label {
     margin-bottom: 0px;
 }
 
+#resultLaporan{
+    overflow-x: auto;
+}
+#resultLaporan .table{
+    max-width: unset;
+    width: auto;
+}
 #resultLaporan .table th{
     vertical-align: middle;
     text-align: center;
