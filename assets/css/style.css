@@ -2262,8 +2262,9 @@ label {
     overflow-x: auto;
 }
 #resultLaporan .table{
-    max-width: unset;
     width: auto;
+    min-width: 100%;
+    max-width: unset;
 }
 #resultLaporan .table th{
     vertical-align: middle;
