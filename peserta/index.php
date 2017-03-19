@@ -32,14 +32,14 @@
 	$get_sql = "SELECT * FROM kejuruan WHERE status_hapus=0 ORDER BY date_created";
 	$result_kejuruan = mysqli_query($connect, $get_sql);
 
-	// ambil riwayat pelatihan
-	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
-	$result_pelatihan = mysqli_query($connect, $get_sql);
-
 	// ambil riwayat pelatihan untuk peserta dengan status <= 3
 	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, registrasi_pelatihan.tanggal_registrasi, kejuruan.nama_kejuruan
 		FROM registrasi_pelatihan, kejuruan WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.status<='3'";
 	$result_pelatihan_status = mysqli_query($connect, $get_sql);
+
+	// ambil riwayat pelatihan
+	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.status>'3' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
+	$result_pelatihan = mysqli_query($connect, $get_sql);
 
 	// ambil daftar kerja
 	$get_sql = "SELECT * FROM data_kerja WHERE id_peserta = '$id' ORDER BY date_created";
