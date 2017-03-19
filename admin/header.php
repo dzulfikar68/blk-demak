@@ -151,12 +151,21 @@
               </a>
             </li>
 
-            <li>
-              <a href="ekspor.php">
-                <i class="fa fa-database"></i>
-                <span>Ekspor Basis Data</span>
-              </a>
-            </li>
+            <?php
+
+              if($_SESSION['jabatan']=='admin'){
+
+                echo "<li>
+                      <a href=\"ekspor.php\">
+                        <i class=\"fa fa-database\"></i>
+                        <span>Ekspor Basis Data</span>
+                      </a>
+                    </li>";
+                
+              }
+
+            ?>
+            
             
             
           </ul>
