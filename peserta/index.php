@@ -156,7 +156,7 @@
 												session_unset($_SESSION['success-register']);
 											}
 										?>
-										<div class="alert alert-success">Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
+										<div class="alert alert-info">Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
 										</div>
 										<p>Silakan memilih kejuruan yang ingin diikuti.</p>
 										<div class="col-sm-4">
