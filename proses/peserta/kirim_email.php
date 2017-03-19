@@ -25,7 +25,7 @@
 
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email
-			$link = ROOT ."/proses/peserta/cek_token.php?token=". $token;
+			$link = ROOT ."proses/peserta/cek_token.php?token=". $token;
 			$subyek = "Ganti Password";
 			$pesanEmail = "Dear, " .$row['nama']. ".<br>
 							Silakan klik link di bawah ini untuk mengganti password Anda.<br>
