@@ -170,6 +170,7 @@
 		<div class="table-title">
 			<div class="logo col-sm-2" style="text-align: right;">
 				<img src="<?php echo ROOT; ?>assets/img/logo.png">
+				<div style="margin-top: 7px;">APBN/APBD</div>
 			</div>
 			<div class="col-sm-8" style="text-align: center;">
 				<h3>DATA PELATIHAN</h3>
