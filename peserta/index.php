@@ -32,14 +32,14 @@
 	$get_sql = "SELECT * FROM kejuruan WHERE status_hapus=0 ORDER BY date_created";
 	$result_kejuruan = mysqli_query($connect, $get_sql);
 
-	// ambil riwayat pelatihan
-	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
-	$result_pelatihan = mysqli_query($connect, $get_sql);
-
 	// ambil riwayat pelatihan untuk peserta dengan status <= 3
 	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, registrasi_pelatihan.tanggal_registrasi, kejuruan.nama_kejuruan
 		FROM registrasi_pelatihan, kejuruan WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.status<='3'";
 	$result_pelatihan_status = mysqli_query($connect, $get_sql);
+
+	// ambil riwayat pelatihan
+	$get_sql = "SELECT registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan, jadwal.angkatan, jadwal.seleksi_awal FROM registrasi_pelatihan, kejuruan, jadwal WHERE registrasi_pelatihan.id_peserta='$id' AND registrasi_pelatihan.status>'3' AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan AND registrasi_pelatihan.id_jadwal=jadwal.id_jadwal ORDER BY registrasi_pelatihan.tanggal_registrasi DESC";
+	$result_pelatihan = mysqli_query($connect, $get_sql);
 
 	// ambil daftar kerja
 	$get_sql = "SELECT * FROM data_kerja WHERE id_peserta = '$id' ORDER BY date_created";
@@ -156,7 +156,7 @@
 												session_unset($_SESSION['success-register']);
 											}
 										?>
-										<div class="alert alert-success">Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
+										<div class="alert alert-info">Untuk mendaftar pelatihan, pastikan data profil Anda sudah <b>lengkap</b>.<br>
 										</div>
 										<p>Silakan memilih kejuruan yang ingin diikuti.</p>
 										<div class="col-sm-4">
@@ -195,6 +195,7 @@
 												<th>Gelombang</th>
 												<th>Tahun</th>
 												<th>Status</th>
+												<th>
 											</tr>
 										</thead>
 										<tbody>
@@ -208,6 +209,7 @@
 													echo "<td></td>";
 													echo "<td>". date('Y', strtotime($row_pelatihan_status['tanggal_registrasi'])). "</td>";
 													echo "<td>". convertStatusRegistrasi($row_pelatihan_status['status']) ."</td>";
+													echo '<td><a href="../proses/peserta/cetak_riwayat.php?data-riwayat='. $row_pelatihan_status["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Riwayat"><i class="fa fa-print"></i></a></td>';
 													echo "</tr>";
 													$no_pelatihan++;
 												}
@@ -224,6 +226,7 @@
 														echo "<td>". date('Y', strtotime($row_pelatihan['seleksi_awal'])). "</td>";
 													}
 													echo "<td>". convertStatusRegistrasi($row_pelatihan['status']) ."</td>";
+													echo '<td><a href="../proses/peserta/cetak_riwayat.php?data-riwayat='. $row_pelatihan["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Riwayat"><i class="fa fa-print"></i></a></td>';
 													echo "</tr>";
 													$no_pelatihan++;
 												}

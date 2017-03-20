@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	require '../_send_email.php';
 	require '../helper.php';
@@ -28,7 +29,7 @@
 		$sql = "UPDATE $jabatan SET token='$token' WHERE $id_column=$id";
 		if (mysqli_query($connect, $sql)){
 			// kirim notifikasi email
-			$link = "http://". $_SERVER['HTTP_HOST'] ."/proses/admin/cek_token.php?type=".$jabatan."&token=". $token;
+			$link = ROOT ."proses/admin/cek_token.php?type=".$jabatan."&token=". $token;
 			$subyek = "Ganti Password [".$jabatan."]";
 			$pesanEmail = "	Silakan klik link di bawah ini untuk mengganti password Anda.<br>
 							<a href='". $link ."'>". $link ."</a>
@@ -55,5 +56,5 @@
 	mysqli_close($connect);
 
 	// redirect ke halaman kirim_email
-	header("Location: http://". $_SERVER['HTTP_HOST']. "/admin/login.php");
+	header("Location: ". ROOT . "admin/login.php");
 	die();
