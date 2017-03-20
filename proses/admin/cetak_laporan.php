@@ -199,7 +199,7 @@
 
 	$pdf->SetFont('Arial','',10);
 
-	$pdf->Cell(280,5,'Jl. Kantonsari No. 19 Demak. Telp (0291) 681718',0, 0, 'C');
+	$pdf->Cell(280,5,'Jl. Katonsari No. 19 Demak. Telp (0291) 681718',0, 0, 'C');
 	$pdf->ln();
 
 	$pdf->Cell(280,5,'Email : blkdemak@gmail.com',0, 0, 'C');
@@ -367,8 +367,14 @@
 		}
 
 	}
-	
 
+	if($angkatan=='all'){
+		$pdf->SetTitle('Laporan Pelatihan BLK - '.$tahun);
+	}else{
+		$pdf->SetTitle('Laporan Pelatihan BLK - '.$tahun.' angkatan '.$angkatan);
+	}
+	
+	
 
 	$pdf->Output();
 

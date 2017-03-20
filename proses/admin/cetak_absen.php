@@ -25,23 +25,43 @@
 	$pdf->AddPage('L', 'A4');
 
 	$pdf->Image('../../assets/img/logo.png', 20, 10, 0, 20);
+	//set font header
+	$pdf->SetFont('Arial','B',12);
+
+	$pdf->setXY(13, 30);
+
+	$pdf->Cell(30,7, strtoupper($sumber_dana),0, 0, 'C');
 
 	//set font header
 	$pdf->SetFont('Arial','B',16);
 
 	$pdf->setXY(10, 10);
 
-	$pdf->Cell(280,7,'Absensi Pelatihan kejuruan '.$nama_kejuruan.'',0, 0, 'C');
+	$pdf->Cell(280,7,'ABSENSI PELATIHAN KEJURUAN '.strtoupper($nama_kejuruan).'',0, 0, 'C');
+	$pdf->ln();
+
+	$pdf->Cell(280,7,'UPTD BALAI LATIHAN KERJA KABUPATEN DEMAK',0, 0, 'C');
+	$pdf->ln();
+
+	$pdf->SetFont('Arial','',10);
+
+	$pdf->Cell(280,5,'Jl. Katonsari No. 19 Demak. Telp (0291) 681718',0, 0, 'C');
+	$pdf->ln();
+
+	$pdf->Cell(280,5,'Email : blkdemak@gmail.com',0, 0, 'C');
+	$pdf->ln();
 	$pdf->ln();
 
 	$pdf->SetFont('Arial','',12);
 	$pdf->Cell(280,7,'Tanggal '.$tgl_pelaksanaan.'',0, 0, 'C');
 	$pdf->ln();
 
+	$pdf->setXY(130, 47);
 	$pdf->SetFont('Arial','',10);
-	$pdf->Cell(280,7,'Sumber dana = '.$sumber_dana.' | Kapasitas = '.$kapasitas.'',0, 0, 'C');
+	$pdf->Cell(280,7,'Kapasitas = '.$kapasitas.' orang ',0, 0, 'C');
 
 	$pdf->setXY(10, 40);
+	$pdf->ln();
 	$pdf->SetFont('Arial','',10);
 	$pdf->Cell(40,7,'Tanggal ...../....../......',0, 0, 'C');
 	$pdf->ln();
@@ -83,5 +103,7 @@
 		//$pdf->Ln();
 
 	}
+
+	$pdf->SetTitle('Absensi Pelatihan BLK - '.$nama_kejuruan.' '.$tgl_pelaksanaan);
 
 	$pdf->Output();
