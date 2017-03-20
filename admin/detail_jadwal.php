@@ -46,7 +46,7 @@
                 
                 <a href="../proses/admin/cetak_absen.php?id_jadwal=<?php echo $id_jadwal?>" target="_blank" style="margin-bottom:10px" class="btn btn-primary pull-right"  >Cetak Absen</a>
                 <br>
-                <div class="clearfix" >
+                <div class="clearfix" ></div>
                 <?php
 
                   if(isset($_SESSION['error'])){

@@ -20,6 +20,10 @@
               <div class="showback">
                 <h4><i class="fa fa-angle-right"></i> Tabel Register Pelatihan</h4>  
                 <hr>
+
+                <a href="../proses/admin/cetak_register.php" target="_blank" style="margin-bottom:10px" class="btn btn-primary pull-right"  >Cetak Peserta yang lolos tes dan wawancara</a>
+                <br>
+                <div class="clearfix" ></div>
                 
                 <?php
 
