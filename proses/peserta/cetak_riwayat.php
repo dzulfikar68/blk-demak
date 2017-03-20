@@ -8,12 +8,14 @@
 	$no_registrasi = $_GET['data-riwayat'];
 	$id_peserta = $_GET['data-peserta'];
 
-	$sql = "SELECT peserta.nama, peserta.alamat, peserta.telepon, registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status FROM peserta, registrasi_pelatihan WHERE peserta.id='$id_peserta'
-		AND registrasi_pelatihan.no_registrasi= '$no_registrasi'";
+	$sql = "SELECT peserta.nama, peserta.alamat, peserta.telepon, registrasi_pelatihan.no_registrasi, registrasi_pelatihan.status, kejuruan.nama_kejuruan FROM peserta, registrasi_pelatihan,kejuruan
+		WHERE peserta.id='$id_peserta' AND registrasi_pelatihan.no_registrasi='$no_registrasi'
+		AND registrasi_pelatihan.id_kejuruan=kejuruan.id_kejuruan";
 
 	$result = mysqli_query($connect, $sql);
 
 	$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+	// var_dump($row); die();
 ?>
 
 <!DOCTYPE html>
@@ -44,6 +46,10 @@
 					<tr>
 						<td>No Registrasi</td>
 						<td><?php echo $row['no_registrasi']; ?></td>
+					</tr>
+					<tr>
+						<td>Kejuruan</td>
+						<td><?php echo $row['nama_kejuruan']; ?></td>
 					</tr>
 				</tbody>
 			</table>
