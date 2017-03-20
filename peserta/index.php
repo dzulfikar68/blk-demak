@@ -209,7 +209,7 @@
 													echo "<td></td>";
 													echo "<td>". date('Y', strtotime($row_pelatihan_status['tanggal_registrasi'])). "</td>";
 													echo "<td>". convertStatusRegistrasi($row_pelatihan_status['status']) ."</td>";
-													echo '<td><a href="../proses/peserta/cetak_riwayat.php?data-riwayat='. $row_pelatihan_status["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Riwayat"><i class="fa fa-print"></i></a></td>';
+													echo '<td><a href="../proses/peserta/cetak_kartu.php?data-riwayat='. $row_pelatihan_status["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Kartu"><i class="fa fa-print"></i></a></td>';
 													echo "</tr>";
 													$no_pelatihan++;
 												}
@@ -226,7 +226,7 @@
 														echo "<td>". date('Y', strtotime($row_pelatihan['seleksi_awal'])). "</td>";
 													}
 													echo "<td>". convertStatusRegistrasi($row_pelatihan['status']) ."</td>";
-													echo '<td><a href="../proses/peserta/cetak_riwayat.php?data-riwayat='. $row_pelatihan["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Riwayat"><i class="fa fa-print"></i></a></td>';
+													echo '<td><a href="../proses/peserta/cetak_kartu.php?data-riwayat='. $row_pelatihan["no_registrasi"] .'&data-peserta='. $id .'" target="_blank" class="btn btn-primary btn-xs" data-tooltip="true" data-original-title="Cetak Kartu"><i class="fa fa-print"></i></a></td>';
 													echo "</tr>";
 													$no_pelatihan++;
 												}
