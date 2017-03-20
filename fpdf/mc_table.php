@@ -18,7 +18,8 @@ function SetAligns($a)
 	$this->aligns=$a;
 }
 
-function Row($data)
+//$border bool, apakah mencetak border atau tidak 
+function Row($data, $border=true)
 {
 	//Calculate the height of the row
 	$nb=0;
@@ -35,8 +36,11 @@ function Row($data)
 		//Save the current position
 		$x=$this->GetX();
 		$y=$this->GetY();
-		//Draw the border
-		$this->Rect($x,$y,$w,$h);
+		if($border){
+			//Draw the border
+			$this->Rect($x,$y,$w,$h);
+		}
+		
 		//Print the text
 		$this->MultiCell($w,5,$data[$i],0,$a);
 		//Put the position to the right of the cell
