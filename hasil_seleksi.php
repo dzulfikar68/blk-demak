@@ -9,7 +9,7 @@
 
 	// pagination
 	// http://code.runnable.com/U8dzQWEzMxxqeQ_E/php-pagination-example-using-mysql-database-for-dbms
-	$num_rec_per_page=25;
+	$num_rec_per_page = 25;
 	if (isset($_GET["page"])) {
 		$page  = $_GET["page"]; }
 	else {
@@ -87,7 +87,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$no = 1;
+								$no = $start_from + 1;
 								while ($row=mysqli_fetch_array($search_result)) {
 									echo "<tr>";
 									echo '<td class="number">'. $no .'</td>';
@@ -97,6 +97,7 @@
 									echo '<td>'. $row['angkatan'] .'</td>';
 									echo '<td>'. convertStatusRegistrasi($row['status']) .'</td>';
 									echo "</tr>";
+									$no++;
 								}
 							?>
 						</tbody>
@@ -119,7 +120,7 @@
 						</thead>
 						<tbody>
 							<?php
-								$no = 1;
+								$no = $start_from + 1;
 								while ($row=mysqli_fetch_array($result)) {
 									echo "<tr>";
 									echo '<td class="number">'. $no .'</td>';
@@ -128,6 +129,7 @@
 									echo '<td>'. $row['nama_kejuruan'] .'</td>';
 									echo '<td>'. $row['angkatan'] .'</td>';
 									echo "</tr>";
+									$no++;
 								}
 							?>
 						</tbody>
