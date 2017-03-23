@@ -1,6 +1,7 @@
 <?php
 	/* Koneksi ke DB */
     require_once ('../koneksi_db.php');
+    require_once ('../../.env.php');
 
 	session_start();
 
@@ -17,13 +18,13 @@
 	if ($row[$id_column] != null) {
 		$_SESSION['id-operator'] = $row[$id_column];
 		// redirect ke ganti_password
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/admin/ganti_password.php");
+		header("Location: ". ROOT . "admin/ganti_password.php");
 		die();
 	}
 	else{
 		$_SESSION['error'] = "Token telah kadaluarsa.<br>
 							Silakan masukkan email kembali.";
 		// redirect ke beranda
-		header("Location: http://". $_SERVER['HTTP_HOST']. "/admin/login.php");
+		header("Location: ". ROOT . "admin/login.php");
 		die();
 	}
