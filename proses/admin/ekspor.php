@@ -15,10 +15,10 @@
 	set_time_limit(3600);
 
 	// untuk linux
-    // $sql = "/opt/lampp/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
+    $sql = "/opt/lampp/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
 
     // untuk windows
-    $sql = "C://xampp/mysql/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
+    // $sql = "C://xampp/mysql/bin/mysqldump --user=$username --password=$password --host=$host $database > $exportPath";
    
 	// ekspor sql
 	exec($sql, $output, $return_var);
