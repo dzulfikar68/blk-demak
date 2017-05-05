@@ -4,8 +4,9 @@
 
     session_start();
 
-    $date = date('Y-m-d-H-i-s');
-    $filename = 'BlkDemakBackup'. $date .'.sql';
+    date_default_timezone_set('Asia/Jakarta');
+    $date = date('Y-m-d H-i-s');
+    $filename = 'BlkDemakBackup '. $date .'.sql';
     $exportPath ='../../database/'. $filename;
 
     $return_var = NULL;
